@@ -35,6 +35,7 @@ public class VehiculoEntity {
 	private String tipoVehiculo;
 
 	public VehiculoEntity() {
+		//Constructor vacio
 	}
 
 	public Long getId() {

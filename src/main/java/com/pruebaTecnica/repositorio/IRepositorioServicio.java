@@ -15,4 +15,6 @@ public interface IRepositorioServicio extends JpaRepository<ServicioEntity, Long
 	public ServicioEntity findByPlaca(String placa);
 	
 	public List<ServicioEntity> findAllByTipoVehiculo(int tipoVehiculo);
+	
+	
 }

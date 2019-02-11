@@ -13,4 +13,6 @@ import com.pruebaTecnica.persistencia.ServicioEntity;
 public interface IEstacionamientoService {
 
 	public void registrarEntrada(ServicioEntity servicio);
+	
+	 
 }

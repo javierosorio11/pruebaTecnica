@@ -1,4 +1,4 @@
-package com.preubaTecnica;
+package com.pruebaTecnica;
 
 import java.sql.Date;
 import java.util.List;
@@ -6,19 +6,14 @@ import java.util.List;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import com.pruebaTecnica.persistencia.ServicioEntity;
 import com.pruebaTecnica.repositorio.IRepositorioServicio;
 
 
 @SpringBootApplication
-@ComponentScan({"com.pruebaTecnica.repositorio"})
-@EntityScan("com.pruebaTecnica.persistencia")
-@EnableJpaRepositories("com.pruebaTecnica.repositorio")
+
 public class EstacionamientoAplication {
 
 	public static void main(String[] args) {

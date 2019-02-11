@@ -39,7 +39,7 @@ dependencies {
 	compile 'org.codehaus.jackson:jackson-core-asl:1.9.13'
 	compile group: 'org.json', name: 'json', version: '20180813'
 
-	compile files('libs/superfinancieraTRM.jar')
+	// compile files('libs/superfinancieraTRM.jar')
 
 }
 
