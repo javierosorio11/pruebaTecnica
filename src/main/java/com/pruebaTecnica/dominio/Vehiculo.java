@@ -11,8 +11,10 @@ public class Vehiculo {
 	
 
 	
-	public Vehiculo(String modelo, String color, String placa, String fechaHoraIngreso, String fechaHoraSalida,
-			String tipoVehiculo) {
+
+
+
+	public Vehiculo(String modelo, String placa, String fechaHoraIngreso, String fechaHoraSalida, String tipoVehiculo) {
 		super();
 		this.modelo = modelo;
 		this.placa = placa;

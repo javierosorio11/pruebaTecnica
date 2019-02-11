@@ -13,7 +13,7 @@ public static Vehiculo convertirADominio(VehiculoEntity VehiculoEntity) {
 		Vehiculo vehiculo = null;
 		
 		if(VehiculoEntity != null) {
-			vehiculo = new Vehiculo(VehiculoEntity.getModelo(),VehiculoEntity.getColor(), VehiculoEntity.getPlaca(), VehiculoEntity.getFechaHoraIngreso(), VehiculoEntity.getFechaHoraSalida(), VehiculoEntity.getTipoVehiculo());
+			vehiculo = new Vehiculo(VehiculoEntity.getModelo(), VehiculoEntity.getPlaca(), VehiculoEntity.getFechaHoraIngreso(), VehiculoEntity.getFechaHoraSalida(), VehiculoEntity.getTipoVehiculo());
 		}
 		
 		return vehiculo;
