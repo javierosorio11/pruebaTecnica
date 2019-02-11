@@ -4,7 +4,8 @@
 package com.pruebaTecnica.servicio;
 
 
-import com.pruebaTecnica.persistencia.ServicioEntity;
+import com.pruebaTecnica.dominio.Vehiculo;
+
 
 /**
  * @author alvaro.osorio
@@ -12,7 +13,7 @@ import com.pruebaTecnica.persistencia.ServicioEntity;
  */
 public interface IEstacionamientoService {
 
-	public void registrarEntrada(ServicioEntity servicio);
+	public Vehiculo registrarEntrada(Vehiculo vehiculo);
 	
 	 
 }

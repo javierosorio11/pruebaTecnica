@@ -1,34 +1,36 @@
 package com.pruebaTecnica.utils;
 
+import java.sql.Date;
+
 import com.pruebaTecnica.dominio.Vehiculo;
-import com.pruebaTecnica.persistencia.VehiculoEntity;
+import com.pruebaTecnica.persistencia.ServicioEntity;
 
 
 public class VehiculoBuild {
 	
 	private VehiculoBuild() {}
 	
-public static Vehiculo convertirADominio(VehiculoEntity VehiculoEntity) {
+public static Vehiculo convertirADominio(ServicioEntity servicioEntity) {
 		
 		Vehiculo vehiculo = null;
 		
-		if(VehiculoEntity != null) {
-			vehiculo = new Vehiculo(VehiculoEntity.getModelo(), VehiculoEntity.getPlaca(), VehiculoEntity.getFechaHoraIngreso(), VehiculoEntity.getFechaHoraSalida(), VehiculoEntity.getTipoVehiculo());
+		if(servicioEntity != null) {
+			vehiculo = new Vehiculo(servicioEntity.getModelo(),servicioEntity.getPlaca(),servicioEntity.getFechaHoraIngreso(),servicioEntity.getFechaHoraSalida(),servicioEntity.getTipoVehiculo());
 		}
 		
 		return vehiculo;
 	}
 	
-	public static VehiculoEntity convertirAEntity(Vehiculo Vehiculo) {
+	public static ServicioEntity convertirAEntity(Vehiculo vehiculo) {
 		
-		VehiculoEntity VehiculoEntity = new VehiculoEntity();
+		ServicioEntity servicioEntity = new ServicioEntity();
 		
-		VehiculoEntity.setPlaca(Vehiculo.getPlaca());
-		VehiculoEntity.setModelo(Vehiculo.getModelo());
-		VehiculoEntity.setFechaHoraIngreso(Vehiculo.getFechaHoraIngreso());
-		VehiculoEntity.setFechaHoraSalida(Vehiculo.getFechaHoraSalida());
-		VehiculoEntity.setTipoVehiculo(Vehiculo.getTipoVehiculo());
+		servicioEntity.setPlaca(vehiculo.getPlaca());
+		servicioEntity.setModelo(vehiculo.getModelo());
+		servicioEntity.setFechaHoraIngreso((Date) vehiculo.getFechaHoraIngreso());;
+		servicioEntity.setFechaHoraSalida((Date)vehiculo.getFechaHoraSalida());
+		servicioEntity.setTipoVehiculo(vehiculo.getTipoVehiculo());
 		
-		return VehiculoEntity;
+		return servicioEntity;
 	}
 }

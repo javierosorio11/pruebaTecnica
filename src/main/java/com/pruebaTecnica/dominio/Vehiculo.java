@@ -1,20 +1,17 @@
 package com.pruebaTecnica.dominio;
 
+import java.util.Date;
+
 public class Vehiculo {
 	
 	private String modelo;
 	private String placa;
-	private String fechaHoraIngreso;
-	private String fechaHoraSalida;
-	private String tipoVehiculo;
-	
-	
-
+	private Date fechaHoraIngreso;
+	private Date fechaHoraSalida;
+	private int tipoVehiculo;
 	
 
-
-
-	public Vehiculo(String modelo, String placa, String fechaHoraIngreso, String fechaHoraSalida, String tipoVehiculo) {
+	public Vehiculo(String modelo, String placa, Date fechaHoraIngreso, Date fechaHoraSalida, int tipoVehiculo) {
 		super();
 		this.modelo = modelo;
 		this.placa = placa;
@@ -33,6 +30,7 @@ public class Vehiculo {
 		this.modelo = modelo;
 	}
 
+
 	public String getPlaca() {
 		return placa;
 	}
@@ -43,45 +41,37 @@ public class Vehiculo {
 	}
 
 
-	public String getFechaHoraIngreso() {
+	public Date getFechaHoraIngreso() {
 		return fechaHoraIngreso;
 	}
 
 
-	public void setFechaHoraIngreso(String fechaHoraIngreso) {
+	public void setFechaHoraIngreso(Date fechaHoraIngreso) {
 		this.fechaHoraIngreso = fechaHoraIngreso;
 	}
 
 
-	public String getFechaHoraSalida() {
+	public Date getFechaHoraSalida() {
 		return fechaHoraSalida;
 	}
 
 
-	public void setFechaHoraSalida(String fechaHoraSalida) {
+	public void setFechaHoraSalida(Date fechaHoraSalida) {
 		this.fechaHoraSalida = fechaHoraSalida;
 	}
 
-	public String getTipoVehiculo() {
+
+	public int getTipoVehiculo() {
 		return tipoVehiculo;
 	}
 
 
-
-	public void setTipoVehiculo(String tipoVehiculo) {
+	public void setTipoVehiculo(int tipoVehiculo) {
 		this.tipoVehiculo = tipoVehiculo;
 	}
 
 
 
-	@Override
-	public String toString() {
-		return "Vehiculo [modelo=" + modelo + ", placa=" + placa + ", fechaHoraIngreso="
-				+ fechaHoraIngreso + ", fechaHoraSalida=" + fechaHoraSalida + ", tipoVehiculo=" + tipoVehiculo + "]";
-	}
-	
-	
-	
 	
 
 }
