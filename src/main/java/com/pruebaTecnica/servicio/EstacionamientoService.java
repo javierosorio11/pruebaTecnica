@@ -3,13 +3,10 @@
  */
 package com.pruebaTecnica.servicio;
 
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-import org.mockito.internal.stubbing.answers.ThrowsException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +19,6 @@ import com.pruebaTecnica.persistencia.ServicioEntity;
 import com.pruebaTecnica.repositorio.IRepositorioFactura;
 import com.pruebaTecnica.repositorio.IRepositorioServicio;
 import com.pruebaTecnica.utils.Utilitarios;
-
-import javassist.bytecode.analysis.Util;
 
 /**
  * @author alvaro.osorio
