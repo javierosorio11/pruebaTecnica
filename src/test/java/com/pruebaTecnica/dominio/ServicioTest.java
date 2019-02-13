@@ -22,6 +22,9 @@ public class ServicioTest {
 
   @Autowired
   EstacionamientoService estacionamientoService;
+  
+  @Autowired
+  IRepositorioServicio iRepositorioServicio;
 
 	@Test
 	public void registrarEntradaCarroTest() {
@@ -62,21 +65,25 @@ public class ServicioTest {
 	}
 	
 	@Test
-	public void verificarCupoDisponibleCarro() {
+	public void verificarCupoNoDisponibleCarro() {
 		ServicioEntity servicioEntity= new ServicioEntity();
+		
+		for(int i = 0; i <= 20; i++){
 		servicioEntity.setEstado(1);
 		servicioEntity.setModelo("1999");
 		servicioEntity.setPlaca("TSQ");
 		servicioEntity.setTipoVehiculo(Utilitarios.MOTO);
 		Factura factura = new Factura();
-	
-		factura = estacionamientoService.registrarEntrada(servicioEntity);
+		iRepositorioServicio.save(servicioEntity);
+		
+		}
+		
+		boolean disponibilidad = estacionamientoService.verificarDisponibilidadServicio(servicioEntity);
 
 		
 		
-		Assert.assertEquals("TSQ", factura.getPlaca());
-		Assert.assertEquals(Utilitarios.MOTO,factura.getTipoVehiculo());
-		Assert.assertEquals(Utilitarios.PARQUEADO, factura.getEstado());
+		Assert.assertEquals(true, disponibilidad);
+		
 		
 	}
 
