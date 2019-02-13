@@ -5,8 +5,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-
-
 import com.pruebaTecnica.dominio.Factura;
 import com.pruebaTecnica.dominio.Servicio;
 import com.pruebaTecnica.persistencia.FacturaEntity;
