@@ -1,7 +1,5 @@
 package com.pruebaTecnica;
 
-import java.sql.Date;
-import java.util.Calendar;
 import java.util.List;
 
 import org.springframework.boot.CommandLineRunner;

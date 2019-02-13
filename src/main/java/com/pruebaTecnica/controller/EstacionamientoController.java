@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.pruebaTecnica.dominio.Factura;
-import com.pruebaTecnica.dominio.Vehiculo;
 import com.pruebaTecnica.persistencia.FacturaEntity;
 import com.pruebaTecnica.persistencia.ServicioEntity;
 import com.pruebaTecnica.servicio.IEstacionamientoService;
