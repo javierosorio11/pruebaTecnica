@@ -26,20 +26,19 @@ public class EstacionamientoAplication {
 		
 			return args -> {
 				
-				Utilitarios util = new Utilitarios();
+				
 				ServicioEntity servicio = new ServicioEntity();
 				servicio.setFechaHoraIngreso("11-02-2019 09:22:23");
 				servicio.setModelo("1999");
 				servicio.setPlaca("AVJGEC");
-				servicio.setTipoVehiculo(util.MOTO);
-				servicio.setEstado(util.PARQUEADO);
+				servicio.setTipoVehiculo(Utilitarios.MOTO);
+				servicio.setEstado(Utilitarios.PARQUEADO);
 				
 				
 				iRepositorioServicio.save(servicio);
 				servicio = iRepositorioServicio.findByPlaca("AVJGEC");
 				List <ServicioEntity> lstServicios= iRepositorioServicio.findAllByTipoVehiculo(servicio.getTipoVehiculo());
 				
-				System.out.println(servicio.getFechaHoraIngreso()+" Disponibles"+(lstServicios.size()-20) );
 				
 			};
 
