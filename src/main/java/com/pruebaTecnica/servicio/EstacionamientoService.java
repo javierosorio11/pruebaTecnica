@@ -38,7 +38,6 @@ public class EstacionamientoService implements IEstacionamientoService {
 	IRepositorioFactura iRepositorioFactura;
 
 	private static final Logger logger = LoggerFactory.getLogger(EstacionamientoService.class);
-	Utilitarios util = new Utilitarios();
 
 	@Override
 	public Factura registrarEntrada(ServicioEntity servicio) {
@@ -50,21 +49,21 @@ public class EstacionamientoService implements IEstacionamientoService {
 			
 			if (verificarDisponibilidadServicio(servicio)) {
 
-				if(!util.esDomingoOLunes(Calendar.getInstance()) && util.placaVehiculoIniciaPorA(servicio.getPlaca())){
-					throw new Exception(util.PLACA_INI_EN_A);
+				if(!Utilitarios.esDomingoOLunes(Calendar.getInstance()) && Utilitarios.placaVehiculoIniciaPorA(servicio.getPlaca())){
+					throw new Exception(Utilitarios.PLACA_INI_EN_A);
 				}else{
 					
-					servicio.setFechaHoraIngreso(util.fechaActualAString());
+					servicio.setFechaHoraIngreso(Utilitarios.fechaActualAString());
 					iRepositorioServicio.save(servicio);
 					facturaEntity = new FacturaEntity(servicio);
-					factura = util.convertirAFactura(facturaEntity);
+					factura = Utilitarios.convertirAFactura(facturaEntity);
 					iRepositorioFactura.save(facturaEntity);
 					
 				}
 			
 			}else{
 				
-				throw new Exception(util.SINCUPO);
+				throw new Exception(Utilitarios.SINCUPO);
 			}
 
 		} catch (Exception e) {
@@ -84,7 +83,7 @@ public class EstacionamientoService implements IEstacionamientoService {
 
 			int cantidaVehiculos = (iRepositorioServicio.findByTipoVehiculoByEstado(servicio.getTipoVehiculo(),servicio.getEstado())).size();
 
-			if (cantidaVehiculos > util.CUPOMAXCARROS) {
+			if (cantidaVehiculos > Utilitarios.CUPOMAXCARROS) {
 
 				cupoDisponible = false;
 			}
@@ -108,9 +107,9 @@ public class EstacionamientoService implements IEstacionamientoService {
 			
 			try {
 				factura = new FacturaEntity(servicio);
-				factura.setEstado(util.NOPAQUEADO);
-				factura.setFechaHoraSalida(util.fechaActualAString());
-				iRepositorioServicio.updateEstado(util.NOPAQUEADO, servicio.getPlaca());
+				factura.setEstado(Utilitarios.NOPAQUEADO);
+				factura.setFechaHoraSalida(Utilitarios.fechaActualAString());
+				iRepositorioServicio.updateEstado(Utilitarios.NOPAQUEADO, servicio.getPlaca());
 				this.calcularValorServicio(factura, factura.getFechaHoraSalida());
 				iRepositorioFactura.save(factura);
 			} catch (ParseException e) {
@@ -132,13 +131,13 @@ public class EstacionamientoService implements IEstacionamientoService {
 		
 		if(facturaEntity != null){
 			
-		Date fechaIngreso = util.fechaStringADate(facturaEntity.getFechaHoraIngreso());
-		Date fechaSalida= util.fechaStringADate(fechaActual);	
+		Date fechaIngreso = Utilitarios.fechaStringADate(facturaEntity.getFechaHoraIngreso());
+		Date fechaSalida= Utilitarios.fechaStringADate(fechaActual);	
 		tiempoMs= fechaSalida.getTime() - fechaIngreso.getTime();
 		servicioHoras=(tiempoMs / 3.6e+6)% 24;
 		servicioDias=Math.floor((tiempoMs / 3.6e+6)/24);
-		Long valorDia= (facturaEntity.getTipoVehiculo()==util.CARRO) ? util.VALORDIACARRO:util.VALORDIAMOTO;
-		Long valorHora=(facturaEntity.getTipoVehiculo()==util.CARRO) ? util.VALORDIACARRO:util.VALORDIAMOTO;
+		Long valorDia= (facturaEntity.getTipoVehiculo()==Utilitarios.CARRO) ? Utilitarios.VALORDIACARRO:Utilitarios.VALORDIAMOTO;
+		Long valorHora=(facturaEntity.getTipoVehiculo()==Utilitarios.CARRO) ? Utilitarios.VALORDIACARRO:Utilitarios.VALORDIAMOTO;
 		
 		if(Math.floor(servicioHoras) !=0 && servicioDias != 0 ){
 		
