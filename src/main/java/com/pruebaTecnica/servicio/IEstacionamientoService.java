@@ -4,7 +4,9 @@
 package com.pruebaTecnica.servicio;
 
 
-import com.pruebaTecnica.dominio.Vehiculo;
+import com.pruebaTecnica.dominio.Factura;
+import com.pruebaTecnica.persistencia.FacturaEntity;
+import com.pruebaTecnica.persistencia.ServicioEntity;
 
 
 /**
@@ -13,7 +15,11 @@ import com.pruebaTecnica.dominio.Vehiculo;
  */
 public interface IEstacionamientoService {
 
-	public Vehiculo registrarEntrada(Vehiculo vehiculo);
+	public Factura registrarEntrada(ServicioEntity servicio);
+	
+	public boolean  verificarDisponibilidadServicio(ServicioEntity servicio);
+	
+	public FacturaEntity registrarSalida(String placa);
 	
 	 
 }

@@ -1,6 +1,7 @@
 package com.pruebaTecnica;
 
 import java.sql.Date;
+import java.util.Calendar;
 import java.util.List;
 
 import org.springframework.boot.CommandLineRunner;
@@ -10,6 +11,7 @@ import org.springframework.context.annotation.Bean;
 
 import com.pruebaTecnica.persistencia.ServicioEntity;
 import com.pruebaTecnica.repositorio.IRepositorioServicio;
+import com.pruebaTecnica.utils.Utilitarios;
 
 
 @SpringBootApplication
@@ -26,13 +28,13 @@ public class EstacionamientoAplication {
 		
 			return args -> {
 				
-				
+				Utilitarios util = new Utilitarios();
 				ServicioEntity servicio = new ServicioEntity();
-				servicio.setFechaHoraIngreso(new Date(1));
-				servicio.setFechaHoraSalida(new Date(1));
+				servicio.setFechaHoraIngreso("11-02-2019 09:22:23");
 				servicio.setModelo("1999");
 				servicio.setPlaca("AVJGEC");
-				servicio.setTipoVehiculo(1);
+				servicio.setTipoVehiculo(util.MOTO);
+				servicio.setEstado(util.PARQUEADO);
 				
 				
 				iRepositorioServicio.save(servicio);

@@ -19,7 +19,8 @@ public class Vehiculo {
 		this.fechaHoraSalida = fechaHoraSalida;
 		this.tipoVehiculo = tipoVehiculo;
 	}
-
+	
+	
 
 	public String getModelo() {
 		return modelo;
