@@ -1,12 +1,12 @@
 /**
  * 
  */
-package com.pruebaTecnica.servicio;
+package com.estacionamiento.servicio;
 
 
-import com.pruebaTecnica.dominio.Factura;
-import com.pruebaTecnica.persistencia.FacturaEntity;
-import com.pruebaTecnica.persistencia.ServicioEntity;
+import com.estacionamiento.dominio.Factura;
+import com.estacionamiento.persistencia.FacturaEntity;
+import com.estacionamiento.persistencia.ServicioEntity;
 
 
 /**

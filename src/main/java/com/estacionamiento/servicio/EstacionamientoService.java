@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.pruebaTecnica.servicio;
+package com.estacionamiento.servicio;
 
 import java.text.ParseException;
 import java.util.Calendar;
@@ -14,12 +14,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.pruebaTecnica.dominio.Factura;
-import com.pruebaTecnica.persistencia.FacturaEntity;
-import com.pruebaTecnica.persistencia.ServicioEntity;
-import com.pruebaTecnica.repositorio.IRepositorioFactura;
-import com.pruebaTecnica.repositorio.IRepositorioServicio;
-import com.pruebaTecnica.utils.Utilitarios;
+import com.estacionamiento.dominio.Factura;
+import com.estacionamiento.persistencia.FacturaEntity;
+import com.estacionamiento.persistencia.ServicioEntity;
+import com.estacionamiento.repositorio.IRepositorioFactura;
+import com.estacionamiento.repositorio.IRepositorioServicio;
+import com.estacionamiento.utils.Utilitarios;
 
 /**
  * @author alvaro.osorio

@@ -1,6 +1,6 @@
-package com.pruebaTecnica.repositorio;
+package com.estacionamiento.repositorio;
 
-import com.pruebaTecnica.dominio.Vehiculo;
+import com.estacionamiento.dominio.Vehiculo;
 
 public interface RepositorioVehiculo {
 

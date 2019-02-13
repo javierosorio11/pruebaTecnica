@@ -1,4 +1,4 @@
-package com.pruebaTecnica.controller;
+package com.estacionamiento.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.pruebaTecnica.dominio.Factura;
-import com.pruebaTecnica.persistencia.FacturaEntity;
-import com.pruebaTecnica.persistencia.ServicioEntity;
-import com.pruebaTecnica.servicio.IEstacionamientoService;
+import com.estacionamiento.dominio.Factura;
+import com.estacionamiento.persistencia.FacturaEntity;
+import com.estacionamiento.persistencia.ServicioEntity;
+import com.estacionamiento.servicio.IEstacionamientoService;
 
 @RestController
 public class EstacionamientoController {

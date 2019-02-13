@@ -1,4 +1,4 @@
-package com.pruebaTecnica.utils;
+package com.estacionamiento.utils;
 
 public class FacturaBuilder {
 

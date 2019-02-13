@@ -8,11 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.pruebaTecnica.EstacionamientoAplication;
-import com.pruebaTecnica.persistencia.ServicioEntity;
-import com.pruebaTecnica.repositorio.IRepositorioServicio;
-import com.pruebaTecnica.servicio.EstacionamientoService;
-import com.pruebaTecnica.utils.Utilitarios;
+import com.estacionamiento.EstacionamientoAplication;
+import com.estacionamiento.dominio.Factura;
+import com.estacionamiento.persistencia.ServicioEntity;
+import com.estacionamiento.repositorio.IRepositorioServicio;
+import com.estacionamiento.servicio.EstacionamientoService;
+import com.estacionamiento.utils.Utilitarios;
 
 
 @RunWith(SpringRunner.class)

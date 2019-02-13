@@ -1,4 +1,4 @@
-package com.pruebaTecnica.persistencia;
+package com.estacionamiento.persistencia;
 
 import java.io.Serializable;
 

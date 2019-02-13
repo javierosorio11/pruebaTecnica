@@ -1,48 +1,42 @@
 
-package com.pruebaTecnica.dominio;
-
+package com.estacionamiento.dominio;
 
 
 /**
  * @author alvaro.osorio
  *
  */
-public class Factura {
+public class Servicio {
 
+	private String modelo;
 	private String placa;
 	private String fechaHoraIngreso;
 	private String fechaHoraSalida;
-	private Long valorServicio;
 	private int tipoVehiculo;
 	private int estado;
-	private String error;
-	
-	
 
-	public Factura() {
-		super();
-		
+	public Servicio() {
+
 	}
 
-
-	public Factura(String placa, String fechaHoraIngreso, String fechaHoraSalida, Long valorServicio, int tipoVehiculo,
-			int estado, String error) {
+	public Servicio(String modelo, String placa, String fechaHoraIngreso, String fechaHoraSalida, int tipoVehiculo,
+			int estado) {
 		super();
+		this.modelo = modelo;
 		this.placa = placa;
 		this.fechaHoraIngreso = fechaHoraIngreso;
 		this.fechaHoraSalida = fechaHoraSalida;
-		this.valorServicio = valorServicio;
 		this.tipoVehiculo = tipoVehiculo;
 		this.estado = estado;
-		this.error = error;
 	}
 
+	public String getModelo() {
+		return modelo;
+	}
 
-
-
-
-
-
+	public void setModelo(String modelo) {
+		this.modelo = modelo;
+	}
 
 	public String getPlaca() {
 		return placa;
@@ -68,14 +62,6 @@ public class Factura {
 		this.fechaHoraSalida = fechaHoraSalida;
 	}
 
-	public Long getValorServicio() {
-		return valorServicio;
-	}
-
-	public void setValorServicio(Long valorServicio) {
-		this.valorServicio = valorServicio;
-	}
-
 	public int getTipoVehiculo() {
 		return tipoVehiculo;
 	}
@@ -91,16 +77,5 @@ public class Factura {
 	public void setEstado(int estado) {
 		this.estado = estado;
 	}
-
-
-	public String getError() {
-		return error;
-	}
-
-
-	public void setError(String error) {
-		this.error = error;
-	}
-
 
 }

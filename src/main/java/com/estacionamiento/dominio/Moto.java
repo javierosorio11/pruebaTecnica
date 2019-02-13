@@ -1,4 +1,4 @@
-package com.pruebaTecnica.dominio;
+package com.estacionamiento.dominio;
 
 import java.util.Date;
 

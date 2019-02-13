@@ -3,7 +3,8 @@ package com.pruebaTecnica.dominio;
 
 
 
-import com.pruebaTecnica.servicio.EstacionamientoService;
+import com.estacionamiento.dominio.Servicio;
+import com.estacionamiento.servicio.EstacionamientoService;
 
 public class ServicioDataBuilder {
 	

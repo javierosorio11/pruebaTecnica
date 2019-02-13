@@ -1,14 +1,14 @@
-package com.pruebaTecnica.utils;
+package com.estacionamiento.utils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-import com.pruebaTecnica.dominio.Factura;
-import com.pruebaTecnica.dominio.Servicio;
-import com.pruebaTecnica.persistencia.FacturaEntity;
-import com.pruebaTecnica.persistencia.ServicioEntity;
+import com.estacionamiento.dominio.Factura;
+import com.estacionamiento.dominio.Servicio;
+import com.estacionamiento.persistencia.FacturaEntity;
+import com.estacionamiento.persistencia.ServicioEntity;
 
 public class Utilitarios {
 	
