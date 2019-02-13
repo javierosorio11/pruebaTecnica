@@ -6,6 +6,7 @@ package com.pruebaTecnica.servicio;
 import java.text.ParseException;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,8 +29,6 @@ import com.pruebaTecnica.utils.Utilitarios;
 @Service
 @Transactional
 public class EstacionamientoService implements IEstacionamientoService {
-
-	
 
 	@Autowired
 	IRepositorioServicio iRepositorioServicio;
@@ -81,9 +80,9 @@ public class EstacionamientoService implements IEstacionamientoService {
 		boolean cupoDisponible = true;
 		try {
 
-			int cantidaVehiculos = (iRepositorioServicio.findByTipoVehiculoByEstado(servicio.getTipoVehiculo(),servicio.getEstado())).size();
-
-			if (cantidaVehiculos > Utilitarios.CUPOMAXCARROS) {
+			List<ServicioEntity> cantidaVehiculos = iRepositorioServicio.findByTipoVehiculoByEstado(servicio.getTipoVehiculo(),servicio.getEstado());
+ 
+			if (cantidaVehiculos.size() > Utilitarios.CUPOMAXCARROS) {
 
 				cupoDisponible = false;
 			}

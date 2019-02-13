@@ -3,20 +3,26 @@
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
+import com.pruebaTecnica.EstacionamientoAplication;
 import com.pruebaTecnica.persistencia.ServicioEntity;
 import com.pruebaTecnica.repositorio.IRepositorioServicio;
 import com.pruebaTecnica.servicio.EstacionamientoService;
 import com.pruebaTecnica.utils.Utilitarios;
 
+
+@RunWith(SpringRunner.class)
+@SpringBootTest(classes = EstacionamientoAplication.class)
 public class ServicioTest {
 	
+
   @Autowired
-  IRepositorioServicio iRepositorioServicio;
+  EstacionamientoService estacionamientoService;
 
-
-  
 	@Test
 	public void registrarEntradaCarroTest() {
 		ServicioEntity servicioEntity= new ServicioEntity();
@@ -24,7 +30,6 @@ public class ServicioTest {
 		servicioEntity.setModelo("1999");
 		servicioEntity.setPlaca("TSQ");
 		servicioEntity.setTipoVehiculo(1);
-		EstacionamientoService estacionamientoService = new EstacionamientoService();
 		Factura factura = new Factura();
 	
 		factura = estacionamientoService.registrarEntrada(servicioEntity);
