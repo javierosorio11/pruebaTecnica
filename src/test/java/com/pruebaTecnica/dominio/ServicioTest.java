@@ -28,8 +28,27 @@ public class ServicioTest {
 		ServicioEntity servicioEntity= new ServicioEntity();
 		servicioEntity.setEstado(1);
 		servicioEntity.setModelo("1999");
+		servicioEntity.setPlaca("TMQ");
+		servicioEntity.setTipoVehiculo(Utilitarios.CARRO);
+		Factura factura = new Factura();
+	
+		factura = estacionamientoService.registrarEntrada(servicioEntity);
+
+		
+		
+		Assert.assertEquals("TMQ", factura.getPlaca());
+		Assert.assertEquals(Utilitarios.CARRO,factura.getTipoVehiculo());
+		Assert.assertEquals(Utilitarios.PARQUEADO, factura.getEstado());
+		
+	}
+	
+	@Test
+	public void registrarEntradaMotoTest() {
+		ServicioEntity servicioEntity= new ServicioEntity();
+		servicioEntity.setEstado(1);
+		servicioEntity.setModelo("1999");
 		servicioEntity.setPlaca("TSQ");
-		servicioEntity.setTipoVehiculo(1);
+		servicioEntity.setTipoVehiculo(Utilitarios.MOTO);
 		Factura factura = new Factura();
 	
 		factura = estacionamientoService.registrarEntrada(servicioEntity);
@@ -37,8 +56,8 @@ public class ServicioTest {
 		
 		
 		Assert.assertEquals("TSQ", factura.getPlaca());
-		Assert.assertEquals(1,factura.getTipoVehiculo());
-		Assert.assertEquals(1, factura.getEstado());
+		Assert.assertEquals(Utilitarios.MOTO,factura.getTipoVehiculo());
+		Assert.assertEquals(Utilitarios.PARQUEADO, factura.getEstado());
 		
 	}
 

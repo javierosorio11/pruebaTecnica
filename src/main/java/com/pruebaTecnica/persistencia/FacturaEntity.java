@@ -47,9 +47,9 @@ public class FacturaEntity implements Serializable {
 		this.placa = servicio.getPlaca();
 		this.fechaHoraIngreso = servicio.getFechaHoraIngreso();
 		this.fechaHoraSalida = servicio.getFechaHoraSalida();
-		this.valorServicio = (long) 0;
+		this.valorServicio = null;
 		this.tipoVehiculo = servicio.getTipoVehiculo();
-		this.estado = 1;
+		this.estado = servicio.getEstado();
 	}
 
 	public String getPlaca() {

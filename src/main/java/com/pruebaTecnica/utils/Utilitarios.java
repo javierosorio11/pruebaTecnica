@@ -91,7 +91,7 @@ public static Factura convertirAFactura(FacturaEntity facturaEntity) {
 		factura.setFechaHoraIngreso(facturaEntity.getFechaHoraIngreso());
 		factura.setFechaHoraSalida(facturaEntity.getFechaHoraSalida());
 		factura.setPlaca(facturaEntity.getPlaca());
-		factura.setTipoVehiculo(factura.getTipoVehiculo());
+		factura.setTipoVehiculo(facturaEntity.getTipoVehiculo());
 		factura.setValorServicio(facturaEntity.getValorServicio());
 	}
 	return factura;
