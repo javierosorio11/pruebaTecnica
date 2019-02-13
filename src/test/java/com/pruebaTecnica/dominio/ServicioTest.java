@@ -37,6 +37,9 @@ public class ServicioTest {
 		
 		
 		Assert.assertEquals("TSQ", factura.getPlaca());
+		Assert.assertEquals(1,factura.getTipoVehiculo());
+		Assert.assertEquals(1, factura.getEstado());
+		
 	}
 
 
