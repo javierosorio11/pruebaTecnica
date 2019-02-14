@@ -3,7 +3,9 @@ package com.estacionamiento.servicio;
 
 import java.text.ParseException;
 
+import org.junit.After;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +29,13 @@ public class EstacionamientoServicioTest {
 
 	@Autowired
 	IRepositorioServicio iRepositorioServicio;
-
+	
+	@Before
+	public void cleanData(){
+		iRepositorioServicio.deleteAll();
+		
+	}
+	
 	@Test
 	public void registrarEntradaCarroTest() {
 		Servicio servicio = new Servicio();
@@ -61,10 +69,10 @@ public class EstacionamientoServicioTest {
 		Assert.assertEquals(Utilitarios.PARQUEADO, factura.getEstado());
 
 	}
-/*
+
 	@Test
 	public void verificarCupoNoDisponibleCarro() {
-
+		creacionServicios();
 		Servicio servicio = new Servicio();
 		servicio.setEstado(Utilitarios.PARQUEADO);
 		servicio.setTipoVehiculo(Utilitarios.CARRO);
@@ -77,7 +85,7 @@ public class EstacionamientoServicioTest {
 
 	@Test
 	public void verificarCupoNoDisponibleMoto() {
-
+		creacionServicios();
 		Servicio servicio = new Servicio();
 		servicio.setEstado(Utilitarios.PARQUEADO);
 		servicio.setTipoVehiculo(Utilitarios.MOTO);
@@ -86,7 +94,7 @@ public class EstacionamientoServicioTest {
 
 		Assert.assertEquals(false, disponibilidad);
 
-	}*/
+	}
 	
 	@Test
 	public void verificarCupoDisponibleCarroTest() {
@@ -125,6 +133,21 @@ public class EstacionamientoServicioTest {
 
 		Assert.assertEquals(facturaEntity.getValorServicio(), facturaEntity.getValorServicio());
 
+	}
+	
+	public void creacionServicios(){
+		
+		for(int i = 0 ; i <= 40;i++){
+			ServicioEntity servicio=new ServicioEntity();
+			servicio.setEstado(Utilitarios.PARQUEADO);
+			if(i<20){
+				servicio.setTipoVehiculo(Utilitarios.MOTO);
+			}else{
+			servicio.setTipoVehiculo(Utilitarios.CARRO);
+			}
+			iRepositorioServicio.save(servicio);
+		}
+	
 	}
 	
 
