@@ -16,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.estacionamiento.dominio.Factura;
 import com.estacionamiento.dominio.Servicio;
-import com.estacionamiento.exception.ParqueaderoException;
+import com.estacionamiento.exception.EstacionamientoException;
 import com.estacionamiento.persistencia.FacturaEntity;
 import com.estacionamiento.persistencia.ServicioEntity;
 import com.estacionamiento.repositorio.IRepositorioFactura;
@@ -52,7 +52,9 @@ public class EstacionamientoService implements IEstacionamientoService {
 
 				if (!Utilitarios.esDomingoOLunes(Calendar.getInstance())
 						&& Utilitarios.placaVehiculoIniciaPorA(servicio.getPlaca())) {
+					
 					throw new Exception(Utilitarios.PLACA_INI_EN_A);
+					
 				} else {
 
 					servicio.setFechaHoraIngreso(Utilitarios.fechaActualAString());
@@ -125,7 +127,7 @@ public class EstacionamientoService implements IEstacionamientoService {
 
 			} catch (ParseException e) {
 
-				new ParqueaderoException(e.getMessage());
+				new EstacionamientoException(e.getMessage());
 			}
 
 		}
