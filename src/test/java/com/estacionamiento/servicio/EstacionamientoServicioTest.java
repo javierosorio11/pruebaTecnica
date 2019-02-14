@@ -74,7 +74,6 @@ public class EstacionamientoServicioTest {
 	public void verificarCupoNoDisponibleCarro() {
 		creacionServicios();
 		Servicio servicio = new Servicio();
-		servicio.setEstado(Utilitarios.PARQUEADO);
 		servicio.setTipoVehiculo(Utilitarios.CARRO);
 
 		boolean disponibilidad = estacionamientoService.verificarDisponibilidadServicio(servicio);
@@ -87,7 +86,6 @@ public class EstacionamientoServicioTest {
 	public void verificarCupoNoDisponibleMoto() {
 		creacionServicios();
 		Servicio servicio = new Servicio();
-		servicio.setEstado(Utilitarios.PARQUEADO);
 		servicio.setTipoVehiculo(Utilitarios.MOTO);
 
 		boolean disponibilidad = estacionamientoService.verificarDisponibilidadServicio(servicio);
@@ -135,6 +133,20 @@ public class EstacionamientoServicioTest {
 
 	}
 	
+	@Test
+	public void calcularValorServicioTest() throws ParseException {
+
+		FacturaEntity facturaEntity = new FacturaEntity();
+		facturaEntity.setFechaHoraIngreso("01-01-2019 12:22:24");
+		facturaEntity.setTipoVehiculo(Utilitarios.CARRO);
+
+		facturaEntity = estacionamientoService.calcularValorServicio(facturaEntity,"02-01-2019 13:22:24");
+
+		Assert.assertEquals(facturaEntity.getValorServicio(), facturaEntity.getValorServicio());
+
+	}
+	
+	
 	public void creacionServicios(){
 		
 		for(int i = 0 ; i <= 40;i++){
@@ -149,6 +161,8 @@ public class EstacionamientoServicioTest {
 		}
 	
 	}
+	
+	
 	
 
 }

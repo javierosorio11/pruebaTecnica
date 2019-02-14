@@ -11,7 +11,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 import com.estacionamiento.dominio.Factura;
 import com.estacionamiento.dominio.Servicio;
 import com.estacionamiento.persistencia.ServicioEntity;
+import com.estacionamiento.repositorio.IRepositorioFactura;
 import com.estacionamiento.repositorio.IRepositorioServicio;
+import com.estacionamiento.servicio.EstacionamientoService;
 import com.estacionamiento.utils.Utilitarios;
 
 @RunWith(SpringRunner.class)
@@ -24,6 +26,9 @@ public class EstacionamientoControllerTest {
 	@Autowired
 	IRepositorioServicio iRepositorioServicio;
 	
+	@Autowired
+	EstacionamientoService estacionamientoService;
+	
 	@Before
 	public void cleanData(){
 		
@@ -31,7 +36,7 @@ public class EstacionamientoControllerTest {
 	}
 
 	@Test
-	public void registrarEntradaVehiculoTest() {
+	public void registrarEntradaCarroTest() {
 
 		Servicio servicio = new Servicio();
 		servicio.setEstado(Utilitarios.PARQUEADO);
@@ -43,18 +48,36 @@ public class EstacionamientoControllerTest {
 		Factura factura = estacionamientoController.registrarEntradaVehiculo(servicio);
 
 		Assert.assertEquals(servicio.getPlaca(), factura.getPlaca());
+		Assert.assertEquals(servicio.getTipoVehiculo(), factura.getTipoVehiculo());
+		Assert.assertEquals(Utilitarios.PARQUEADO, factura.getEstado());
+
+	}
+	
+	@Test
+	public void registrarEntradaMotoTest() {
+
+		Servicio servicio = new Servicio();
+		servicio.setEstado(Utilitarios.PARQUEADO);
+		servicio.setModelo("1999");
+		servicio.setPlaca("QTM");
+		servicio.setTipoVehiculo(Utilitarios.MOTO);
+
+		Factura factura = estacionamientoController.registrarEntradaVehiculo(servicio);
+
+		Assert.assertEquals(servicio.getPlaca(), factura.getPlaca());
+		Assert.assertEquals(servicio.getTipoVehiculo(), factura.getTipoVehiculo());
+		Assert.assertEquals(Utilitarios.PARQUEADO, factura.getEstado());
 
 	}
 
 	@Test
-	public void verificarDisponibilidadServicioTest() {
+	public void verificarDisponibilidadServicioCarroTest() {
 
 		Servicio servicio = new Servicio();
 		servicio.setEstado(Utilitarios.PARQUEADO);
 		servicio.setModelo("1999");
 		servicio.setPlaca("TMQ");
 		servicio.setTipoVehiculo(Utilitarios.CARRO);
-		servicio.setModelo("2019");
 
 		boolean cupoDisponible = estacionamientoController.verificarDisponibilidadServicio(servicio);
 		Assert.assertTrue(cupoDisponible);
@@ -62,7 +85,7 @@ public class EstacionamientoControllerTest {
 	}
 
 	@Test
-	public void verificarNoDisponibilidadServicioTest() {
+	public void verificarNoDisponibilidadServicioCarroTest() {
 		creacionServicios();
 		Servicio servicio = new Servicio();
 		servicio.setEstado(Utilitarios.PARQUEADO);
@@ -73,6 +96,50 @@ public class EstacionamientoControllerTest {
 
 		boolean cupoDisponible = estacionamientoController.verificarDisponibilidadServicio(servicio);
 		Assert.assertFalse(cupoDisponible);
+
+	}
+	
+	@Test
+	public void verificarDisponibilidadServicioMotoTest() {
+
+		Servicio servicio = new Servicio();
+		servicio.setPlaca("TWU");
+		servicio.setTipoVehiculo(Utilitarios.MOTO);
+		servicio.setModelo("2019");
+
+		boolean cupoDisponible = estacionamientoController.verificarDisponibilidadServicio(servicio);
+		Assert.assertTrue(cupoDisponible);
+
+	}
+	
+	@Test
+	public void verificarNoDisponibilidadServicioMotoTest() {
+		creacionServicios();
+		Servicio servicio = new Servicio();
+		servicio.setPlaca("TXR");
+		servicio.setTipoVehiculo(Utilitarios.MOTO);
+		servicio.setModelo("2019");
+
+		boolean cupoDisponible = estacionamientoController.verificarDisponibilidadServicio(servicio);
+		Assert.assertFalse(cupoDisponible);
+
+	}
+	
+	@Test
+	public void registrarSalidaCarroTest() {
+		Servicio servicio = new Servicio();
+		servicio.setEstado(Utilitarios.PARQUEADO);
+		servicio.setModelo("1999");
+		servicio.setPlaca("QWE");
+		servicio.setTipoVehiculo(Utilitarios.CARRO);
+		
+
+		Factura facturaSalida = estacionamientoController.registrarSalidaVehiculo(estacionamientoService.registrarEntrada(servicio));
+		
+
+		Assert.assertEquals("QWE", facturaSalida.getPlaca());
+		Assert.assertEquals(Utilitarios.CARRO, facturaSalida.getTipoVehiculo());
+		Assert.assertNotEquals(Utilitarios.PARQUEADO, facturaSalida.getEstado());
 
 	}
 

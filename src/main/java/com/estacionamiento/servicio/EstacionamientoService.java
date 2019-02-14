@@ -88,7 +88,7 @@ public class EstacionamientoService implements IEstacionamientoService {
 		try {
 
 			List<ServicioEntity> cantidaVehiculos = iRepositorioServicio
-					.findByTipoVehiculoByEstado(servicio.getTipoVehiculo(), servicio.getEstado());
+					.findByTipoVehiculoByEstado(servicio.getTipoVehiculo(), Utilitarios.PARQUEADO);
 			Long cupoMax = (servicio.getTipoVehiculo() == Utilitarios.CARRO) ? Utilitarios.CUPOMAXCARROS
 					: Utilitarios.CUPOMAXMOTOS;
 
@@ -108,25 +108,22 @@ public class EstacionamientoService implements IEstacionamientoService {
 	@Override
 	public Factura registrarSalida(Factura facturaSalida) {
 
-		FacturaEntity facturaEntity = iRepositorioFactura.findByPlacaByEstado(facturaSalida.getPlaca(),
-				Utilitarios.PARQUEADO);
+		FacturaEntity facturaEntity = iRepositorioFactura.findByPlacaByEstado(facturaSalida.getPlaca(),Utilitarios.PARQUEADO);
+		ServicioEntity servicioEntity = iRepositorioServicio.findByPlacaByEstado(facturaSalida.getPlaca(), Utilitarios.PARQUEADO);
 		Factura facturaCobro = new Factura();
 		if (facturaEntity != null) {
 
 			try {
-
-				facturaEntity.setFechaHoraSalida(Utilitarios.fechaActualAString());
+                String fechaSalida = Utilitarios.fechaActualAString();
+				facturaEntity.setFechaHoraSalida(fechaSalida);
 				facturaEntity.setEstado(Utilitarios.NOPAQUEADO);
-				facturaCobro = Utilitarios.convertirAFactura(
-						this.calcularValorServicio(facturaEntity, facturaEntity.getFechaHoraSalida()));
+				facturaCobro = Utilitarios.convertirAFactura(this.calcularValorServicio(facturaEntity, facturaEntity.getFechaHoraSalida()));
 				iRepositorioFactura.save(facturaEntity);
-				/*
-				 * iRepositorioServicio.updateEstadoFechaHoraSalida(Utilitarios.
-				 * NOPAQUEADO, facturaEntity.getPlaca(),
-				 * facturaEntity.getFechaHoraSalida());
-				 */
-				iRepositorioFactura.updateEstadoFechaHoraSalida(Utilitarios.NOPAQUEADO, facturaEntity.getPlaca(),
-						facturaEntity.getFechaHoraSalida());
+				
+				servicioEntity.setFechaHoraSalida(fechaSalida);
+				servicioEntity.setEstado(Utilitarios.NOPAQUEADO);
+				iRepositorioServicio.save(servicioEntity);
+				
 
 			} catch (ParseException e) {
 
