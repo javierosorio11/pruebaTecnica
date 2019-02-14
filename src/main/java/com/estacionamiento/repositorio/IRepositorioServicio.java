@@ -26,7 +26,8 @@ public interface IRepositorioServicio extends JpaRepository<ServicioEntity, Long
 	public ServicioEntity findByPlacaByEstado (String placa,int estado);
 	
 	@Modifying
-	@Query("UPDATE ServicioEntity s  set s.estado=?1 WHERE s.estado=1 and s.placa=?2")
-	public void updateEstado (int estado,String placa);
+	@Query("UPDATE ServicioEntity s set s.estado = ?1, s.fechaHoraSalida = ?3 WHERE s.estado=1 and s.placa=?2")
+	public void updateEstadoFechaHoraSalida (int estado,String placa,String fechaHoraSalida);
+	
 	
 }

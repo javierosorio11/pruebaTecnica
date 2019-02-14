@@ -5,6 +5,7 @@ package com.estacionamiento.servicio;
 
 
 import com.estacionamiento.dominio.Factura;
+import com.estacionamiento.dominio.Servicio;
 import com.estacionamiento.persistencia.FacturaEntity;
 import com.estacionamiento.persistencia.ServicioEntity;
 
@@ -15,11 +16,11 @@ import com.estacionamiento.persistencia.ServicioEntity;
  */
 public interface IEstacionamientoService {
 
-	public Factura registrarEntrada(ServicioEntity servicio);
+	public Factura registrarEntrada(Servicio servicio);
 	
-	public boolean  verificarDisponibilidadServicio(ServicioEntity servicio);
+	public boolean  verificarDisponibilidadServicio(Servicio servicio);
 	
-	public FacturaEntity registrarSalida(String placa);
+	public Factura registrarSalida(Factura factura);
 	
 	 
 }

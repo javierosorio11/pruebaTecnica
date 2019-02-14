@@ -8,6 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.estacionamiento.dominio.Servicio;
+
 @Entity
 @Table(name = "factura")
 public class FacturaEntity implements Serializable {
@@ -42,7 +44,7 @@ public class FacturaEntity implements Serializable {
 		this.estado = estado;
 	}
 	
-	public FacturaEntity(ServicioEntity servicio) {
+	public FacturaEntity(Servicio servicio) {
 		super();
 		this.placa = servicio.getPlaca();
 		this.fechaHoraIngreso = servicio.getFechaHoraIngreso();

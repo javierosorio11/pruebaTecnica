@@ -35,10 +35,6 @@ public class EstacionamientoAplication {
 				servicio.setEstado(Utilitarios.PARQUEADO);
 				
 				
-				iRepositorioServicio.save(servicio);
-				servicio = iRepositorioServicio.findByPlaca("AVJGEC");
-				
-				
 				
 			};
 

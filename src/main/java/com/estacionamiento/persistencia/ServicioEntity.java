@@ -8,6 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.estacionamiento.dominio.Servicio;
+
 @Entity
 @Table(name = "servicio")
 public class ServicioEntity implements Serializable {
@@ -40,6 +42,16 @@ public class ServicioEntity implements Serializable {
 		this.fechaHoraSalida = fechaHoraSalida;
 		this.tipoVehiculo = tipoVehiculo;
 		this.estado = estado;
+	}
+	
+	public ServicioEntity(Servicio servicio) {
+		super();
+		this.modelo = servicio.getModelo();
+		this.placa = servicio.getPlaca();
+		this.fechaHoraIngreso = servicio.getFechaHoraIngreso();
+		this.fechaHoraSalida = servicio.getFechaHoraSalida();
+		this.tipoVehiculo = servicio.getTipoVehiculo();
+		this.estado = servicio.getEstado();
 	}
 
 	public String getModelo() {

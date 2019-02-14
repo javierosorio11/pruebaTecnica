@@ -23,8 +23,8 @@ public class Utilitarios {
  public static final int NOPAQUEADO=0;
  public static final String SINCUPO="No hay cupo disponible";
  public static final String PLACA_INI_EN_A="Hoy no tiene permitido Ingresar";
- public static final int CUPOMAXCARROS = 20;
- public static final int CUPOMAXMOTOS = 10;
+ public static final Long CUPOMAXCARROS = (long) 20;
+ public static final Long CUPOMAXMOTOS = (long) 10;
  
 
  public static Date formatFechaActual() throws ParseException {

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.estacionamiento.dominio.Factura;
+import com.estacionamiento.dominio.Servicio;
 import com.estacionamiento.persistencia.FacturaEntity;
 import com.estacionamiento.persistencia.ServicioEntity;
 import com.estacionamiento.servicio.IEstacionamientoService;
@@ -27,13 +28,13 @@ public class EstacionamientoController {
 	
 	@CrossOrigin
 	@PostMapping("/disponibilidad")	
-	public boolean verificarDisponibilidadServicio(@RequestBody ServicioEntity servicio) {
+	public boolean verificarDisponibilidadServicio(@RequestBody Servicio servicio) {
 		return this.iEstacionamiento.verificarDisponibilidadServicio(servicio);		
 	}
 	
 	@CrossOrigin
 	@PostMapping("/registrarEntrada")
-	public Factura registrarEntradaVehiculo(@RequestBody ServicioEntity servicio) {
+	public Factura registrarEntradaVehiculo(@RequestBody Servicio servicio) {
 		return this.iEstacionamiento.registrarEntrada(servicio);		
 	}	
 	/*
@@ -44,8 +45,8 @@ public class EstacionamientoController {
 	}*/
 	
 	@CrossOrigin
-	@GetMapping("/registrarSalida")
-	public FacturaEntity registrarSalidaVehiculo(@RequestParam ("placa") String placa) {
-		return this.iEstacionamiento.registrarSalida(placa);
+	@PostMapping("/registrarSalida")
+	public Factura registrarSalidaVehiculo(@RequestBody Factura factura) {
+		return this.iEstacionamiento.registrarSalida(factura);
 	}
 }

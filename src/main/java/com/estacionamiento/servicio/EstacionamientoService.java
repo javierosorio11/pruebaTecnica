@@ -15,6 +15,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.estacionamiento.dominio.Factura;
+import com.estacionamiento.dominio.Servicio;
+import com.estacionamiento.exception.ParqueaderoException;
 import com.estacionamiento.persistencia.FacturaEntity;
 import com.estacionamiento.persistencia.ServicioEntity;
 import com.estacionamiento.repositorio.IRepositorioFactura;
@@ -39,7 +41,7 @@ public class EstacionamientoService implements IEstacionamientoService {
 	private static final Logger logger = LoggerFactory.getLogger(EstacionamientoService.class);
 
 	@Override
-	public Factura registrarEntrada(ServicioEntity servicio) {
+	public Factura registrarEntrada(Servicio servicio) {
 		
 		FacturaEntity facturaEntity = new FacturaEntity();
 		Factura factura = new Factura();
@@ -53,7 +55,10 @@ public class EstacionamientoService implements IEstacionamientoService {
 				}else{
 					
 					servicio.setFechaHoraIngreso(Utilitarios.fechaActualAString());
-					iRepositorioServicio.save(servicio);
+					servicio.setEstado(Utilitarios.PARQUEADO);
+					ServicioEntity servicioEntity=new ServicioEntity(servicio);
+					iRepositorioServicio.save(servicioEntity);
+					
 					facturaEntity = new FacturaEntity(servicio);
 					factura = Utilitarios.convertirAFactura(facturaEntity);
 					iRepositorioFactura.save(facturaEntity);
@@ -75,14 +80,15 @@ public class EstacionamientoService implements IEstacionamientoService {
 	}
 
 	@Override
-	public boolean verificarDisponibilidadServicio(ServicioEntity servicio) {
+	public boolean verificarDisponibilidadServicio(Servicio servicio) {
 
 		boolean cupoDisponible = true;
 		try {
 
 			List<ServicioEntity> cantidaVehiculos = iRepositorioServicio.findByTipoVehiculoByEstado(servicio.getTipoVehiculo(),servicio.getEstado());
- 
-			if (cantidaVehiculos.size() > Utilitarios.CUPOMAXCARROS) {
+			Long cupoMax= (servicio.getTipoVehiculo() == Utilitarios.CARRO) ? Utilitarios.CUPOMAXCARROS:Utilitarios.CUPOMAXMOTOS;
+			
+			if (cantidaVehiculos.size() >= cupoMax) {
 
 				cupoDisponible = false;
 			}
@@ -96,30 +102,29 @@ public class EstacionamientoService implements IEstacionamientoService {
 	}
 
 	@Override
-	public FacturaEntity registrarSalida(String placa) {
+	public Factura registrarSalida(Factura facturaSalida) {
 
-		ServicioEntity servicio = iRepositorioServicio.findByPlacaByEstado(placa, 1);
-		FacturaEntity factura = null;
-
-		if (servicio != null) {
-
-			
+		FacturaEntity facturaEntity = iRepositorioFactura.findByPlacaByEstado(facturaSalida.getPlaca(),Utilitarios.PARQUEADO);
+		Factura facturaCobro = new Factura();
+		if (facturaEntity != null) {
+                       
 			try {
-				factura = new FacturaEntity(servicio);
-				factura.setEstado(Utilitarios.NOPAQUEADO);
-				factura.setFechaHoraSalida(Utilitarios.fechaActualAString());
-				iRepositorioServicio.updateEstado(Utilitarios.NOPAQUEADO, servicio.getPlaca());
-				this.calcularValorServicio(factura, factura.getFechaHoraSalida());
-				iRepositorioFactura.save(factura);
+				
+				facturaEntity.setFechaHoraSalida(Utilitarios.fechaActualAString());
+				facturaEntity.setEstado(Utilitarios.NOPAQUEADO);
+				facturaCobro= Utilitarios.convertirAFactura(this.calcularValorServicio(facturaEntity, facturaEntity.getFechaHoraSalida()));
+				iRepositorioServicio.updateEstadoFechaHoraSalida(Utilitarios.NOPAQUEADO, facturaEntity.getPlaca(),facturaEntity.getFechaHoraSalida());
+				iRepositorioFactura.updateEstadoFechaHoraSalida(Utilitarios.NOPAQUEADO, facturaEntity.getPlaca(),facturaEntity.getFechaHoraSalida());
+			
 			} catch (ParseException e) {
 
-				e.printStackTrace();
+				ParqueaderoException pExeption = new ParqueaderoException(e.getMessage());
 			}
 			
 
 		}
 
-		return factura;
+		return facturaCobro;
 	}
 
 	public FacturaEntity calcularValorServicio(FacturaEntity facturaEntity, String fechaActual) throws ParseException{
@@ -145,7 +150,7 @@ public class EstacionamientoService implements IEstacionamientoService {
 			 facturaEntity.setValorServicio((long) (servicioDias * valorDia));
 			}else if(servicioHoras <= 9 && servicioDias != 0){
 				
-			 facturaEntity.setValorServicio((long)((Math.floor(servicioHoras)*valorHora)+(servicioDias*valorDia)));
+			facturaEntity.setValorServicio((long)((Math.floor(servicioHoras)*valorHora)+(servicioDias*valorDia)));
 			 
 			}
 			
