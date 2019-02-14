@@ -52,9 +52,9 @@ public class EstacionamientoService implements IEstacionamientoService {
 
 				if (!Utilitarios.esDomingoOLunes(Calendar.getInstance())
 						&& Utilitarios.placaVehiculoIniciaPorA(servicio.getPlaca())) {
-					
+
 					throw new Exception(Utilitarios.PLACA_INI_EN_A);
-					
+
 				} else {
 
 					servicio.setFechaHoraIngreso(Utilitarios.fechaActualAString());
