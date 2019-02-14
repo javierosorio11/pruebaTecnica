@@ -16,7 +16,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.estacionamiento.dominio.Factura;
 import com.estacionamiento.dominio.Servicio;
-import com.estacionamiento.exception.EstacionamientoException;
 import com.estacionamiento.persistencia.FacturaEntity;
 import com.estacionamiento.persistencia.ServicioEntity;
 import com.estacionamiento.repositorio.IRepositorioFactura;
@@ -99,7 +98,7 @@ public class EstacionamientoService implements IEstacionamientoService {
 			}
 		} catch (Exception e) {
 
-			e.printStackTrace();
+			logger.info(e.getMessage());
 			cupoDisponible = false;
 		}
 
@@ -120,14 +119,18 @@ public class EstacionamientoService implements IEstacionamientoService {
 				facturaEntity.setEstado(Utilitarios.NOPAQUEADO);
 				facturaCobro = Utilitarios.convertirAFactura(
 						this.calcularValorServicio(facturaEntity, facturaEntity.getFechaHoraSalida()));
-				iRepositorioServicio.updateEstadoFechaHoraSalida(Utilitarios.NOPAQUEADO, facturaEntity.getPlaca(),
-						facturaEntity.getFechaHoraSalida());
+				iRepositorioFactura.save(facturaEntity);
+				/*
+				 * iRepositorioServicio.updateEstadoFechaHoraSalida(Utilitarios.
+				 * NOPAQUEADO, facturaEntity.getPlaca(),
+				 * facturaEntity.getFechaHoraSalida());
+				 */
 				iRepositorioFactura.updateEstadoFechaHoraSalida(Utilitarios.NOPAQUEADO, facturaEntity.getPlaca(),
 						facturaEntity.getFechaHoraSalida());
 
 			} catch (ParseException e) {
 
-				new EstacionamientoException(e.getMessage());
+				logger.info(e.getMessage());
 			}
 
 		}
