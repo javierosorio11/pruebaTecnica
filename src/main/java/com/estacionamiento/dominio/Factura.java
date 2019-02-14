@@ -1,8 +1,6 @@
 
 package com.estacionamiento.dominio;
 
-
-
 /**
  * @author alvaro.osorio
  *
@@ -16,14 +14,11 @@ public class Factura {
 	private int tipoVehiculo;
 	private int estado;
 	private String error;
-	
-	
 
 	public Factura() {
 		super();
-		
-	}
 
+	}
 
 	public Factura(String placa, String fechaHoraIngreso, String fechaHoraSalida, Long valorServicio, int tipoVehiculo,
 			int estado, String error) {
@@ -36,13 +31,6 @@ public class Factura {
 		this.estado = estado;
 		this.error = error;
 	}
-
-
-
-
-
-
-
 
 	public String getPlaca() {
 		return placa;
@@ -92,15 +80,12 @@ public class Factura {
 		this.estado = estado;
 	}
 
-
 	public String getError() {
 		return error;
 	}
 
-
 	public void setError(String error) {
 		this.error = error;
 	}
-
 
 }

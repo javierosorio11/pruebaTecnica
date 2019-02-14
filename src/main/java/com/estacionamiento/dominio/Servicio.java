@@ -1,7 +1,6 @@
 
 package com.estacionamiento.dominio;
 
-
 /**
  * @author alvaro.osorio
  *

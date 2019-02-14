@@ -6,6 +6,7 @@ public interface RepositorioVehiculo {
 
 	/**
 	 * Permite optener un vehiculo por placa
+	 * 
 	 * @param placa
 	 * @return
 	 */
@@ -13,12 +14,9 @@ public interface RepositorioVehiculo {
 
 	/**
 	 * Permite registrar vehiculo en paqueadero
+	 * 
 	 * @param producto
 	 */
 	void RegistraEntrada(Vehiculo vehiculo);
 
-	
-
-	
-	
 }

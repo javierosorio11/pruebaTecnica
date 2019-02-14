@@ -9,7 +9,4 @@ public class Moto extends Vehiculo {
 		// TODO Auto-generated constructor stub
 	}
 
-
-
-
 }

@@ -9,25 +9,21 @@ import org.springframework.stereotype.Repository;
 
 import com.estacionamiento.persistencia.ServicioEntity;
 
-
-
 @Repository
-public interface IRepositorioServicio extends JpaRepository<ServicioEntity, Long>{
+public interface IRepositorioServicio extends JpaRepository<ServicioEntity, Long> {
 
 	public ServicioEntity findByPlaca(String placa);
-	
+
 	public List<ServicioEntity> findAllByTipoVehiculo(int tipoVehiculo);
-	
+
 	@Query("SELECT s FROM ServicioEntity s WHERE s.tipoVehiculo=?1 and s.estado=?2")
-	public List<ServicioEntity> findByTipoVehiculoByEstado (int tipoVehiculo,int estado);
-	
-	
+	public List<ServicioEntity> findByTipoVehiculoByEstado(int tipoVehiculo, int estado);
+
 	@Query("SELECT s FROM ServicioEntity s WHERE s.placa=?1 and s.estado=?2")
-	public ServicioEntity findByPlacaByEstado (String placa,int estado);
-	
+	public ServicioEntity findByPlacaByEstado(String placa, int estado);
+
 	@Modifying
 	@Query("UPDATE ServicioEntity s set s.estado = ?1, s.fechaHoraSalida = ?3 WHERE s.estado=1 and s.placa=?2")
-	public void updateEstadoFechaHoraSalida (int estado,String placa,String fechaHoraSalida);
-	
-	
+	public void updateEstadoFechaHoraSalida(int estado, String placa, String fechaHoraSalida);
+
 }

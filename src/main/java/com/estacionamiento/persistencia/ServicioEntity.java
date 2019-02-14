@@ -33,8 +33,8 @@ public class ServicioEntity implements Serializable {
 
 	}
 
-	public ServicioEntity(String modelo, String placa, String fechaHoraIngreso, String fechaHoraSalida, int tipoVehiculo,
-			int estado) {
+	public ServicioEntity(String modelo, String placa, String fechaHoraIngreso, String fechaHoraSalida,
+			int tipoVehiculo, int estado) {
 		super();
 		this.modelo = modelo;
 		this.placa = placa;
@@ -43,7 +43,7 @@ public class ServicioEntity implements Serializable {
 		this.tipoVehiculo = tipoVehiculo;
 		this.estado = estado;
 	}
-	
+
 	public ServicioEntity(Servicio servicio) {
 		super();
 		this.modelo = servicio.getModelo();
@@ -101,7 +101,5 @@ public class ServicioEntity implements Serializable {
 	public void setEstado(int estado) {
 		this.estado = estado;
 	}
-
-
 
 }

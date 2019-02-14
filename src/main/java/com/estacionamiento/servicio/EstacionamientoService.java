@@ -42,31 +42,32 @@ public class EstacionamientoService implements IEstacionamientoService {
 
 	@Override
 	public Factura registrarEntrada(Servicio servicio) {
-		
+
 		FacturaEntity facturaEntity = new FacturaEntity();
 		Factura factura = new Factura();
-		
+
 		try {
-			
+
 			if (verificarDisponibilidadServicio(servicio)) {
 
-				if(!Utilitarios.esDomingoOLunes(Calendar.getInstance()) && Utilitarios.placaVehiculoIniciaPorA(servicio.getPlaca())){
+				if (!Utilitarios.esDomingoOLunes(Calendar.getInstance())
+						&& Utilitarios.placaVehiculoIniciaPorA(servicio.getPlaca())) {
 					throw new Exception(Utilitarios.PLACA_INI_EN_A);
-				}else{
-					
+				} else {
+
 					servicio.setFechaHoraIngreso(Utilitarios.fechaActualAString());
 					servicio.setEstado(Utilitarios.PARQUEADO);
-					ServicioEntity servicioEntity=new ServicioEntity(servicio);
+					ServicioEntity servicioEntity = new ServicioEntity(servicio);
 					iRepositorioServicio.save(servicioEntity);
-					
+
 					facturaEntity = new FacturaEntity(servicio);
 					factura = Utilitarios.convertirAFactura(facturaEntity);
 					iRepositorioFactura.save(facturaEntity);
-					
+
 				}
-			
-			}else{
-				
+
+			} else {
+
 				throw new Exception(Utilitarios.SINCUPO);
 			}
 
@@ -85,9 +86,11 @@ public class EstacionamientoService implements IEstacionamientoService {
 		boolean cupoDisponible = true;
 		try {
 
-			List<ServicioEntity> cantidaVehiculos = iRepositorioServicio.findByTipoVehiculoByEstado(servicio.getTipoVehiculo(),servicio.getEstado());
-			Long cupoMax= (servicio.getTipoVehiculo() == Utilitarios.CARRO) ? Utilitarios.CUPOMAXCARROS:Utilitarios.CUPOMAXMOTOS;
-			
+			List<ServicioEntity> cantidaVehiculos = iRepositorioServicio
+					.findByTipoVehiculoByEstado(servicio.getTipoVehiculo(), servicio.getEstado());
+			Long cupoMax = (servicio.getTipoVehiculo() == Utilitarios.CARRO) ? Utilitarios.CUPOMAXCARROS
+					: Utilitarios.CUPOMAXMOTOS;
+
 			if (cantidaVehiculos.size() >= cupoMax) {
 
 				cupoDisponible = false;
@@ -104,60 +107,66 @@ public class EstacionamientoService implements IEstacionamientoService {
 	@Override
 	public Factura registrarSalida(Factura facturaSalida) {
 
-		FacturaEntity facturaEntity = iRepositorioFactura.findByPlacaByEstado(facturaSalida.getPlaca(),Utilitarios.PARQUEADO);
+		FacturaEntity facturaEntity = iRepositorioFactura.findByPlacaByEstado(facturaSalida.getPlaca(),
+				Utilitarios.PARQUEADO);
 		Factura facturaCobro = new Factura();
 		if (facturaEntity != null) {
-                       
+
 			try {
-				
+
 				facturaEntity.setFechaHoraSalida(Utilitarios.fechaActualAString());
 				facturaEntity.setEstado(Utilitarios.NOPAQUEADO);
-				facturaCobro= Utilitarios.convertirAFactura(this.calcularValorServicio(facturaEntity, facturaEntity.getFechaHoraSalida()));
-				iRepositorioServicio.updateEstadoFechaHoraSalida(Utilitarios.NOPAQUEADO, facturaEntity.getPlaca(),facturaEntity.getFechaHoraSalida());
-				iRepositorioFactura.updateEstadoFechaHoraSalida(Utilitarios.NOPAQUEADO, facturaEntity.getPlaca(),facturaEntity.getFechaHoraSalida());
-			
+				facturaCobro = Utilitarios.convertirAFactura(
+						this.calcularValorServicio(facturaEntity, facturaEntity.getFechaHoraSalida()));
+				iRepositorioServicio.updateEstadoFechaHoraSalida(Utilitarios.NOPAQUEADO, facturaEntity.getPlaca(),
+						facturaEntity.getFechaHoraSalida());
+				iRepositorioFactura.updateEstadoFechaHoraSalida(Utilitarios.NOPAQUEADO, facturaEntity.getPlaca(),
+						facturaEntity.getFechaHoraSalida());
+
 			} catch (ParseException e) {
 
-				ParqueaderoException pExeption = new ParqueaderoException(e.getMessage());
+				new ParqueaderoException(e.getMessage());
 			}
-			
 
 		}
 
 		return facturaCobro;
 	}
 
-	public FacturaEntity calcularValorServicio(FacturaEntity facturaEntity, String fechaActual) throws ParseException{
-		
+	public FacturaEntity calcularValorServicio(FacturaEntity facturaEntity, String fechaActual) throws ParseException {
+
 		double tiempoMs;
 		double servicioHoras;
 		double servicioDias;
-		
-		if(facturaEntity != null){
-			
-		Date fechaIngreso = Utilitarios.fechaStringADate(facturaEntity.getFechaHoraIngreso());
-		Date fechaSalida= Utilitarios.fechaStringADate(fechaActual);	
-		tiempoMs= fechaSalida.getTime() - fechaIngreso.getTime();
-		servicioHoras=(tiempoMs / 3.6e+6)% 24;
-		servicioDias=Math.floor((tiempoMs / 3.6e+6)/24);
-		Long valorDia= (facturaEntity.getTipoVehiculo()==Utilitarios.CARRO) ? Utilitarios.VALORDIACARRO:Utilitarios.VALORDIAMOTO;
-		Long valorHora=(facturaEntity.getTipoVehiculo()==Utilitarios.CARRO) ? Utilitarios.VALORDIACARRO:Utilitarios.VALORDIAMOTO;
-		
-		if(Math.floor(servicioHoras) !=0 && servicioDias != 0 ){
-		
-			if(servicioHoras > 9 && servicioDias != 0){
-			 servicioDias += 1;
-			 facturaEntity.setValorServicio((long) (servicioDias * valorDia));
-			}else if(servicioHoras <= 9 && servicioDias != 0){
-				
-			facturaEntity.setValorServicio((long)((Math.floor(servicioHoras)*valorHora)+(servicioDias*valorDia)));
-			 
+
+		if (facturaEntity != null) {
+
+			Date fechaIngreso = Utilitarios.fechaStringADate(facturaEntity.getFechaHoraIngreso());
+			Date fechaSalida = Utilitarios.fechaStringADate(fechaActual);
+			tiempoMs = fechaSalida.getTime() - fechaIngreso.getTime();
+			servicioHoras = (tiempoMs / 3.6e+6) % 24;
+			servicioDias = Math.floor((tiempoMs / 3.6e+6) / 24);
+			Long valorDia = (facturaEntity.getTipoVehiculo() == Utilitarios.CARRO) ? Utilitarios.VALORDIACARRO
+					: Utilitarios.VALORDIAMOTO;
+			Long valorHora = (facturaEntity.getTipoVehiculo() == Utilitarios.CARRO) ? Utilitarios.VALORDIACARRO
+					: Utilitarios.VALORDIAMOTO;
+
+			if (Math.floor(servicioHoras) != 0 && servicioDias != 0) {
+
+				if (servicioHoras > 9 && servicioDias != 0) {
+					servicioDias += 1;
+					facturaEntity.setValorServicio((long) (servicioDias * valorDia));
+				} else if (servicioHoras <= 9 && servicioDias != 0) {
+
+					facturaEntity.setValorServicio(
+							(long) ((Math.floor(servicioHoras) * valorHora) + (servicioDias * valorDia)));
+
+				}
+
 			}
-			
-		  }
-			
+
 		}
 		return facturaEntity;
 	}
-	
+
 }

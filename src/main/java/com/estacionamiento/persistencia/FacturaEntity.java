@@ -43,7 +43,7 @@ public class FacturaEntity implements Serializable {
 		this.tipoVehiculo = tipoVehiculo;
 		this.estado = estado;
 	}
-	
+
 	public FacturaEntity(Servicio servicio) {
 		super();
 		this.placa = servicio.getPlaca();
@@ -101,7 +101,5 @@ public class FacturaEntity implements Serializable {
 	public void setEstado(int estado) {
 		this.estado = estado;
 	}
-
-
 
 }

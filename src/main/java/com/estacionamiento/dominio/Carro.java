@@ -9,7 +9,4 @@ public class Carro extends Vehiculo {
 		// TODO Auto-generated constructor stub
 	}
 
-
-
-
 }

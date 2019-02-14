@@ -1,6 +1,8 @@
 
 package com.estacionamiento.servicio;
 
+import java.text.ParseException;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,6 +13,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import com.estacionamiento.EstacionamientoAplication;
 import com.estacionamiento.dominio.Factura;
 import com.estacionamiento.dominio.Servicio;
+import com.estacionamiento.persistencia.FacturaEntity;
 import com.estacionamiento.persistencia.ServicioEntity;
 import com.estacionamiento.repositorio.IRepositorioServicio;
 import com.estacionamiento.utils.Utilitarios;
@@ -108,6 +111,19 @@ public class EstacionamientoServicioTest {
 		boolean disponibilidad = estacionamientoService.verificarDisponibilidadServicio(servicio);
 
 		Assert.assertEquals(true, disponibilidad);
+
+	}
+	
+	@Test
+	public void calcularValorServicioCarroTest() throws ParseException {
+
+		FacturaEntity facturaEntity = new FacturaEntity();
+		facturaEntity.setFechaHoraIngreso("01-01-2019 12:22:24");
+		facturaEntity.setTipoVehiculo(Utilitarios.CARRO);
+
+		facturaEntity = estacionamientoService.calcularValorServicio(facturaEntity,"02-01-2019 13:22:24");
+
+		Assert.assertEquals(facturaEntity.getValorServicio(), facturaEntity.getValorServicio());
 
 	}
 	
