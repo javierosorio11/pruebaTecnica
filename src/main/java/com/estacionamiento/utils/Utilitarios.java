@@ -7,10 +7,11 @@ import java.util.Date;
 
 import com.estacionamiento.dominio.Factura;
 import com.estacionamiento.dominio.Servicio;
+import com.estacionamiento.exception.EstacionamientoException;
 import com.estacionamiento.persistencia.FacturaEntity;
 import com.estacionamiento.persistencia.ServicioEntity;
 
-public class Utilitarios {
+public final class Utilitarios {
 
 	public static final String FORMATFECHAHORA = "dd-MM-yyyy HH:mm:ss";
 	public static final long VALORDIACARRO = 8000;
@@ -28,37 +29,23 @@ public class Utilitarios {
 	public static final Double HORAENMLS = 3.6e+6;
 	public static final long RECARGOMOTOCC = 2000;
 	public static final String FACTURANOEXISTE = "No existe la factura solicitada";
-	
+
 	private Utilitarios() {
-	    throw new IllegalStateException("Utilitarios es privada");
-	  }
-
-	public static Date formatFechaActual() throws ParseException {
-
-		SimpleDateFormat sdf = new SimpleDateFormat(FORMATFECHAHORA);
-		Date now = new Date();
-
-		String dateAsString = sdf.format(now);
-		Date dateFromString = sdf.parse(dateAsString);
-		return dateFromString;
-
+		throw new IllegalStateException("Utilitarios class");
 	}
 
 	public static String fechaActualAString() throws ParseException {
 
 		SimpleDateFormat sdf = new SimpleDateFormat(FORMATFECHAHORA);
 		Date ahora = new Date();
-		String fechaString = sdf.format(ahora);
-
-		return fechaString;
+		return sdf.format(ahora);
 
 	}
 
 	public static Date fechaStringADate(String fecha) throws ParseException {
 
 		SimpleDateFormat sdf = new SimpleDateFormat(FORMATFECHAHORA);
-		Date dateFromString = sdf.parse(fecha);
-		return dateFromString;
+		return sdf.parse(fecha);
 
 	}
 
@@ -102,6 +89,44 @@ public class Utilitarios {
 			factura.setValorServicio(facturaEntity.getValorServicio());
 		}
 		return factura;
+	}
+
+	public static ServicioEntity convertiServicioAServicioEntity(Servicio servicio) throws EstacionamientoException {
+
+		ServicioEntity servicioEntity = null;
+
+		try {
+			if (servicio != null) {
+
+				servicioEntity = new ServicioEntity(servicio.getModelo(), servicio.getPlaca(),
+						servicio.getFechaHoraIngreso(), servicio.getFechaHoraSalida(), servicio.getTipoVehiculo(),
+						servicio.getEstado(), servicio.getCilindraje());
+
+			}
+		} catch (Exception e) {
+
+			throw new EstacionamientoException("No se encontro servicio");
+		}
+		return servicioEntity;
+	}
+
+	public static FacturaEntity convertiServicioAFacturaEntity(Servicio servicio) throws EstacionamientoException {
+
+		FacturaEntity facturaEntity = null;
+
+		try {
+			if (servicio != null) {
+
+				facturaEntity = new FacturaEntity(servicio.getPlaca(), servicio.getFechaHoraIngreso(),
+						servicio.getFechaHoraSalida(), 0, servicio.getTipoVehiculo(), servicio.getEstado(),
+						servicio.getCilindraje());
+
+			}
+		} catch (Exception e) {
+
+			throw new EstacionamientoException("No se encontro servicio");
+		}
+		return facturaEntity;
 	}
 
 }

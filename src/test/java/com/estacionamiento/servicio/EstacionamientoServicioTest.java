@@ -3,7 +3,6 @@ package com.estacionamiento.servicio;
 
 import java.text.ParseException;
 
-import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -30,13 +29,13 @@ public class EstacionamientoServicioTest {
 
 	@Autowired
 	IRepositorioServicio iRepositorioServicio;
-	
+
 	@Before
-	public void cleanData(){
+	public void cleanData() {
 		iRepositorioServicio.deleteAll();
-		
+
 	}
-	
+
 	@Test
 	public void registrarEntradaCarroTest() throws EstacionamientoException {
 		Servicio servicio = new Servicio();
@@ -95,7 +94,7 @@ public class EstacionamientoServicioTest {
 		Assert.assertEquals(false, disponibilidad);
 
 	}
-	
+
 	@Test
 	public void verificarCupoDisponibleCarroTest() throws EstacionamientoException {
 
@@ -121,7 +120,7 @@ public class EstacionamientoServicioTest {
 		Assert.assertEquals(true, disponibilidad);
 
 	}
-	
+
 	@Test
 	public void calcularValorServicioCarroTest() throws ParseException {
 
@@ -129,12 +128,12 @@ public class EstacionamientoServicioTest {
 		facturaEntity.setFechaHoraIngreso("01-01-2019 12:22:24");
 		facturaEntity.setTipoVehiculo(Utilitarios.CARRO);
 
-		facturaEntity = estacionamientoService.calcularValorServicio(facturaEntity,"02-01-2019 15:22:24");
+		facturaEntity = estacionamientoService.calcularValorServicio(facturaEntity, "02-01-2019 15:22:24");
 
 		Assert.assertEquals(facturaEntity.getValorServicio(), facturaEntity.getValorServicio());
 
 	}
-	
+
 	@Test
 	public void calcularValorServicioMotoTest() throws ParseException {
 
@@ -143,29 +142,25 @@ public class EstacionamientoServicioTest {
 		facturaEntity.setTipoVehiculo(Utilitarios.MOTO);
 		facturaEntity.setCilindraje(650);
 
-		facturaEntity = estacionamientoService.calcularValorServicio(facturaEntity,"01-01-2019 18:22:24");
+		facturaEntity = estacionamientoService.calcularValorServicio(facturaEntity, "01-01-2019 18:22:24");
 
 		Assert.assertEquals(6000, facturaEntity.getValorServicio());
 
 	}
-	
-	
-	public void creacionServicios(){
-		
-		for(int i = 0 ; i <= 40;i++){
-			ServicioEntity servicio=new ServicioEntity();
+
+	public void creacionServicios() {
+
+		for (int i = 0; i <= 40; i++) {
+			ServicioEntity servicio = new ServicioEntity();
 			servicio.setEstado(Utilitarios.PARQUEADO);
-			if(i<20){
+			if (i < 20) {
 				servicio.setTipoVehiculo(Utilitarios.MOTO);
-			}else{
-			servicio.setTipoVehiculo(Utilitarios.CARRO);
+			} else {
+				servicio.setTipoVehiculo(Utilitarios.CARRO);
 			}
 			iRepositorioServicio.save(servicio);
 		}
-	
+
 	}
-	
-	
-	
 
 }

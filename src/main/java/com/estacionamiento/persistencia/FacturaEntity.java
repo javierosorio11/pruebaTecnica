@@ -8,13 +8,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.estacionamiento.dominio.Servicio;
-
 @Entity
 @Table(name = "factura")
 public class FacturaEntity implements Serializable {
 
-	
 	private static final long serialVersionUID = 2L;
 
 	@Id
@@ -28,8 +25,6 @@ public class FacturaEntity implements Serializable {
 	private int estado;
 	private long cilindraje;
 
-
-
 	public FacturaEntity(String placa, String fechaHoraIngreso, String fechaHoraSalida, long valorServicio,
 			int tipoVehiculo, int estado, long cilindraje) {
 		super();
@@ -42,20 +37,8 @@ public class FacturaEntity implements Serializable {
 		this.cilindraje = cilindraje;
 	}
 
-	public FacturaEntity(Servicio servicio) {
-		super();
-		this.placa = servicio.getPlaca();
-		this.fechaHoraIngreso = servicio.getFechaHoraIngreso();
-		this.fechaHoraSalida = servicio.getFechaHoraSalida();
-		this.valorServicio = 0;
-		this.tipoVehiculo = servicio.getTipoVehiculo();
-		this.estado = servicio.getEstado();
-	}
-
-	
-
 	public FacturaEntity() {
-		
+
 	}
 
 	public long getId() {

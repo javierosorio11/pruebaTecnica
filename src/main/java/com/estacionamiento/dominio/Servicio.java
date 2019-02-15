@@ -15,7 +15,6 @@ public class Servicio {
 	private int estado;
 	private long cilindraje;
 
-	
 	public Servicio(String modelo, String placa, String fechaHoraIngreso, String fechaHoraSalida, int tipoVehiculo,
 			int estado, long cilindraje) {
 		super();
@@ -29,7 +28,7 @@ public class Servicio {
 	}
 
 	public Servicio() {
-		
+
 	}
 
 	public String getModelo() {

@@ -14,7 +14,6 @@ public class Factura {
 	private int estado;
 	private String error;
 
-
 	public Factura(String placa, String fechaHoraIngreso, String fechaHoraSalida, Long valorServicio, int tipoVehiculo,
 			int estado, String error) {
 		super();
@@ -28,7 +27,7 @@ public class Factura {
 	}
 
 	public Factura() {
-		
+
 	}
 
 	public String getPlaca() {

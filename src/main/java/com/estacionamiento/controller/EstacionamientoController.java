@@ -36,7 +36,6 @@ public class EstacionamientoController {
 		return this.iEstacionamiento.registrarEntrada(servicio);
 	}
 
-
 	@CrossOrigin
 	@PostMapping("/registrarSalida")
 	public Factura registrarSalidaVehiculo(@RequestBody Factura factura) throws EstacionamientoException {

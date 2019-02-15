@@ -59,10 +59,10 @@ public class EstacionamientoService implements IEstacionamientoService {
 
 					servicio.setFechaHoraIngreso(Utilitarios.fechaActualAString());
 					servicio.setEstado(Utilitarios.PARQUEADO);
-					ServicioEntity servicioEntity = new ServicioEntity(servicio);
+					ServicioEntity servicioEntity = Utilitarios.convertiServicioAServicioEntity(servicio);
 					iRepositorioServicio.save(servicioEntity);
 
-					facturaEntity = new FacturaEntity(servicio);
+					facturaEntity = Utilitarios.convertiServicioAFacturaEntity(servicio);
 					factura = Utilitarios.convertirAFactura(facturaEntity);
 					iRepositorioFactura.save(facturaEntity);
 
@@ -75,7 +75,7 @@ public class EstacionamientoService implements IEstacionamientoService {
 
 		} catch (Exception e) {
 
-			throw new RuntimeException(e.getMessage());
+			throw new EstacionamientoException(e.getMessage());
 		}
 
 		return factura;

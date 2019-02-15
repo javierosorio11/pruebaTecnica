@@ -22,7 +22,6 @@ public class EstacionamientoAplication {
 
 		return args -> {
 
-		
 		};
 
 	}
