@@ -41,13 +41,12 @@ public class EstacionamientoService implements IEstacionamientoService {
 	private static final Logger LOGGER = LoggerFactory.getLogger(EstacionamientoService.class);
 
 	@Override
-	public Factura registrarEntrada(Servicio servicio) throws EstacionamientoException {
+	public Factura registrarEntrada(Servicio servicio) throws EstacionamientoException, ParseException {
 
 		FacturaEntity facturaEntity = new FacturaEntity();
 		Factura factura = new Factura();
 
-		try {
-
+	
 			if (verificarDisponibilidadServicio(servicio)) {
 
 				if (!Utilitarios.esDomingoOLunes(Calendar.getInstance())
@@ -73,10 +72,7 @@ public class EstacionamientoService implements IEstacionamientoService {
 				throw new EstacionamientoException(Utilitarios.SINCUPO);
 			}
 
-		} catch (Exception e) {
 
-			throw new EstacionamientoException(e.getMessage());
-		}
 
 		return factura;
 
@@ -86,7 +82,7 @@ public class EstacionamientoService implements IEstacionamientoService {
 	public boolean verificarDisponibilidadServicio(Servicio servicio) throws EstacionamientoException {
 
 		boolean cupoDisponible = true;
-		try {
+	
 
 			List<ServicioEntity> cantidaVehiculos = iRepositorioServicio
 					.findByTipoVehiculoByEstado(servicio.getTipoVehiculo(), Utilitarios.PARQUEADO);
@@ -97,10 +93,7 @@ public class EstacionamientoService implements IEstacionamientoService {
 
 				cupoDisponible = false;
 			}
-		} catch (Exception e) {
-
-			throw new RuntimeException(e.getMessage());
-		}
+		
 
 		return cupoDisponible;
 	}

@@ -1,5 +1,7 @@
 package com.estacionamiento.controller;
 
+import java.text.ParseException;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -37,7 +39,7 @@ public class EstacionamientoControllerTest {
 	}
 
 	@Test
-	public void registrarEntradaCarroTest() throws EstacionamientoException {
+	public void registrarEntradaCarroTest() throws EstacionamientoException, ParseException {
 
 		Servicio servicio = new Servicio();
 		servicio.setEstado(Utilitarios.PARQUEADO);
@@ -55,7 +57,7 @@ public class EstacionamientoControllerTest {
 	}
 	
 	@Test
-	public void registrarEntradaMotoTest() throws EstacionamientoException {
+	public void registrarEntradaMotoTest() throws EstacionamientoException, ParseException {
 
 		Servicio servicio = new Servicio();
 		servicio.setEstado(Utilitarios.PARQUEADO);
@@ -127,7 +129,7 @@ public class EstacionamientoControllerTest {
 	}
 	
 	@Test
-	public void registrarSalidaCarroTest() throws EstacionamientoException {
+	public void registrarSalidaCarroTest() throws EstacionamientoException, ParseException {
 		Servicio servicio = new Servicio();
 		servicio.setEstado(Utilitarios.PARQUEADO);
 		servicio.setModelo("1999");

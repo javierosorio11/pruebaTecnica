@@ -95,7 +95,7 @@ public final class Utilitarios {
 
 		ServicioEntity servicioEntity = null;
 
-		try {
+		
 			if (servicio != null) {
 
 				servicioEntity = new ServicioEntity(servicio.getModelo(), servicio.getPlaca(),
@@ -103,10 +103,7 @@ public final class Utilitarios {
 						servicio.getEstado(), servicio.getCilindraje());
 
 			}
-		} catch (Exception e) {
-
-			throw new EstacionamientoException("No se encontro servicio");
-		}
+	
 		return servicioEntity;
 	}
 
@@ -114,7 +111,7 @@ public final class Utilitarios {
 
 		FacturaEntity facturaEntity = null;
 
-		try {
+		
 			if (servicio != null) {
 
 				facturaEntity = new FacturaEntity(servicio.getPlaca(), servicio.getFechaHoraIngreso(),
@@ -122,10 +119,7 @@ public final class Utilitarios {
 						servicio.getCilindraje());
 
 			}
-		} catch (Exception e) {
-
-			throw new EstacionamientoException("No se encontro servicio");
-		}
+		
 		return facturaEntity;
 	}
 

@@ -37,7 +37,7 @@ public class EstacionamientoServicioTest {
 	}
 
 	@Test
-	public void registrarEntradaCarroTest() throws EstacionamientoException {
+	public void registrarEntradaCarroTest() throws EstacionamientoException, ParseException {
 		Servicio servicio = new Servicio();
 		servicio.setEstado(Utilitarios.PARQUEADO);
 		servicio.setModelo("1999");
@@ -55,7 +55,7 @@ public class EstacionamientoServicioTest {
 	}
 
 	@Test
-	public void registrarEntradaMotoTest() throws EstacionamientoException {
+	public void registrarEntradaMotoTest() throws EstacionamientoException, ParseException {
 		Servicio servicio = new Servicio();
 		servicio.setEstado(Utilitarios.PARQUEADO);
 		servicio.setModelo("1999");
