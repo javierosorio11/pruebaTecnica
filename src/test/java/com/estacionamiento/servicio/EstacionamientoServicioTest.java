@@ -39,17 +39,14 @@ public class EstacionamientoServicioTest {
 	public void registrarEntradaCarroTest() throws EstacionamientoException, ParseException {
 		Vehiculo vehiculo = new Vehiculo();
 		vehiculo.setEstado(Utilitarios.PARQUEADO);
-		vehiculo.setModelo("1999");
 		vehiculo.setPlaca("TMQ");
 		vehiculo.setTipoVehiculo(Utilitarios.CARRO);
 		vehiculo.setCilindraje(0);
-		
 
 		Recibo recibo = estacionamientoService.registrarEntrada(vehiculo);
 
 		Assert.assertEquals("TMQ", recibo.getPlaca());
 		Assert.assertEquals(Utilitarios.CARRO, recibo.getTipoVehiculo());
-
 
 	}
 
@@ -57,16 +54,13 @@ public class EstacionamientoServicioTest {
 	public void registrarEntradaMotoTest() throws EstacionamientoException, ParseException {
 		Vehiculo vehiculo = new Vehiculo();
 		vehiculo.setEstado(Utilitarios.PARQUEADO);
-		vehiculo.setModelo("1999");
 		vehiculo.setPlaca("TSQ");
 		vehiculo.setTipoVehiculo(Utilitarios.MOTO);
-		
 
 		Recibo recibo = estacionamientoService.registrarEntrada(vehiculo);
 
 		Assert.assertEquals("TSQ", recibo.getPlaca());
 		Assert.assertEquals(Utilitarios.MOTO, recibo.getTipoVehiculo());
-		
 
 	}
 

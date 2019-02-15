@@ -20,7 +20,6 @@ public class VehiculoEntity implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	private String modelo;
 	private String placa;
 	private String fechaHoraIngreso;
 	private String fechaHoraSalida;
@@ -29,10 +28,9 @@ public class VehiculoEntity implements Serializable {
 	private long cilindraje;
 	private long valorServico;
 
-	public VehiculoEntity(String modelo, String placa, String fechaHoraIngreso, String fechaHoraSalida,
-			int tipoVehiculo, int estado, long cilindraje, long valorServico) {
+	public VehiculoEntity(String placa, String fechaHoraIngreso, String fechaHoraSalida, int tipoVehiculo, int estado,
+			long cilindraje, long valorServico) {
 		super();
-		this.modelo = modelo;
 		this.placa = placa;
 		this.fechaHoraIngreso = fechaHoraIngreso;
 		this.fechaHoraSalida = fechaHoraSalida;
@@ -44,14 +42,6 @@ public class VehiculoEntity implements Serializable {
 
 	public VehiculoEntity() {
 
-	}
-
-	public String getModelo() {
-		return modelo;
-	}
-
-	public void setModelo(String modelo) {
-		this.modelo = modelo;
 	}
 
 	public String getPlaca() {

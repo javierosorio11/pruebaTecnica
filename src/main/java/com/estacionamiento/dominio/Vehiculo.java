@@ -7,7 +7,6 @@ package com.estacionamiento.dominio;
  */
 public class Vehiculo {
 
-	private String modelo;
 	private String placa;
 	private String fechaHoraIngreso;
 	private String fechaHoraSalida;
@@ -16,29 +15,20 @@ public class Vehiculo {
 	private long cilindraje;
 	private long valorServicio;
 
-	public Vehiculo(String modelo, String placa, String fechaHoraIngreso, String fechaHoraSalida, int tipoVehiculo,
-			int estado, long cilindraje, long varorServicio) {
+	public Vehiculo(String placa, String fechaHoraIngreso, String fechaHoraSalida, int tipoVehiculo, int estado,
+			long cilindraje, long valorServicio) {
 		super();
-		this.modelo = modelo;
 		this.placa = placa;
 		this.fechaHoraIngreso = fechaHoraIngreso;
 		this.fechaHoraSalida = fechaHoraSalida;
 		this.tipoVehiculo = tipoVehiculo;
 		this.estado = estado;
 		this.cilindraje = cilindraje;
-		this.valorServicio = varorServicio;
+		this.valorServicio = valorServicio;
 	}
 
 	public Vehiculo() {
 
-	}
-
-	public String getModelo() {
-		return modelo;
-	}
-
-	public void setModelo(String modelo) {
-		this.modelo = modelo;
 	}
 
 	public String getPlaca() {

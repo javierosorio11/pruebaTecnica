@@ -83,6 +83,4 @@ public class UtilitariosTest {
 		Assert.assertFalse(placaInicaEnA);
 	}
 
-
-
 }

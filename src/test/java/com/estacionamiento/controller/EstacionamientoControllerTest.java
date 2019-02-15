@@ -27,7 +27,7 @@ public class EstacionamientoControllerTest {
 	private EstacionamientoController estacionamientoController;
 
 	@Autowired
-	IRepositorioVehiculo iRepositorioServicio;
+	IRepositorioVehiculo iRepositorioVehiculo;
 
 	@Autowired
 	EstacionamientoService estacionamientoService;
@@ -35,7 +35,7 @@ public class EstacionamientoControllerTest {
 	@Before
 	public void cleanData() {
 
-		iRepositorioServicio.deleteAll();
+		iRepositorioVehiculo.deleteAll();
 	}
 
 	@Test
@@ -43,16 +43,13 @@ public class EstacionamientoControllerTest {
 
 		Vehiculo vehiculo = new Vehiculo();
 		vehiculo.setEstado(Utilitarios.PARQUEADO);
-		vehiculo.setModelo("1999");
 		vehiculo.setPlaca("TMQ");
 		vehiculo.setTipoVehiculo(Utilitarios.CARRO);
-		vehiculo.setModelo("2019");
 
 		Recibo recibo = estacionamientoController.registrarEntradaVehiculo(vehiculo);
 
 		Assert.assertEquals(vehiculo.getPlaca(), recibo.getPlaca());
 		Assert.assertEquals(vehiculo.getTipoVehiculo(), recibo.getTipoVehiculo());
-
 
 	}
 
@@ -61,7 +58,6 @@ public class EstacionamientoControllerTest {
 
 		Vehiculo vehiculo = new Vehiculo();
 		vehiculo.setEstado(Utilitarios.PARQUEADO);
-		vehiculo.setModelo("1999");
 		vehiculo.setPlaca("QTM");
 		vehiculo.setTipoVehiculo(Utilitarios.MOTO);
 
@@ -69,7 +65,6 @@ public class EstacionamientoControllerTest {
 
 		Assert.assertEquals(vehiculo.getPlaca(), recibo.getPlaca());
 		Assert.assertEquals(vehiculo.getTipoVehiculo(), recibo.getTipoVehiculo());
-		
 
 	}
 
@@ -78,7 +73,6 @@ public class EstacionamientoControllerTest {
 
 		Vehiculo vehiculo = new Vehiculo();
 		vehiculo.setEstado(Utilitarios.PARQUEADO);
-		vehiculo.setModelo("1999");
 		vehiculo.setPlaca("TMQ");
 		vehiculo.setTipoVehiculo(Utilitarios.CARRO);
 
@@ -92,10 +86,8 @@ public class EstacionamientoControllerTest {
 		creacionServicios();
 		Vehiculo vehiculo = new Vehiculo();
 		vehiculo.setEstado(Utilitarios.PARQUEADO);
-		vehiculo.setModelo("1999");
 		vehiculo.setPlaca("TMQ");
 		vehiculo.setTipoVehiculo(Utilitarios.CARRO);
-		vehiculo.setModelo("2019");
 
 		boolean cupoDisponible = estacionamientoController.verificarDisponibilidadServicio(vehiculo);
 		Assert.assertFalse(cupoDisponible);
@@ -108,7 +100,6 @@ public class EstacionamientoControllerTest {
 		Vehiculo vehiculo = new Vehiculo();
 		vehiculo.setPlaca("TWU");
 		vehiculo.setTipoVehiculo(Utilitarios.MOTO);
-		vehiculo.setModelo("2019");
 
 		boolean cupoDisponible = estacionamientoController.verificarDisponibilidadServicio(vehiculo);
 		Assert.assertTrue(cupoDisponible);
@@ -121,7 +112,6 @@ public class EstacionamientoControllerTest {
 		Vehiculo vehiculo = new Vehiculo();
 		vehiculo.setPlaca("TXR");
 		vehiculo.setTipoVehiculo(Utilitarios.MOTO);
-		vehiculo.setModelo("2019");
 
 		boolean cupoDisponible = estacionamientoController.verificarDisponibilidadServicio(vehiculo);
 		Assert.assertFalse(cupoDisponible);
@@ -132,7 +122,6 @@ public class EstacionamientoControllerTest {
 	public void registrarSalidaCarroTest() throws EstacionamientoException, ParseException {
 		Vehiculo vehiculo = new Vehiculo();
 		vehiculo.setEstado(Utilitarios.PARQUEADO);
-		vehiculo.setModelo("1999");
 		vehiculo.setPlaca("QWE");
 		vehiculo.setTipoVehiculo(Utilitarios.CARRO);
 
@@ -154,7 +143,7 @@ public class EstacionamientoControllerTest {
 			} else {
 				servicio.setTipoVehiculo(Utilitarios.CARRO);
 			}
-			iRepositorioServicio.save(servicio);
+			iRepositorioVehiculo.save(servicio);
 		}
 	}
 }

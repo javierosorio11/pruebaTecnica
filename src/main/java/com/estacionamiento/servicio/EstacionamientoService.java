@@ -53,7 +53,7 @@ public class EstacionamientoService implements IEstacionamientoService {
 
 					vehiculo.setFechaHoraIngreso(Utilitarios.fechaActualAString());
 					vehiculo.setEstado(Utilitarios.PARQUEADO);
-					VehiculoEntity vehiculoEntity = new VehiculoEntity(vehiculo.getModelo(), vehiculo.getPlaca(),
+					VehiculoEntity vehiculoEntity = new VehiculoEntity(vehiculo.getPlaca(),
 							vehiculo.getFechaHoraIngreso(), vehiculo.getFechaHoraSalida(), vehiculo.getTipoVehiculo(),
 							Utilitarios.PARQUEADO, vehiculo.getCilindraje(), 0);
 
