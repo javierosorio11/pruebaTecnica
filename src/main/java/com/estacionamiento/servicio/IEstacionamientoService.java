@@ -3,8 +3,6 @@
  */
 package com.estacionamiento.servicio;
 
-import java.text.ParseException;
-
 import com.estacionamiento.dominio.Factura;
 import com.estacionamiento.dominio.Servicio;
 import com.estacionamiento.exception.EstacionamientoException;
@@ -15,9 +13,9 @@ import com.estacionamiento.exception.EstacionamientoException;
  */
 public interface IEstacionamientoService {
 
-	public Factura registrarEntrada(Servicio servicio) throws EstacionamientoException, ParseException;
+	public Factura registrarEntrada(Servicio servicio) throws EstacionamientoException;
 
-	public boolean verificarDisponibilidadServicio(Servicio servicio) throws EstacionamientoException;
+	public boolean verificarDisponibilidadServicio(Servicio servicio);
 
 	public Factura registrarSalida(Factura factura) throws EstacionamientoException;
 

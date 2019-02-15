@@ -41,7 +41,7 @@ public class EstacionamientoService implements IEstacionamientoService {
 	private static final Logger LOGGER = LoggerFactory.getLogger(EstacionamientoService.class);
 
 	@Override
-	public Factura registrarEntrada(Servicio servicio) {
+	public Factura registrarEntrada(Servicio servicio) throws EstacionamientoException {
 
 		FacturaEntity facturaEntity;
 		Factura factura = new Factura();
@@ -71,7 +71,7 @@ public class EstacionamientoService implements IEstacionamientoService {
 
 				throw new EstacionamientoException(Utilitarios.SINCUPO);
 			}
-		} catch (EstacionamientoException | ParseException e) {
+		} catch (ParseException e) {
 
 			LOGGER.info(e.getMessage());
 		}
@@ -81,7 +81,7 @@ public class EstacionamientoService implements IEstacionamientoService {
 	}
 
 	@Override
-	public boolean verificarDisponibilidadServicio(Servicio servicio) throws EstacionamientoException {
+	public boolean verificarDisponibilidadServicio(Servicio servicio) {
 
 		boolean cupoDisponible = true;
 

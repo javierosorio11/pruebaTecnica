@@ -1,7 +1,5 @@
 package com.estacionamiento.controller;
 
-import java.text.ParseException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,14 +26,13 @@ public class EstacionamientoController {
 
 	@CrossOrigin
 	@PostMapping("/disponibilidad")
-	public boolean verificarDisponibilidadServicio(@RequestBody Servicio servicio) throws EstacionamientoException {
+	public boolean verificarDisponibilidadServicio(@RequestBody Servicio servicio) {
 		return this.iEstacionamiento.verificarDisponibilidadServicio(servicio);
 	}
 
 	@CrossOrigin
 	@PostMapping("/registrarEntrada")
-	public Factura registrarEntradaVehiculo(@RequestBody Servicio servicio)
-			throws EstacionamientoException, ParseException {
+	public Factura registrarEntradaVehiculo(@RequestBody Servicio servicio) throws EstacionamientoException {
 		return this.iEstacionamiento.registrarEntrada(servicio);
 	}
 
