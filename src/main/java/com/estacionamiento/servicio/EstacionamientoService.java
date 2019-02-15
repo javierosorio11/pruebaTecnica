@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.estacionamiento.servicio;
 
 import java.text.ParseException;

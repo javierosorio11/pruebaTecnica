@@ -1,10 +1,6 @@
 
 package com.estacionamiento.dominio;
 
-/**
- * @author alvaro.osorio
- *
- */
 public class Vehiculo {
 
 	private String placa;

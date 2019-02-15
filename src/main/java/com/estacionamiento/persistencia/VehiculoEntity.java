@@ -12,9 +12,6 @@ import javax.persistence.Table;
 @Table(name = "vehiculos")
 public class VehiculoEntity implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	@Id
