@@ -4,7 +4,8 @@
 package com.estacionamiento.servicio;
 
 import com.estacionamiento.dominio.Factura;
-import com.estacionamiento.dominio.Servicio;
+import com.estacionamiento.dominio.Recibo;
+import com.estacionamiento.dominio.Vehiculo;
 import com.estacionamiento.exception.EstacionamientoException;
 
 /**
@@ -13,10 +14,10 @@ import com.estacionamiento.exception.EstacionamientoException;
  */
 public interface IEstacionamientoService {
 
-	public Factura registrarEntrada(Servicio servicio) throws EstacionamientoException;
+	public Recibo registrarEntrada(Vehiculo vehiculo) throws EstacionamientoException;
 
-	public boolean verificarDisponibilidadServicio(Servicio servicio);
+	public boolean verificarDisponibilidadServicio(Vehiculo vehiculo);
 
-	public Factura registrarSalida(Factura factura) throws EstacionamientoException;
+	public Factura registrarSalida(Recibo recibo) throws EstacionamientoException;
 
 }

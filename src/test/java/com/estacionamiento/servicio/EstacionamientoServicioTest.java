@@ -12,12 +12,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.estacionamiento.EstacionamientoAplication;
-import com.estacionamiento.dominio.Factura;
-import com.estacionamiento.dominio.Servicio;
+import com.estacionamiento.dominio.Recibo;
+import com.estacionamiento.dominio.Vehiculo;
 import com.estacionamiento.exception.EstacionamientoException;
-import com.estacionamiento.persistencia.FacturaEntity;
-import com.estacionamiento.persistencia.ServicioEntity;
-import com.estacionamiento.repositorio.IRepositorioServicio;
+import com.estacionamiento.persistencia.VehiculoEntity;
+import com.estacionamiento.repositorio.IRepositorioVehiculo;
 import com.estacionamiento.utils.Utilitarios;
 
 @RunWith(SpringRunner.class)
@@ -28,7 +27,7 @@ public class EstacionamientoServicioTest {
 	EstacionamientoService estacionamientoService;
 
 	@Autowired
-	IRepositorioServicio iRepositorioServicio;
+	IRepositorioVehiculo iRepositorioServicio;
 
 	@Before
 	public void cleanData() {
@@ -38,46 +37,46 @@ public class EstacionamientoServicioTest {
 
 	@Test
 	public void registrarEntradaCarroTest() throws EstacionamientoException, ParseException {
-		Servicio servicio = new Servicio();
-		servicio.setEstado(Utilitarios.PARQUEADO);
-		servicio.setModelo("1999");
-		servicio.setPlaca("TMQ");
-		servicio.setTipoVehiculo(Utilitarios.CARRO);
-		servicio.setCilindraje(0);
-		Factura factura = new Factura();
+		Vehiculo vehiculo = new Vehiculo();
+		vehiculo.setEstado(Utilitarios.PARQUEADO);
+		vehiculo.setModelo("1999");
+		vehiculo.setPlaca("TMQ");
+		vehiculo.setTipoVehiculo(Utilitarios.CARRO);
+		vehiculo.setCilindraje(0);
+		
 
-		factura = estacionamientoService.registrarEntrada(servicio);
+		Recibo recibo = estacionamientoService.registrarEntrada(vehiculo);
 
-		Assert.assertEquals("TMQ", factura.getPlaca());
-		Assert.assertEquals(Utilitarios.CARRO, factura.getTipoVehiculo());
-		Assert.assertEquals(Utilitarios.PARQUEADO, factura.getEstado());
+		Assert.assertEquals("TMQ", recibo.getPlaca());
+		Assert.assertEquals(Utilitarios.CARRO, recibo.getTipoVehiculo());
+
 
 	}
 
 	@Test
 	public void registrarEntradaMotoTest() throws EstacionamientoException, ParseException {
-		Servicio servicio = new Servicio();
-		servicio.setEstado(Utilitarios.PARQUEADO);
-		servicio.setModelo("1999");
-		servicio.setPlaca("TSQ");
-		servicio.setTipoVehiculo(Utilitarios.MOTO);
-		Factura factura = new Factura();
+		Vehiculo vehiculo = new Vehiculo();
+		vehiculo.setEstado(Utilitarios.PARQUEADO);
+		vehiculo.setModelo("1999");
+		vehiculo.setPlaca("TSQ");
+		vehiculo.setTipoVehiculo(Utilitarios.MOTO);
+		
 
-		factura = estacionamientoService.registrarEntrada(servicio);
+		Recibo recibo = estacionamientoService.registrarEntrada(vehiculo);
 
-		Assert.assertEquals("TSQ", factura.getPlaca());
-		Assert.assertEquals(Utilitarios.MOTO, factura.getTipoVehiculo());
-		Assert.assertEquals(Utilitarios.PARQUEADO, factura.getEstado());
+		Assert.assertEquals("TSQ", recibo.getPlaca());
+		Assert.assertEquals(Utilitarios.MOTO, recibo.getTipoVehiculo());
+		
 
 	}
 
 	@Test
 	public void verificarCupoNoDisponibleCarro() throws EstacionamientoException {
 		creacionServicios();
-		Servicio servicio = new Servicio();
-		servicio.setTipoVehiculo(Utilitarios.CARRO);
+		Vehiculo vehiculo = new Vehiculo();
+		vehiculo.setTipoVehiculo(Utilitarios.CARRO);
 
-		boolean disponibilidad = estacionamientoService.verificarDisponibilidadServicio(servicio);
+		boolean disponibilidad = estacionamientoService.verificarDisponibilidadServicio(vehiculo);
 
 		Assert.assertEquals(false, disponibilidad);
 
@@ -86,10 +85,10 @@ public class EstacionamientoServicioTest {
 	@Test
 	public void verificarCupoNoDisponibleMoto() throws EstacionamientoException {
 		creacionServicios();
-		Servicio servicio = new Servicio();
-		servicio.setTipoVehiculo(Utilitarios.MOTO);
+		Vehiculo vehiculo = new Vehiculo();
+		vehiculo.setTipoVehiculo(Utilitarios.MOTO);
 
-		boolean disponibilidad = estacionamientoService.verificarDisponibilidadServicio(servicio);
+		boolean disponibilidad = estacionamientoService.verificarDisponibilidadServicio(vehiculo);
 
 		Assert.assertEquals(false, disponibilidad);
 
@@ -98,11 +97,11 @@ public class EstacionamientoServicioTest {
 	@Test
 	public void verificarCupoDisponibleCarroTest() throws EstacionamientoException {
 
-		Servicio servicio = new Servicio();
-		servicio.setEstado(Utilitarios.PARQUEADO);
-		servicio.setTipoVehiculo(Utilitarios.CARRO);
+		Vehiculo vehiculo = new Vehiculo();
+		vehiculo.setEstado(Utilitarios.PARQUEADO);
+		vehiculo.setTipoVehiculo(Utilitarios.CARRO);
 
-		boolean disponibilidad = estacionamientoService.verificarDisponibilidadServicio(servicio);
+		boolean disponibilidad = estacionamientoService.verificarDisponibilidadServicio(vehiculo);
 
 		Assert.assertEquals(true, disponibilidad);
 
@@ -111,11 +110,11 @@ public class EstacionamientoServicioTest {
 	@Test
 	public void verificarCupoDisponibleMotoTest() throws EstacionamientoException {
 
-		Servicio servicio = new Servicio();
-		servicio.setEstado(Utilitarios.PARQUEADO);
-		servicio.setTipoVehiculo(Utilitarios.MOTO);
+		Vehiculo vehiculo = new Vehiculo();
+		vehiculo.setEstado(Utilitarios.PARQUEADO);
+		vehiculo.setTipoVehiculo(Utilitarios.MOTO);
 
-		boolean disponibilidad = estacionamientoService.verificarDisponibilidadServicio(servicio);
+		boolean disponibilidad = estacionamientoService.verificarDisponibilidadServicio(vehiculo);
 
 		Assert.assertEquals(true, disponibilidad);
 
@@ -124,34 +123,36 @@ public class EstacionamientoServicioTest {
 	@Test
 	public void calcularValorServicioCarroTest() throws ParseException {
 
-		FacturaEntity facturaEntity = new FacturaEntity();
-		facturaEntity.setFechaHoraIngreso("01-01-2019 12:22:24");
-		facturaEntity.setTipoVehiculo(Utilitarios.CARRO);
+		VehiculoEntity vehiculoEntity = new VehiculoEntity();
+		vehiculoEntity.setFechaHoraIngreso("01-01-2019 12:22:24");
+		vehiculoEntity.setFechaHoraSalida("02-01-2019 15:22:24");
+		vehiculoEntity.setTipoVehiculo(Utilitarios.CARRO);
 
-		facturaEntity = estacionamientoService.calcularValorServicio(facturaEntity, "02-01-2019 15:22:24");
+		long ValorServicio = estacionamientoService.calcularValorServicio(vehiculoEntity);
 
-		Assert.assertEquals(facturaEntity.getValorServicio(), facturaEntity.getValorServicio());
+		Assert.assertEquals(11000, ValorServicio);
 
 	}
 
 	@Test
 	public void calcularValorServicioMotoTest() throws ParseException {
 
-		FacturaEntity facturaEntity = new FacturaEntity();
-		facturaEntity.setFechaHoraIngreso("01-01-2019 05:22:24");
-		facturaEntity.setTipoVehiculo(Utilitarios.MOTO);
-		facturaEntity.setCilindraje(650);
+		VehiculoEntity vehiculoEntity = new VehiculoEntity();
+		vehiculoEntity.setFechaHoraIngreso("01-01-2019 05:22:24");
+		vehiculoEntity.setFechaHoraSalida("01-01-2019 18:22:24");
+		vehiculoEntity.setTipoVehiculo(Utilitarios.MOTO);
+		vehiculoEntity.setCilindraje(650);
 
-		facturaEntity = estacionamientoService.calcularValorServicio(facturaEntity, "01-01-2019 18:22:24");
+		long ValorServicio = estacionamientoService.calcularValorServicio(vehiculoEntity);
 
-		Assert.assertEquals(6000, facturaEntity.getValorServicio());
+		Assert.assertEquals(6000, ValorServicio);
 
 	}
 
 	public void creacionServicios() {
 
 		for (int i = 0; i <= 40; i++) {
-			ServicioEntity servicio = new ServicioEntity();
+			VehiculoEntity servicio = new VehiculoEntity();
 			servicio.setEstado(Utilitarios.PARQUEADO);
 			if (i < 20) {
 				servicio.setTipoVehiculo(Utilitarios.MOTO);

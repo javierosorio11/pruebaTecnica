@@ -1,22 +1,36 @@
+
 package com.estacionamiento.dominio;
 
-import java.util.Date;
-
+/**
+ * @author alvaro.osorio
+ *
+ */
 public class Vehiculo {
 
 	private String modelo;
 	private String placa;
-	private Date fechaHoraIngreso;
-	private Date fechaHoraSalida;
+	private String fechaHoraIngreso;
+	private String fechaHoraSalida;
 	private int tipoVehiculo;
+	private int estado;
+	private long cilindraje;
+	private long valorServicio;
 
-	public Vehiculo(String modelo, String placa, Date fechaHoraIngreso, Date fechaHoraSalida, int tipoVehiculo) {
+	public Vehiculo(String modelo, String placa, String fechaHoraIngreso, String fechaHoraSalida, int tipoVehiculo,
+			int estado, long cilindraje, long varorServicio) {
 		super();
 		this.modelo = modelo;
 		this.placa = placa;
 		this.fechaHoraIngreso = fechaHoraIngreso;
 		this.fechaHoraSalida = fechaHoraSalida;
 		this.tipoVehiculo = tipoVehiculo;
+		this.estado = estado;
+		this.cilindraje = cilindraje;
+		this.valorServicio = varorServicio;
+	}
+
+	public Vehiculo() {
+
 	}
 
 	public String getModelo() {
@@ -35,19 +49,19 @@ public class Vehiculo {
 		this.placa = placa;
 	}
 
-	public Date getFechaHoraIngreso() {
+	public String getFechaHoraIngreso() {
 		return fechaHoraIngreso;
 	}
 
-	public void setFechaHoraIngreso(Date fechaHoraIngreso) {
+	public void setFechaHoraIngreso(String fechaHoraIngreso) {
 		this.fechaHoraIngreso = fechaHoraIngreso;
 	}
 
-	public Date getFechaHoraSalida() {
+	public String getFechaHoraSalida() {
 		return fechaHoraSalida;
 	}
 
-	public void setFechaHoraSalida(Date fechaHoraSalida) {
+	public void setFechaHoraSalida(String fechaHoraSalida) {
 		this.fechaHoraSalida = fechaHoraSalida;
 	}
 
@@ -57,6 +71,30 @@ public class Vehiculo {
 
 	public void setTipoVehiculo(int tipoVehiculo) {
 		this.tipoVehiculo = tipoVehiculo;
+	}
+
+	public int getEstado() {
+		return estado;
+	}
+
+	public void setEstado(int estado) {
+		this.estado = estado;
+	}
+
+	public long getCilindraje() {
+		return cilindraje;
+	}
+
+	public void setCilindraje(long cilindraje) {
+		this.cilindraje = cilindraje;
+	}
+
+	public long getValorServicio() {
+		return valorServicio;
+	}
+
+	public void setValorServicio(long valorServicio) {
+		this.valorServicio = valorServicio;
 	}
 
 }

@@ -5,8 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import com.estacionamiento.repositorio.IRepositorioFactura;
-import com.estacionamiento.repositorio.IRepositorioServicio;
+import com.estacionamiento.repositorio.IRepositorioVehiculo;
 
 @SpringBootApplication
 
@@ -17,8 +16,7 @@ public class EstacionamientoAplication {
 	}
 
 	@Bean
-	public CommandLineRunner initServiciosParqueadero(IRepositorioServicio iRepositorioServicio,
-			IRepositorioFactura iRepositorioFactura) {
+	public CommandLineRunner initServiciosParqueadero(IRepositorioVehiculo iRepositorioVehiculo) {
 
 		return args -> {
 
