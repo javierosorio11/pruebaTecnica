@@ -15,10 +15,7 @@ public class Servicio {
 	private int estado;
 	private long cilindraje;
 
-	public Servicio() {
-
-	}
-
+	
 	public Servicio(String modelo, String placa, String fechaHoraIngreso, String fechaHoraSalida, int tipoVehiculo,
 			int estado, long cilindraje) {
 		super();
@@ -29,6 +26,10 @@ public class Servicio {
 		this.tipoVehiculo = tipoVehiculo;
 		this.estado = estado;
 		this.cilindraje = cilindraje;
+	}
+
+	public Servicio() {
+		
 	}
 
 	public String getModelo() {

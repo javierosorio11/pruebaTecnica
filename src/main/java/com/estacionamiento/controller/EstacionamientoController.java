@@ -21,7 +21,7 @@ public class EstacionamientoController {
 	@CrossOrigin
 	@GetMapping("/")
 	public String index() {
-		return "<div style=\"text-align : center\">Bienvenidos al Parqueadero <h1>SEGURAR</div>";
+		return "<div style=\"text-align : center\">Bienvenidos al Parqueadero <h1>CEIBA-PARKING</div>";
 	}
 
 	@CrossOrigin
@@ -35,13 +35,7 @@ public class EstacionamientoController {
 	public Factura registrarEntradaVehiculo(@RequestBody Servicio servicio) throws EstacionamientoException {
 		return this.iEstacionamiento.registrarEntrada(servicio);
 	}
-	/*
-	 * @CrossOrigin
-	 * 
-	 * @GetMapping("/getAllCobros") public List<CobroEntity>
-	 * consultarCobros(@RequestParam("estado") String estado) { return
-	 * this.parqueaderoService.consultarCobros(estado); }
-	 */
+
 
 	@CrossOrigin
 	@PostMapping("/registrarSalida")

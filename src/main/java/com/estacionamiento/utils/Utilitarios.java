@@ -28,6 +28,10 @@ public class Utilitarios {
 	public static final Double HORAENMLS = 3.6e+6;
 	public static final long RECARGOMOTOCC = 2000;
 	public static final String FACTURANOEXISTE = "No existe la factura solicitada";
+	
+	private Utilitarios() {
+	    throw new IllegalStateException("Utilitarios es privada");
+	  }
 
 	public static Date formatFechaActual() throws ParseException {
 

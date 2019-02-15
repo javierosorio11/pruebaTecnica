@@ -1,4 +1,3 @@
-
 package com.estacionamiento.dominio;
 
 /**
@@ -15,10 +14,6 @@ public class Factura {
 	private int estado;
 	private String error;
 
-	public Factura() {
-		super();
-
-	}
 
 	public Factura(String placa, String fechaHoraIngreso, String fechaHoraSalida, Long valorServicio, int tipoVehiculo,
 			int estado, String error) {
@@ -30,6 +25,10 @@ public class Factura {
 		this.tipoVehiculo = tipoVehiculo;
 		this.estado = estado;
 		this.error = error;
+	}
+
+	public Factura() {
+		
 	}
 
 	public String getPlaca() {

@@ -14,10 +14,8 @@ import com.estacionamiento.dominio.Servicio;
 @Table(name = "factura")
 public class FacturaEntity implements Serializable {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+	
+	private static final long serialVersionUID = 2L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -30,14 +28,11 @@ public class FacturaEntity implements Serializable {
 	private int estado;
 	private long cilindraje;
 
-	public FacturaEntity() {
 
-	}
 
-	public FacturaEntity(long id, String placa, String fechaHoraIngreso, String fechaHoraSalida, Long valorServicio,
-			int tipoVehiculo, int estado, Long cilindraje) {
+	public FacturaEntity(String placa, String fechaHoraIngreso, String fechaHoraSalida, long valorServicio,
+			int tipoVehiculo, int estado, long cilindraje) {
 		super();
-		this.id = id;
 		this.placa = placa;
 		this.fechaHoraIngreso = fechaHoraIngreso;
 		this.fechaHoraSalida = fechaHoraSalida;
@@ -55,6 +50,12 @@ public class FacturaEntity implements Serializable {
 		this.valorServicio = 0;
 		this.tipoVehiculo = servicio.getTipoVehiculo();
 		this.estado = servicio.getEstado();
+	}
+
+	
+
+	public FacturaEntity() {
+		
 	}
 
 	public long getId() {

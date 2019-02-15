@@ -22,20 +22,7 @@ public class EstacionamientoAplication {
 
 		return args -> {
 
-			/*
-			 * ServicioEntity servicio = new ServicioEntity();
-			 * servicio.setFechaHoraIngreso("13-02-2019 23:50:23");
-			 * servicio.setModelo("1999"); servicio.setPlaca("AVJGEC");
-			 * servicio.setTipoVehiculo(Utilitarios.CARRO);
-			 * servicio.setEstado(Utilitarios.PARQUEADO); FacturaEntity
-			 * facturaEntity=new FacturaEntity();
-			 * facturaEntity.setFechaHoraIngreso(servicio.getFechaHoraIngreso())
-			 * ; facturaEntity.setPlaca(servicio.getPlaca());
-			 * facturaEntity.setTipoVehiculo(servicio.getTipoVehiculo());
-			 * iRepositorioServicio.save(servicio);
-			 * iRepositorioFactura.save(facturaEntity);
-			 */
-
+		
 		};
 
 	}

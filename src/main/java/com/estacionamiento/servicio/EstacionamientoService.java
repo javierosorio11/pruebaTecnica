@@ -38,10 +38,10 @@ public class EstacionamientoService implements IEstacionamientoService {
 	@Autowired
 	IRepositorioFactura iRepositorioFactura;
 
-	private static final Logger logger = LoggerFactory.getLogger(EstacionamientoService.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(EstacionamientoService.class);
 
 	@Override
-	public Factura registrarEntrada(Servicio servicio) {
+	public Factura registrarEntrada(Servicio servicio) throws EstacionamientoException {
 
 		FacturaEntity facturaEntity = new FacturaEntity();
 		Factura factura = new Factura();
@@ -75,7 +75,7 @@ public class EstacionamientoService implements IEstacionamientoService {
 
 		} catch (Exception e) {
 
-			logger.info(e.getMessage());
+			throw new RuntimeException(e.getMessage());
 		}
 
 		return factura;
@@ -99,7 +99,7 @@ public class EstacionamientoService implements IEstacionamientoService {
 			}
 		} catch (Exception e) {
 
-			throw new EstacionamientoException(e.getMessage());
+			throw new RuntimeException(e.getMessage());
 		}
 
 		return cupoDisponible;
@@ -129,7 +129,7 @@ public class EstacionamientoService implements IEstacionamientoService {
 
 			} catch (ParseException e) {
 
-				logger.info(e.getMessage());
+				LOGGER.info(e.getMessage());
 			}
 
 		} else {
