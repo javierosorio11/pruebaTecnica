@@ -25,23 +25,26 @@ public class FacturaEntity implements Serializable {
 	private String placa;
 	private String fechaHoraIngreso;
 	private String fechaHoraSalida;
-	private Long valorServicio;
+	private long valorServicio;
 	private int tipoVehiculo;
 	private int estado;
+	private long cilindraje;
 
 	public FacturaEntity() {
 
 	}
 
-	public FacturaEntity(String placa, String fechaHoraIngreso, String fechaHoraSalida, Long valorServicio,
-			int tipoVehiculo, int estado) {
+	public FacturaEntity(long id, String placa, String fechaHoraIngreso, String fechaHoraSalida, Long valorServicio,
+			int tipoVehiculo, int estado, Long cilindraje) {
 		super();
+		this.id = id;
 		this.placa = placa;
 		this.fechaHoraIngreso = fechaHoraIngreso;
 		this.fechaHoraSalida = fechaHoraSalida;
 		this.valorServicio = valorServicio;
 		this.tipoVehiculo = tipoVehiculo;
 		this.estado = estado;
+		this.cilindraje = cilindraje;
 	}
 
 	public FacturaEntity(Servicio servicio) {
@@ -49,9 +52,17 @@ public class FacturaEntity implements Serializable {
 		this.placa = servicio.getPlaca();
 		this.fechaHoraIngreso = servicio.getFechaHoraIngreso();
 		this.fechaHoraSalida = servicio.getFechaHoraSalida();
-		this.valorServicio = null;
+		this.valorServicio = 0;
 		this.tipoVehiculo = servicio.getTipoVehiculo();
 		this.estado = servicio.getEstado();
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
 	}
 
 	public String getPlaca() {
@@ -78,11 +89,11 @@ public class FacturaEntity implements Serializable {
 		this.fechaHoraSalida = fechaHoraSalida;
 	}
 
-	public Long getValorServicio() {
+	public long getValorServicio() {
 		return valorServicio;
 	}
 
-	public void setValorServicio(Long valorServicio) {
+	public void setValorServicio(long valorServicio) {
 		this.valorServicio = valorServicio;
 	}
 
@@ -100,6 +111,14 @@ public class FacturaEntity implements Serializable {
 
 	public void setEstado(int estado) {
 		this.estado = estado;
+	}
+
+	public long getCilindraje() {
+		return cilindraje;
+	}
+
+	public void setCilindraje(long cilindraje) {
+		this.cilindraje = cilindraje;
 	}
 
 }

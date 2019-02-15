@@ -28,13 +28,14 @@ public class ServicioEntity implements Serializable {
 	private String fechaHoraSalida;
 	private int tipoVehiculo;
 	private int estado;
+	private long cilindraje;
 
 	public ServicioEntity() {
 
 	}
 
 	public ServicioEntity(String modelo, String placa, String fechaHoraIngreso, String fechaHoraSalida,
-			int tipoVehiculo, int estado) {
+			int tipoVehiculo, int estado, long cilindraje) {
 		super();
 		this.modelo = modelo;
 		this.placa = placa;
@@ -42,6 +43,7 @@ public class ServicioEntity implements Serializable {
 		this.fechaHoraSalida = fechaHoraSalida;
 		this.tipoVehiculo = tipoVehiculo;
 		this.estado = estado;
+		this.cilindraje = cilindraje;
 	}
 
 	public ServicioEntity(Servicio servicio) {
@@ -52,6 +54,7 @@ public class ServicioEntity implements Serializable {
 		this.fechaHoraSalida = servicio.getFechaHoraSalida();
 		this.tipoVehiculo = servicio.getTipoVehiculo();
 		this.estado = servicio.getEstado();
+		this.cilindraje = servicio.getCilindraje();
 	}
 
 	public String getModelo() {
@@ -100,6 +103,14 @@ public class ServicioEntity implements Serializable {
 
 	public void setEstado(int estado) {
 		this.estado = estado;
+	}
+
+	public long getCilindraje() {
+		return cilindraje;
+	}
+
+	public void setCilindraje(long cilindraje) {
+		this.cilindraje = cilindraje;
 	}
 
 }

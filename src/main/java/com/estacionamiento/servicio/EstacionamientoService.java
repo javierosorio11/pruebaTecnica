@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.estacionamiento.dominio.Factura;
 import com.estacionamiento.dominio.Servicio;
+import com.estacionamiento.exception.EstacionamientoException;
 import com.estacionamiento.persistencia.FacturaEntity;
 import com.estacionamiento.persistencia.ServicioEntity;
 import com.estacionamiento.repositorio.IRepositorioFactura;
@@ -52,7 +53,7 @@ public class EstacionamientoService implements IEstacionamientoService {
 				if (!Utilitarios.esDomingoOLunes(Calendar.getInstance())
 						&& Utilitarios.placaVehiculoIniciaPorA(servicio.getPlaca())) {
 
-					throw new Exception(Utilitarios.PLACA_INI_EN_A);
+					throw new EstacionamientoException(Utilitarios.PLACA_INI_EN_A);
 
 				} else {
 
@@ -69,12 +70,12 @@ public class EstacionamientoService implements IEstacionamientoService {
 
 			} else {
 
-				throw new Exception(Utilitarios.SINCUPO);
+				throw new EstacionamientoException(Utilitarios.SINCUPO);
 			}
 
 		} catch (Exception e) {
 
-			factura.setError(e.getMessage());
+			logger.info(e.getMessage());
 		}
 
 		return factura;
@@ -82,7 +83,7 @@ public class EstacionamientoService implements IEstacionamientoService {
 	}
 
 	@Override
-	public boolean verificarDisponibilidadServicio(Servicio servicio) {
+	public boolean verificarDisponibilidadServicio(Servicio servicio) throws EstacionamientoException {
 
 		boolean cupoDisponible = true;
 		try {
@@ -98,38 +99,42 @@ public class EstacionamientoService implements IEstacionamientoService {
 			}
 		} catch (Exception e) {
 
-			logger.info(e.getMessage());
-			cupoDisponible = false;
+			throw new EstacionamientoException(e.getMessage());
 		}
 
 		return cupoDisponible;
 	}
 
 	@Override
-	public Factura registrarSalida(Factura facturaSalida) {
+	public Factura registrarSalida(Factura facturaSalida) throws EstacionamientoException {
 
-		FacturaEntity facturaEntity = iRepositorioFactura.findByPlacaByEstado(facturaSalida.getPlaca(),Utilitarios.PARQUEADO);
-		ServicioEntity servicioEntity = iRepositorioServicio.findByPlacaByEstado(facturaSalida.getPlaca(), Utilitarios.PARQUEADO);
+		FacturaEntity facturaEntity = iRepositorioFactura.findByPlacaByEstado(facturaSalida.getPlaca(),
+				Utilitarios.PARQUEADO);
+		ServicioEntity servicioEntity = iRepositorioServicio.findByPlacaByEstado(facturaSalida.getPlaca(),
+				Utilitarios.PARQUEADO);
 		Factura facturaCobro = new Factura();
 		if (facturaEntity != null) {
 
 			try {
-                String fechaSalida = Utilitarios.fechaActualAString();
+				String fechaSalida = Utilitarios.fechaActualAString();
 				facturaEntity.setFechaHoraSalida(fechaSalida);
 				facturaEntity.setEstado(Utilitarios.NOPAQUEADO);
-				facturaCobro = Utilitarios.convertirAFactura(this.calcularValorServicio(facturaEntity, facturaEntity.getFechaHoraSalida()));
+				facturaCobro = Utilitarios.convertirAFactura(
+						this.calcularValorServicio(facturaEntity, facturaEntity.getFechaHoraSalida()));
 				iRepositorioFactura.save(facturaEntity);
-				
+
 				servicioEntity.setFechaHoraSalida(fechaSalida);
 				servicioEntity.setEstado(Utilitarios.NOPAQUEADO);
 				iRepositorioServicio.save(servicioEntity);
-				
 
 			} catch (ParseException e) {
 
 				logger.info(e.getMessage());
 			}
 
+		} else {
+
+			throw new EstacionamientoException(Utilitarios.FACTURANOEXISTE);
 		}
 
 		return facturaCobro;
@@ -138,32 +143,38 @@ public class EstacionamientoService implements IEstacionamientoService {
 	public FacturaEntity calcularValorServicio(FacturaEntity facturaEntity, String fechaActual) throws ParseException {
 
 		double tiempoMs;
-		double servicioHoras;
-		double servicioDias;
+		Long servicioHoras;
+		Long servicioDias;
 
 		if (facturaEntity != null) {
 
 			Date fechaIngreso = Utilitarios.fechaStringADate(facturaEntity.getFechaHoraIngreso());
 			Date fechaSalida = Utilitarios.fechaStringADate(fechaActual);
+
 			tiempoMs = fechaSalida.getTime() - fechaIngreso.getTime();
-			servicioHoras = (tiempoMs / 3.6e+6) % 24;
-			servicioDias = Math.floor((tiempoMs / 3.6e+6) / 24);
+			servicioHoras = (long) ((tiempoMs / Utilitarios.HORAENMLS) % 24);
+			servicioDias = (long) (tiempoMs / Utilitarios.HORAENMLS) / 24;
+
 			Long valorDia = (facturaEntity.getTipoVehiculo() == Utilitarios.CARRO) ? Utilitarios.VALORDIACARRO
 					: Utilitarios.VALORDIAMOTO;
-			Long valorHora = (facturaEntity.getTipoVehiculo() == Utilitarios.CARRO) ? Utilitarios.VALORDIACARRO
-					: Utilitarios.VALORDIAMOTO;
+			Long valorHora = (facturaEntity.getTipoVehiculo() == Utilitarios.CARRO) ? Utilitarios.VALORHORACARRO
+					: Utilitarios.VALORDHORAMOTO;
 
-			if (Math.floor(servicioHoras) != 0 && servicioDias != 0) {
+			if (servicioHoras >= 9) {
 
-				if (servicioHoras > 9 && servicioDias != 0) {
-					servicioDias += 1;
-					facturaEntity.setValorServicio((long) (servicioDias * valorDia));
-				} else if (servicioHoras <= 9 && servicioDias != 0) {
+				servicioDias += 1;
+				long valorTotalDias = servicioDias * valorDia;
+				long valorServicio = (facturaEntity.getTipoVehiculo() == Utilitarios.MOTO
+						? valorTotalDias + (Utilitarios.RECARGOMOTOCC) : valorTotalDias);
+				facturaEntity.setValorServicio(valorServicio);
 
-					facturaEntity.setValorServicio(
-							(long) ((Math.floor(servicioHoras) * valorHora) + (servicioDias * valorDia)));
-
-				}
+			} else if (servicioHoras < 9) {
+				long valorTotalDias = servicioDias * valorDia;
+				long valorTotalHoras = servicioHoras * valorHora;
+				long valorServicio = (facturaEntity.getTipoVehiculo() == Utilitarios.MOTO
+						? (valorTotalHoras + valorTotalDias + Utilitarios.RECARGOMOTOCC)
+						: (valorTotalDias + valorTotalHoras));
+				facturaEntity.setValorServicio(valorServicio);
 
 			}
 

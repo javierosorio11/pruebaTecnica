@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.estacionamiento.dominio.Factura;
 import com.estacionamiento.dominio.Servicio;
+import com.estacionamiento.exception.EstacionamientoException;
 import com.estacionamiento.servicio.IEstacionamientoService;
 
 @RestController
@@ -25,13 +26,13 @@ public class EstacionamientoController {
 
 	@CrossOrigin
 	@PostMapping("/disponibilidad")
-	public boolean verificarDisponibilidadServicio(@RequestBody Servicio servicio) {
+	public boolean verificarDisponibilidadServicio(@RequestBody Servicio servicio) throws EstacionamientoException {
 		return this.iEstacionamiento.verificarDisponibilidadServicio(servicio);
 	}
 
 	@CrossOrigin
 	@PostMapping("/registrarEntrada")
-	public Factura registrarEntradaVehiculo(@RequestBody Servicio servicio) {
+	public Factura registrarEntradaVehiculo(@RequestBody Servicio servicio) throws EstacionamientoException {
 		return this.iEstacionamiento.registrarEntrada(servicio);
 	}
 	/*
@@ -44,7 +45,7 @@ public class EstacionamientoController {
 
 	@CrossOrigin
 	@PostMapping("/registrarSalida")
-	public Factura registrarSalidaVehiculo(@RequestBody Factura factura) {
+	public Factura registrarSalidaVehiculo(@RequestBody Factura factura) throws EstacionamientoException {
 		return this.iEstacionamiento.registrarSalida(factura);
 	}
 }

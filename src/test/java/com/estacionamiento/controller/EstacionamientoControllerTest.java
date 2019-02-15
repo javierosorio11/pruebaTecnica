@@ -10,6 +10,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import com.estacionamiento.dominio.Factura;
 import com.estacionamiento.dominio.Servicio;
+import com.estacionamiento.exception.EstacionamientoException;
 import com.estacionamiento.persistencia.ServicioEntity;
 import com.estacionamiento.repositorio.IRepositorioFactura;
 import com.estacionamiento.repositorio.IRepositorioServicio;
@@ -36,7 +37,7 @@ public class EstacionamientoControllerTest {
 	}
 
 	@Test
-	public void registrarEntradaCarroTest() {
+	public void registrarEntradaCarroTest() throws EstacionamientoException {
 
 		Servicio servicio = new Servicio();
 		servicio.setEstado(Utilitarios.PARQUEADO);
@@ -54,7 +55,7 @@ public class EstacionamientoControllerTest {
 	}
 	
 	@Test
-	public void registrarEntradaMotoTest() {
+	public void registrarEntradaMotoTest() throws EstacionamientoException {
 
 		Servicio servicio = new Servicio();
 		servicio.setEstado(Utilitarios.PARQUEADO);
@@ -71,7 +72,7 @@ public class EstacionamientoControllerTest {
 	}
 
 	@Test
-	public void verificarDisponibilidadServicioCarroTest() {
+	public void verificarDisponibilidadServicioCarroTest() throws EstacionamientoException {
 
 		Servicio servicio = new Servicio();
 		servicio.setEstado(Utilitarios.PARQUEADO);
@@ -85,7 +86,7 @@ public class EstacionamientoControllerTest {
 	}
 
 	@Test
-	public void verificarNoDisponibilidadServicioCarroTest() {
+	public void verificarNoDisponibilidadServicioCarroTest() throws EstacionamientoException {
 		creacionServicios();
 		Servicio servicio = new Servicio();
 		servicio.setEstado(Utilitarios.PARQUEADO);
@@ -100,7 +101,7 @@ public class EstacionamientoControllerTest {
 	}
 	
 	@Test
-	public void verificarDisponibilidadServicioMotoTest() {
+	public void verificarDisponibilidadServicioMotoTest() throws EstacionamientoException {
 
 		Servicio servicio = new Servicio();
 		servicio.setPlaca("TWU");
@@ -113,7 +114,7 @@ public class EstacionamientoControllerTest {
 	}
 	
 	@Test
-	public void verificarNoDisponibilidadServicioMotoTest() {
+	public void verificarNoDisponibilidadServicioMotoTest() throws EstacionamientoException {
 		creacionServicios();
 		Servicio servicio = new Servicio();
 		servicio.setPlaca("TXR");
@@ -126,7 +127,7 @@ public class EstacionamientoControllerTest {
 	}
 	
 	@Test
-	public void registrarSalidaCarroTest() {
+	public void registrarSalidaCarroTest() throws EstacionamientoException {
 		Servicio servicio = new Servicio();
 		servicio.setEstado(Utilitarios.PARQUEADO);
 		servicio.setModelo("1999");

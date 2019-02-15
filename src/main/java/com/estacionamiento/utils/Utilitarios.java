@@ -13,18 +13,21 @@ import com.estacionamiento.persistencia.ServicioEntity;
 public class Utilitarios {
 
 	public static final String FORMATFECHAHORA = "dd-MM-yyyy HH:mm:ss";
-	public static final Long VALORDIACARRO = (long) 8000;
-	public static final Long VALORHORACARRO = (long) 1000;
-	public static final Long VALORDIAMOTO = (long) 4000;
-	public static final Long VALORDHORAMOTO = (long) 500;
+	public static final long VALORDIACARRO = 8000;
+	public static final long VALORHORACARRO = 1000;
+	public static final long VALORDIAMOTO = 4000;
+	public static final long VALORDHORAMOTO = 500;
 	public static final int CARRO = 1;
 	public static final int MOTO = 0;
 	public static final int PARQUEADO = 1;
 	public static final int NOPAQUEADO = 0;
 	public static final String SINCUPO = "No hay cupo disponible";
 	public static final String PLACA_INI_EN_A = "Hoy no tiene permitido Ingresar";
-	public static final Long CUPOMAXCARROS = (long) 20;
-	public static final Long CUPOMAXMOTOS = (long) 10;
+	public static final long CUPOMAXCARROS = 20;
+	public static final long CUPOMAXMOTOS = 10;
+	public static final Double HORAENMLS = 3.6e+6;
+	public static final long RECARGOMOTOCC = 2000;
+	public static final String FACTURANOEXISTE = "No existe la factura solicitada";
 
 	public static Date formatFechaActual() throws ParseException {
 
