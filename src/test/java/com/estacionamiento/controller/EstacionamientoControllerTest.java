@@ -14,7 +14,6 @@ import com.estacionamiento.dominio.Factura;
 import com.estacionamiento.dominio.Servicio;
 import com.estacionamiento.exception.EstacionamientoException;
 import com.estacionamiento.persistencia.ServicioEntity;
-import com.estacionamiento.repositorio.IRepositorioFactura;
 import com.estacionamiento.repositorio.IRepositorioServicio;
 import com.estacionamiento.servicio.EstacionamientoService;
 import com.estacionamiento.utils.Utilitarios;
@@ -28,13 +27,13 @@ public class EstacionamientoControllerTest {
 
 	@Autowired
 	IRepositorioServicio iRepositorioServicio;
-	
+
 	@Autowired
 	EstacionamientoService estacionamientoService;
-	
+
 	@Before
-	public void cleanData(){
-		
+	public void cleanData() {
+
 		iRepositorioServicio.deleteAll();
 	}
 
@@ -55,7 +54,7 @@ public class EstacionamientoControllerTest {
 		Assert.assertEquals(Utilitarios.PARQUEADO, factura.getEstado());
 
 	}
-	
+
 	@Test
 	public void registrarEntradaMotoTest() throws EstacionamientoException, ParseException {
 
@@ -101,7 +100,7 @@ public class EstacionamientoControllerTest {
 		Assert.assertFalse(cupoDisponible);
 
 	}
-	
+
 	@Test
 	public void verificarDisponibilidadServicioMotoTest() throws EstacionamientoException {
 
@@ -114,7 +113,7 @@ public class EstacionamientoControllerTest {
 		Assert.assertTrue(cupoDisponible);
 
 	}
-	
+
 	@Test
 	public void verificarNoDisponibilidadServicioMotoTest() throws EstacionamientoException {
 		creacionServicios();
@@ -127,7 +126,7 @@ public class EstacionamientoControllerTest {
 		Assert.assertFalse(cupoDisponible);
 
 	}
-	
+
 	@Test
 	public void registrarSalidaCarroTest() throws EstacionamientoException, ParseException {
 		Servicio servicio = new Servicio();
@@ -135,10 +134,9 @@ public class EstacionamientoControllerTest {
 		servicio.setModelo("1999");
 		servicio.setPlaca("QWE");
 		servicio.setTipoVehiculo(Utilitarios.CARRO);
-		
 
-		Factura facturaSalida = estacionamientoController.registrarSalidaVehiculo(estacionamientoService.registrarEntrada(servicio));
-		
+		Factura facturaSalida = estacionamientoController
+				.registrarSalidaVehiculo(estacionamientoService.registrarEntrada(servicio));
 
 		Assert.assertEquals("QWE", facturaSalida.getPlaca());
 		Assert.assertEquals(Utilitarios.CARRO, facturaSalida.getTipoVehiculo());

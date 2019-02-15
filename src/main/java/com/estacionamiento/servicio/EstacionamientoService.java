@@ -41,12 +41,12 @@ public class EstacionamientoService implements IEstacionamientoService {
 	private static final Logger LOGGER = LoggerFactory.getLogger(EstacionamientoService.class);
 
 	@Override
-	public Factura registrarEntrada(Servicio servicio) throws EstacionamientoException, ParseException {
+	public Factura registrarEntrada(Servicio servicio) {
 
-		FacturaEntity facturaEntity = new FacturaEntity();
+		FacturaEntity facturaEntity;
 		Factura factura = new Factura();
 
-	
+		try {
 			if (verificarDisponibilidadServicio(servicio)) {
 
 				if (!Utilitarios.esDomingoOLunes(Calendar.getInstance())
@@ -71,8 +71,10 @@ public class EstacionamientoService implements IEstacionamientoService {
 
 				throw new EstacionamientoException(Utilitarios.SINCUPO);
 			}
+		} catch (EstacionamientoException | ParseException e) {
 
-
+			LOGGER.info(e.getMessage());
+		}
 
 		return factura;
 
@@ -82,18 +84,16 @@ public class EstacionamientoService implements IEstacionamientoService {
 	public boolean verificarDisponibilidadServicio(Servicio servicio) throws EstacionamientoException {
 
 		boolean cupoDisponible = true;
-	
 
-			List<ServicioEntity> cantidaVehiculos = iRepositorioServicio
-					.findByTipoVehiculoByEstado(servicio.getTipoVehiculo(), Utilitarios.PARQUEADO);
-			Long cupoMax = (servicio.getTipoVehiculo() == Utilitarios.CARRO) ? Utilitarios.CUPOMAXCARROS
-					: Utilitarios.CUPOMAXMOTOS;
+		List<ServicioEntity> cantidaVehiculos = iRepositorioServicio
+				.findByTipoVehiculoByEstado(servicio.getTipoVehiculo(), Utilitarios.PARQUEADO);
+		Long cupoMax = (servicio.getTipoVehiculo() == Utilitarios.CARRO) ? Utilitarios.CUPOMAXCARROS
+				: Utilitarios.CUPOMAXMOTOS;
 
-			if (cantidaVehiculos.size() >= cupoMax) {
+		if (cantidaVehiculos.size() >= cupoMax) {
 
-				cupoDisponible = false;
-			}
-		
+			cupoDisponible = false;
+		}
 
 		return cupoDisponible;
 	}
@@ -135,7 +135,7 @@ public class EstacionamientoService implements IEstacionamientoService {
 
 	public FacturaEntity calcularValorServicio(FacturaEntity facturaEntity, String fechaActual) throws ParseException {
 
-		double tiempoMs;
+		Long tiempoMs;
 		Long servicioHoras;
 		Long servicioDias;
 

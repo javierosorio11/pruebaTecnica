@@ -24,6 +24,7 @@ public final class Utilitarios {
 	public static final int NOPAQUEADO = 0;
 	public static final String SINCUPO = "No hay cupo disponible";
 	public static final String PLACA_INI_EN_A = "Hoy no tiene permitido Ingresar";
+	public static final String SERVICIONULL = "No se encontraro servicios";
 	public static final long CUPOMAXCARROS = 20;
 	public static final long CUPOMAXMOTOS = 10;
 	public static final Double HORAENMLS = 3.6e+6;
@@ -64,7 +65,7 @@ public final class Utilitarios {
 	}
 
 	public static Servicio convertirAServicio(ServicioEntity servicioEntity) {
-		Servicio servicio = null;
+		Servicio servicio = new Servicio();
 		if (servicioEntity != null) {
 
 			servicio.setEstado(servicioEntity.getEstado());
@@ -95,15 +96,17 @@ public final class Utilitarios {
 
 		ServicioEntity servicioEntity = null;
 
-		
-			if (servicio != null) {
+		if (servicio != null) {
 
-				servicioEntity = new ServicioEntity(servicio.getModelo(), servicio.getPlaca(),
-						servicio.getFechaHoraIngreso(), servicio.getFechaHoraSalida(), servicio.getTipoVehiculo(),
-						servicio.getEstado(), servicio.getCilindraje());
+			servicioEntity = new ServicioEntity(servicio.getModelo(), servicio.getPlaca(),
+					servicio.getFechaHoraIngreso(), servicio.getFechaHoraSalida(), servicio.getTipoVehiculo(),
+					servicio.getEstado(), servicio.getCilindraje());
 
-			}
-	
+		} else {
+
+			throw new EstacionamientoException(SERVICIONULL);
+		}
+
 		return servicioEntity;
 	}
 
@@ -111,15 +114,17 @@ public final class Utilitarios {
 
 		FacturaEntity facturaEntity = null;
 
-		
-			if (servicio != null) {
+		if (servicio != null) {
 
-				facturaEntity = new FacturaEntity(servicio.getPlaca(), servicio.getFechaHoraIngreso(),
-						servicio.getFechaHoraSalida(), 0, servicio.getTipoVehiculo(), servicio.getEstado(),
-						servicio.getCilindraje());
+			facturaEntity = new FacturaEntity(servicio.getPlaca(), servicio.getFechaHoraIngreso(),
+					servicio.getFechaHoraSalida(), 0, servicio.getTipoVehiculo(), servicio.getEstado(),
+					servicio.getCilindraje());
 
-			}
-		
+		} else {
+
+			throw new EstacionamientoException(SERVICIONULL);
+		}
+
 		return facturaEntity;
 	}
 

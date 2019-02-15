@@ -7,11 +7,6 @@ import java.util.Date;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-
-import com.estacionamiento.dominio.Factura;
-import com.estacionamiento.dominio.Servicio;
-import com.estacionamiento.exception.EstacionamientoException;
 
 public class UtilitariosTest {
 
