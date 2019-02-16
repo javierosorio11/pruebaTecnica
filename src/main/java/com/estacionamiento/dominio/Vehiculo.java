@@ -1,4 +1,3 @@
-
 package com.estacionamiento.dominio;
 
 public class Vehiculo {

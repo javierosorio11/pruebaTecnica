@@ -19,11 +19,6 @@ import com.estacionamiento.persistencia.VehiculoEntity;
 import com.estacionamiento.repositorio.IRepositorioVehiculo;
 import com.estacionamiento.utils.Utilitarios;
 
-/**
- * @author alvaro.osorio
- *
- */
-
 @Service
 @Transactional
 public class EstacionamientoService implements IEstacionamientoService {
@@ -118,7 +113,7 @@ public class EstacionamientoService implements IEstacionamientoService {
 			}
 		} catch (Exception e) {
 
-			LOGGER.info(e.getMessage());
+			LOGGER.error(Utilitarios.ERROR_REGISTRA_SALIDA, e);
 		}
 
 		return facturaCobro;

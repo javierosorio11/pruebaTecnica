@@ -1,9 +1,5 @@
 package com.estacionamiento.dominio;
 
-/**
- * @author alvaro.osorio
- *
- */
 public class Recibo {
 
 	private String placa;

@@ -24,6 +24,7 @@ public final class Utilitarios {
 	public static final Double HORAENMLS = 3.6e+6;
 	public static final long RECARGOMOTOCC = 2000;
 	public static final String FACTURANOEXISTE = "No existe la factura solicitada";
+	public static final String ERROR_REGISTRA_SALIDA = "Se presento un error registrando salida";
 
 	private Utilitarios() {
 		throw new IllegalStateException("Utilitarios class");
