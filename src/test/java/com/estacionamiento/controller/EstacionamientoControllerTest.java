@@ -134,6 +134,16 @@ public class EstacionamientoControllerTest {
 
 	}
 
+	@Test
+	public void SalidaTituloHtml() {
+
+		String titulo = estacionamientoController.index();
+
+		Assert.assertEquals("<div style=\"text-align : center\">Bienvenidos al Parqueadero <h1>CEIBA-PARKING</div>",
+				titulo);
+
+	}
+
 	public void creacionServicios() {
 		for (int i = 0; i <= 40; i++) {
 			VehiculoEntity servicio = new VehiculoEntity();

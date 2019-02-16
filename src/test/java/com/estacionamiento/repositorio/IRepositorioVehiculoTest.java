@@ -55,9 +55,5 @@ public class IRepositorioVehiculoTest {
 		Assert.assertEquals("TMQ", vehiculoEntity.getPlaca());
 
 	}
-	
-	
-	
-	
 
 }
