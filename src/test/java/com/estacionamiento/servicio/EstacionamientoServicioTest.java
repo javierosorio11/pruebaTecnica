@@ -27,11 +27,11 @@ public class EstacionamientoServicioTest {
 	EstacionamientoService estacionamientoService;
 
 	@Autowired
-	IRepositorioVehiculo iRepositorioServicio;
+	IRepositorioVehiculo iRepositorioVehiculo;
 
 	@Before
 	public void cleanData() {
-		iRepositorioServicio.deleteAll();
+		iRepositorioVehiculo.deleteAll();
 
 	}
 
@@ -66,7 +66,7 @@ public class EstacionamientoServicioTest {
 
 	@Test
 	public void verificarCupoNoDisponibleCarro() throws EstacionamientoException {
-		creacionServicios();
+		crearVehiculos();
 		Vehiculo vehiculo = new Vehiculo();
 		vehiculo.setTipoVehiculo(Utilitarios.CARRO);
 
@@ -78,7 +78,7 @@ public class EstacionamientoServicioTest {
 
 	@Test
 	public void verificarCupoNoDisponibleMoto() {
-		creacionServicios();
+		crearVehiculos();
 		Vehiculo vehiculo = new Vehiculo();
 		vehiculo.setTipoVehiculo(Utilitarios.MOTO);
 
@@ -143,7 +143,7 @@ public class EstacionamientoServicioTest {
 
 	}
 
-	public void creacionServicios() {
+	public void crearVehiculos() {
 
 		for (int i = 0; i <= 40; i++) {
 			VehiculoEntity servicio = new VehiculoEntity();
@@ -153,7 +153,7 @@ public class EstacionamientoServicioTest {
 			} else {
 				servicio.setTipoVehiculo(Utilitarios.CARRO);
 			}
-			iRepositorioServicio.save(servicio);
+			iRepositorioVehiculo.save(servicio);
 		}
 
 	}
