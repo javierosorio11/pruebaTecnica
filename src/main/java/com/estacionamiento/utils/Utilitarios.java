@@ -17,7 +17,7 @@ public final class Utilitarios {
 	public static final int PARQUEADO = 1;
 	public static final int NOPAQUEADO = 0;
 	public static final String SINCUPO = "No hay cupo disponible";
-	public static final String PLACA_INI_EN_A = "Hoy no tiene permitido Ingresar";
+	public static final String PLACA_INI_EN_A = "Hoy no tiene permitido ingresar";
 	public static final String SERVICIONULL = "No se encontraro servicios";
 	public static final long CUPOMAXCARROS = 20;
 	public static final long CUPOMAXMOTOS = 10;
