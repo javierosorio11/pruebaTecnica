@@ -38,10 +38,10 @@ public class EstacionamientoServicioTest {
 	@Test
 	public void registrarEntradaCarroTest() throws EstacionamientoException{
 		Vehiculo vehiculo = new Vehiculo();
-		vehiculo.setEstado(Utilitarios.PARQUEADO);
-		vehiculo.setPlaca("TMQ");
+		vehiculo.setEstadoVehiculo(Utilitarios.PARQUEADO);
+		vehiculo.setPlacaVehiculo("TMQ");
 		vehiculo.setTipoVehiculo(Utilitarios.CARRO);
-		vehiculo.setCilindraje(0);
+		vehiculo.setCilindrajeVehiculo(0);
 
 		Recibo recibo = estacionamientoService.registrarEntrada(vehiculo);
 
@@ -53,8 +53,8 @@ public class EstacionamientoServicioTest {
 	@Test
 	public void registrarEntradaMotoTest() throws EstacionamientoException{
 		Vehiculo vehiculo = new Vehiculo();
-		vehiculo.setEstado(Utilitarios.PARQUEADO);
-		vehiculo.setPlaca("TSQ");
+		vehiculo.setEstadoVehiculo(Utilitarios.PARQUEADO);
+		vehiculo.setPlacaVehiculo("TSQ");
 		vehiculo.setTipoVehiculo(Utilitarios.MOTO);
 
 		Recibo recibo = estacionamientoService.registrarEntrada(vehiculo);
@@ -92,7 +92,7 @@ public class EstacionamientoServicioTest {
 	public void verificarCupoDisponibleCarroTest() throws EstacionamientoException {
 
 		Vehiculo vehiculo = new Vehiculo();
-		vehiculo.setEstado(Utilitarios.PARQUEADO);
+		vehiculo.setEstadoVehiculo(Utilitarios.PARQUEADO);
 		vehiculo.setTipoVehiculo(Utilitarios.CARRO);
 
 		boolean disponibilidad = estacionamientoService.verificarDisponibilidadServicio(vehiculo);
@@ -105,7 +105,7 @@ public class EstacionamientoServicioTest {
 	public void verificarCupoDisponibleMotoTest() throws EstacionamientoException {
 
 		Vehiculo vehiculo = new Vehiculo();
-		vehiculo.setEstado(Utilitarios.PARQUEADO);
+		vehiculo.setEstadoVehiculo(Utilitarios.PARQUEADO);
 		vehiculo.setTipoVehiculo(Utilitarios.MOTO);
 
 		boolean disponibilidad = estacionamientoService.verificarDisponibilidadServicio(vehiculo);
@@ -118,9 +118,9 @@ public class EstacionamientoServicioTest {
 	public void calcularValorServicioCarroTest() throws ParseException {
 
 		VehiculoEntity vehiculoEntity = new VehiculoEntity();
-		vehiculoEntity.setFechaHoraIngreso("01-01-2019 12:22:24");
-		vehiculoEntity.setFechaHoraSalida("02-01-2019 15:22:24");
-		vehiculoEntity.setTipoVehiculo(Utilitarios.CARRO);
+		vehiculoEntity.setFechaHoraIngresoVEntity("01-01-2019 12:22:24");
+		vehiculoEntity.setFechaHoraSalidaVEntity("02-01-2019 15:22:24");
+		vehiculoEntity.setTipoVehiculoEntity(Utilitarios.CARRO);
 
 		long ValorServicio = estacionamientoService.calcularValorServicio(vehiculoEntity);
 
@@ -132,10 +132,10 @@ public class EstacionamientoServicioTest {
 	public void calcularValorServicioMotoTest() throws ParseException {
 
 		VehiculoEntity vehiculoEntity = new VehiculoEntity();
-		vehiculoEntity.setFechaHoraIngreso("01-01-2019 05:22:24");
-		vehiculoEntity.setFechaHoraSalida("01-01-2019 18:22:24");
-		vehiculoEntity.setTipoVehiculo(Utilitarios.MOTO);
-		vehiculoEntity.setCilindraje(650);
+		vehiculoEntity.setFechaHoraIngresoVEntity("01-01-2019 05:22:24");
+		vehiculoEntity.setFechaHoraSalidaVEntity("01-01-2019 18:22:24");
+		vehiculoEntity.setTipoVehiculoEntity(Utilitarios.MOTO);
+		vehiculoEntity.setCilindrajeVehiculoEntity(650);
 
 		long ValorServicio = estacionamientoService.calcularValorServicio(vehiculoEntity);
 
@@ -147,11 +147,11 @@ public class EstacionamientoServicioTest {
 
 		for (int i = 0; i <= 40; i++) {
 			VehiculoEntity servicio = new VehiculoEntity();
-			servicio.setEstado(Utilitarios.PARQUEADO);
+			servicio.setEstadoVehiculoEntity(Utilitarios.PARQUEADO);
 			if (i < 20) {
-				servicio.setTipoVehiculo(Utilitarios.MOTO);
+				servicio.setTipoVehiculoEntity(Utilitarios.MOTO);
 			} else {
-				servicio.setTipoVehiculo(Utilitarios.CARRO);
+				servicio.setTipoVehiculoEntity(Utilitarios.CARRO);
 			}
 			iRepositorioServicio.save(servicio);
 		}

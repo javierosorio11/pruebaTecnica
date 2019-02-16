@@ -42,13 +42,13 @@ public class EstacionamientoControllerTest {
 	public void registrarEntradaCarroTest() throws EstacionamientoException, ParseException {
 
 		Vehiculo vehiculo = new Vehiculo();
-		vehiculo.setEstado(Utilitarios.PARQUEADO);
-		vehiculo.setPlaca("TMQ");
+		vehiculo.setEstadoVehiculo(Utilitarios.PARQUEADO);
+		vehiculo.setPlacaVehiculo("TMQ");
 		vehiculo.setTipoVehiculo(Utilitarios.CARRO);
 
 		Recibo recibo = estacionamientoController.registrarEntradaVehiculo(vehiculo);
 
-		Assert.assertEquals(vehiculo.getPlaca(), recibo.getPlaca());
+		Assert.assertEquals(vehiculo.getPlacaVehiculo(), recibo.getPlaca());
 		Assert.assertEquals(vehiculo.getTipoVehiculo(), recibo.getTipoVehiculo());
 
 	}
@@ -57,13 +57,13 @@ public class EstacionamientoControllerTest {
 	public void registrarEntradaMotoTest() throws EstacionamientoException {
 
 		Vehiculo vehiculo = new Vehiculo();
-		vehiculo.setEstado(Utilitarios.PARQUEADO);
-		vehiculo.setPlaca("QTM");
+		vehiculo.setEstadoVehiculo(Utilitarios.PARQUEADO);
+		vehiculo.setPlacaVehiculo("QTM");
 		vehiculo.setTipoVehiculo(Utilitarios.MOTO);
 
 		Recibo recibo = estacionamientoController.registrarEntradaVehiculo(vehiculo);
 
-		Assert.assertEquals(vehiculo.getPlaca(), recibo.getPlaca());
+		Assert.assertEquals(vehiculo.getPlacaVehiculo(), recibo.getPlaca());
 		Assert.assertEquals(vehiculo.getTipoVehiculo(), recibo.getTipoVehiculo());
 
 	}
@@ -72,8 +72,8 @@ public class EstacionamientoControllerTest {
 	public void verificarDisponibilidadServicioCarroTest() throws EstacionamientoException {
 
 		Vehiculo vehiculo = new Vehiculo();
-		vehiculo.setEstado(Utilitarios.PARQUEADO);
-		vehiculo.setPlaca("TMQ");
+		vehiculo.setEstadoVehiculo(Utilitarios.PARQUEADO);
+		vehiculo.setPlacaVehiculo("TMQ");
 		vehiculo.setTipoVehiculo(Utilitarios.CARRO);
 
 		boolean cupoDisponible = estacionamientoController.verificarDisponibilidadServicio(vehiculo);
@@ -85,8 +85,8 @@ public class EstacionamientoControllerTest {
 	public void verificarNoDisponibilidadServicioCarroTest() throws EstacionamientoException {
 		creacionServicios();
 		Vehiculo vehiculo = new Vehiculo();
-		vehiculo.setEstado(Utilitarios.PARQUEADO);
-		vehiculo.setPlaca("TMQ");
+		vehiculo.setEstadoVehiculo(Utilitarios.PARQUEADO);
+		vehiculo.setPlacaVehiculo("TMQ");
 		vehiculo.setTipoVehiculo(Utilitarios.CARRO);
 
 		boolean cupoDisponible = estacionamientoController.verificarDisponibilidadServicio(vehiculo);
@@ -98,7 +98,7 @@ public class EstacionamientoControllerTest {
 	public void verificarDisponibilidadServicioMotoTest() throws EstacionamientoException {
 
 		Vehiculo vehiculo = new Vehiculo();
-		vehiculo.setPlaca("TWU");
+		vehiculo.setPlacaVehiculo("TWU");
 		vehiculo.setTipoVehiculo(Utilitarios.MOTO);
 
 		boolean cupoDisponible = estacionamientoController.verificarDisponibilidadServicio(vehiculo);
@@ -110,7 +110,7 @@ public class EstacionamientoControllerTest {
 	public void verificarNoDisponibilidadServicioMotoTest() {
 		creacionServicios();
 		Vehiculo vehiculo = new Vehiculo();
-		vehiculo.setPlaca("TXR");
+		vehiculo.setPlacaVehiculo("TXR");
 		vehiculo.setTipoVehiculo(Utilitarios.MOTO);
 
 		boolean cupoDisponible = estacionamientoController.verificarDisponibilidadServicio(vehiculo);
@@ -121,8 +121,8 @@ public class EstacionamientoControllerTest {
 	@Test
 	public void registrarSalidaCarroTest() throws EstacionamientoException, ParseException {
 		Vehiculo vehiculo = new Vehiculo();
-		vehiculo.setEstado(Utilitarios.PARQUEADO);
-		vehiculo.setPlaca("QWE");
+		vehiculo.setEstadoVehiculo(Utilitarios.PARQUEADO);
+		vehiculo.setPlacaVehiculo("QWE");
 		vehiculo.setTipoVehiculo(Utilitarios.CARRO);
 
 		Factura facturaSalida = estacionamientoController
@@ -147,11 +147,11 @@ public class EstacionamientoControllerTest {
 	public void creacionServicios() {
 		for (int i = 0; i <= 40; i++) {
 			VehiculoEntity servicio = new VehiculoEntity();
-			servicio.setEstado(Utilitarios.PARQUEADO);
+			servicio.setEstadoVehiculoEntity(Utilitarios.PARQUEADO);
 			if (i < 20) {
-				servicio.setTipoVehiculo(Utilitarios.MOTO);
+				servicio.setTipoVehiculoEntity(Utilitarios.MOTO);
 			} else {
-				servicio.setTipoVehiculo(Utilitarios.CARRO);
+				servicio.setTipoVehiculoEntity(Utilitarios.CARRO);
 			}
 			iRepositorioVehiculo.save(servicio);
 		}

@@ -23,7 +23,7 @@ public class Factura {
 	}
 
 	public Factura() {
-
+		super();
 	}
 
 	public String getPlaca() {

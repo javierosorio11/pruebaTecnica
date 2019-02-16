@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "vehiculos")
+@Table(name = "vehiculo")
 public class VehiculoEntity implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -17,84 +17,85 @@ public class VehiculoEntity implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	private String placa;
-	private String fechaHoraIngreso;
-	private String fechaHoraSalida;
-	private int tipoVehiculo;
-	private int estado;
-	private long cilindraje;
-	private long valorServico;
+	private String placaVehiculoEntity;
+	private String fechaHoraIngresoVEntity;
+	private String fechaHoraSalidaVEntity;
+	private int tipoVehiculoEntity;
+	private int estadoVehiculoEntity;
+	private long cilindrajeVehiculoEntity;
+	private long valorServicoVehiculoEntity;
 
-	public VehiculoEntity(String placa, String fechaHoraIngreso, String fechaHoraSalida, int tipoVehiculo, int estado,
-			long cilindraje, long valorServico) {
+	public VehiculoEntity(String placaVehiculoEntity, String fechaHoraIngresoVEntity, String fechaHoraSalidaVEntity,
+			int tipoVehiculoEntity, int estadoVehiculoEntity, long cilindrajeVehiculoEntity,
+			long valorServicoVehiculoEntity) {
 		super();
-		this.placa = placa;
-		this.fechaHoraIngreso = fechaHoraIngreso;
-		this.fechaHoraSalida = fechaHoraSalida;
-		this.tipoVehiculo = tipoVehiculo;
-		this.estado = estado;
-		this.cilindraje = cilindraje;
-		this.valorServico = valorServico;
+		this.placaVehiculoEntity = placaVehiculoEntity;
+		this.fechaHoraIngresoVEntity = fechaHoraIngresoVEntity;
+		this.fechaHoraSalidaVEntity = fechaHoraSalidaVEntity;
+		this.tipoVehiculoEntity = tipoVehiculoEntity;
+		this.estadoVehiculoEntity = estadoVehiculoEntity;
+		this.cilindrajeVehiculoEntity = cilindrajeVehiculoEntity;
+		this.valorServicoVehiculoEntity = valorServicoVehiculoEntity;
 	}
 
 	public VehiculoEntity() {
 
 	}
 
-	public String getPlaca() {
-		return placa;
+	public String getPlacaVehiculoEntity() {
+		return placaVehiculoEntity;
 	}
 
-	public void setPlaca(String placa) {
-		this.placa = placa;
+	public void setPlacaVehiculoEntity(String placa) {
+		this.placaVehiculoEntity = placa;
 	}
 
-	public String getFechaHoraIngreso() {
-		return fechaHoraIngreso;
+	public String getFechaHoraIngresoVEntity() {
+		return fechaHoraIngresoVEntity;
 	}
 
-	public void setFechaHoraIngreso(String fechaHoraIngreso) {
-		this.fechaHoraIngreso = fechaHoraIngreso;
+	public void setFechaHoraIngresoVEntity(String fechaHoraIngreso) {
+		this.fechaHoraIngresoVEntity = fechaHoraIngreso;
 	}
 
-	public String getFechaHoraSalida() {
-		return fechaHoraSalida;
+	public String getFechaHoraSalidaVEntity() {
+		return fechaHoraSalidaVEntity;
 	}
 
-	public void setFechaHoraSalida(String fechaHoraSalida) {
-		this.fechaHoraSalida = fechaHoraSalida;
+	public void setFechaHoraSalidaVEntity(String fechaHoraSalida) {
+		this.fechaHoraSalidaVEntity = fechaHoraSalida;
 	}
 
-	public int getTipoVehiculo() {
-		return tipoVehiculo;
+	public int getTipoVehiculoEntity() {
+		return tipoVehiculoEntity;
 	}
 
-	public void setTipoVehiculo(int tipoVehiculo) {
-		this.tipoVehiculo = tipoVehiculo;
+	public void setTipoVehiculoEntity(int tipoVehiculo) {
+		this.tipoVehiculoEntity = tipoVehiculo;
 	}
 
-	public int getEstado() {
-		return estado;
+	public int getEstadoVehiculoEntity() {
+		return estadoVehiculoEntity;
 	}
 
-	public void setEstado(int estado) {
-		this.estado = estado;
+	public void setEstadoVehiculoEntity(int estado) {
+		this.estadoVehiculoEntity = estado;
 	}
 
-	public long getCilindraje() {
-		return cilindraje;
+	public long getCilindrajeVehiculoEntity() {
+		return cilindrajeVehiculoEntity;
 	}
 
-	public void setCilindraje(long cilindraje) {
-		this.cilindraje = cilindraje;
+	public void setCilindrajeVehiculoEntity(long cilindraje) {
+		this.cilindrajeVehiculoEntity = cilindraje;
 	}
 
-	public long getValorServico() {
-		return valorServico;
+	public long getValorServicoVehiculoEntity() {
+		return valorServicoVehiculoEntity;
 	}
 
-	public void setValorServico(long valorServico) {
-		this.valorServico = valorServico;
+	public void setValorServicoVehiculoEntity(long valorServico) {
+		this.valorServicoVehiculoEntity = valorServico;
 	}
 
 	public long getId() {

@@ -18,7 +18,7 @@ public class Recibo {
 	}
 
 	public Recibo() {
-
+		super();
 	}
 
 	public String getPlaca() {

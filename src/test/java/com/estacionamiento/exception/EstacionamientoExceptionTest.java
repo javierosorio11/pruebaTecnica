@@ -28,10 +28,10 @@ public class EstacionamientoExceptionTest {
 
 		try {
 			Vehiculo vehiculo = new Vehiculo();
-			vehiculo.setEstado(Utilitarios.PARQUEADO);
-			vehiculo.setPlaca("AMQ");
+			vehiculo.setEstadoVehiculo(Utilitarios.PARQUEADO);
+			vehiculo.setPlacaVehiculo("AMQ");
 			vehiculo.setTipoVehiculo(Utilitarios.CARRO);
-			vehiculo.setCilindraje(0);
+			vehiculo.setCilindrajeVehiculo(0);
 
 			estacionamientoService.registrarEntrada(vehiculo);
 		} catch (EstacionamientoException e) {
