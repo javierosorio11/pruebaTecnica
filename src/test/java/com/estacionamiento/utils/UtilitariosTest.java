@@ -82,5 +82,23 @@ public class UtilitariosTest {
 
 		Assert.assertFalse(placaInicaEnA);
 	}
+	
+
+	
+	@Test
+	public void UtilitariosTests() {
+
+		String exception = "";
+
+		try {
+
+			Utilitarios util = new Utilitarios();
+
+		} catch (Exception e) {
+
+			exception = e.getMessage();
+		}
+		Assert.assertEquals("No instanciable", exception);
+	}
 
 }

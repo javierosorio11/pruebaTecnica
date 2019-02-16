@@ -26,8 +26,8 @@ public final class Utilitarios {
 	public static final String FACTURANOEXISTE = "No existe la factura solicitada";
 	public static final String ERROR_REGISTRA_SALIDA = "Se presento un error registrando salida";
 
-	private Utilitarios() {
-		throw new IllegalStateException("Utilitarios class");
+	Utilitarios() {
+		throw new IllegalStateException("No instanciable");
 	}
 
 	public static String fechaActualAString() throws ParseException {

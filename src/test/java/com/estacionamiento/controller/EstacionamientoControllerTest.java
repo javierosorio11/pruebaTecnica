@@ -54,7 +54,7 @@ public class EstacionamientoControllerTest {
 	}
 
 	@Test
-	public void registrarEntradaMotoTest() throws EstacionamientoException, ParseException {
+	public void registrarEntradaMotoTest() throws EstacionamientoException {
 
 		Vehiculo vehiculo = new Vehiculo();
 		vehiculo.setEstado(Utilitarios.PARQUEADO);
@@ -107,7 +107,7 @@ public class EstacionamientoControllerTest {
 	}
 
 	@Test
-	public void verificarNoDisponibilidadServicioMotoTest() throws EstacionamientoException {
+	public void verificarNoDisponibilidadServicioMotoTest() {
 		creacionServicios();
 		Vehiculo vehiculo = new Vehiculo();
 		vehiculo.setPlaca("TXR");

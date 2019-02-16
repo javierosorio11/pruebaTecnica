@@ -36,7 +36,7 @@ public class EstacionamientoServicioTest {
 	}
 
 	@Test
-	public void registrarEntradaCarroTest() throws EstacionamientoException, ParseException {
+	public void registrarEntradaCarroTest() throws EstacionamientoException{
 		Vehiculo vehiculo = new Vehiculo();
 		vehiculo.setEstado(Utilitarios.PARQUEADO);
 		vehiculo.setPlaca("TMQ");
@@ -51,7 +51,7 @@ public class EstacionamientoServicioTest {
 	}
 
 	@Test
-	public void registrarEntradaMotoTest() throws EstacionamientoException, ParseException {
+	public void registrarEntradaMotoTest() throws EstacionamientoException{
 		Vehiculo vehiculo = new Vehiculo();
 		vehiculo.setEstado(Utilitarios.PARQUEADO);
 		vehiculo.setPlaca("TSQ");
@@ -77,7 +77,7 @@ public class EstacionamientoServicioTest {
 	}
 
 	@Test
-	public void verificarCupoNoDisponibleMoto() throws EstacionamientoException {
+	public void verificarCupoNoDisponibleMoto(){
 		creacionServicios();
 		Vehiculo vehiculo = new Vehiculo();
 		vehiculo.setTipoVehiculo(Utilitarios.MOTO);
