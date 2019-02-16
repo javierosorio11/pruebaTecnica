@@ -45,8 +45,8 @@ public class EstacionamientoServicioTest {
 
 		Recibo recibo = estacionamientoService.registrarEntrada(vehiculo);
 
-		Assert.assertEquals("TMQ", recibo.getPlaca());
-		Assert.assertEquals(Utilitarios.CARRO, recibo.getTipoVehiculo());
+		Assert.assertEquals("TMQ", recibo.getPlacaRecibo());
+		Assert.assertEquals(Utilitarios.CARRO, recibo.getTipoVehiculoRecibo());
 
 	}
 
@@ -59,8 +59,8 @@ public class EstacionamientoServicioTest {
 
 		Recibo recibo = estacionamientoService.registrarEntrada(vehiculo);
 
-		Assert.assertEquals("TSQ", recibo.getPlaca());
-		Assert.assertEquals(Utilitarios.MOTO, recibo.getTipoVehiculo());
+		Assert.assertEquals("TSQ", recibo.getPlacaRecibo());
+		Assert.assertEquals(Utilitarios.MOTO, recibo.getTipoVehiculoRecibo());
 
 	}
 

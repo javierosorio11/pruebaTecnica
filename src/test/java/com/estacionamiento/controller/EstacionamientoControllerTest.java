@@ -48,8 +48,8 @@ public class EstacionamientoControllerTest {
 
 		Recibo recibo = estacionamientoController.registrarEntradaVehiculo(vehiculo);
 
-		Assert.assertEquals(vehiculo.getPlaca(), recibo.getPlaca());
-		Assert.assertEquals(vehiculo.getTipoVehiculo(), recibo.getTipoVehiculo());
+		Assert.assertEquals(vehiculo.getPlaca(), recibo.getPlacaRecibo());
+		Assert.assertEquals(vehiculo.getTipoVehiculo(), recibo.getTipoVehiculoRecibo());
 
 	}
 
@@ -63,8 +63,8 @@ public class EstacionamientoControllerTest {
 
 		Recibo recibo = estacionamientoController.registrarEntradaVehiculo(vehiculo);
 
-		Assert.assertEquals(vehiculo.getPlaca(), recibo.getPlaca());
-		Assert.assertEquals(vehiculo.getTipoVehiculo(), recibo.getTipoVehiculo());
+		Assert.assertEquals(vehiculo.getPlaca(), recibo.getPlacaRecibo());
+		Assert.assertEquals(vehiculo.getTipoVehiculo(), recibo.getTipoVehiculoRecibo());
 
 	}
 
@@ -128,9 +128,9 @@ public class EstacionamientoControllerTest {
 		Factura facturaSalida = estacionamientoController
 				.registrarSalidaVehiculo(estacionamientoService.registrarEntrada(vehiculo));
 
-		Assert.assertEquals("QWE", facturaSalida.getPlaca());
-		Assert.assertEquals(Utilitarios.CARRO, facturaSalida.getTipoVehiculo());
-		Assert.assertNotEquals(Utilitarios.PARQUEADO, facturaSalida.getEstado());
+		Assert.assertEquals("QWE", facturaSalida.getPlacaFactura());
+		Assert.assertEquals(Utilitarios.CARRO, facturaSalida.getTipoVehiculoFactura());
+		Assert.assertNotEquals(Utilitarios.PARQUEADO, facturaSalida.getEstadoFactura());
 
 	}
 

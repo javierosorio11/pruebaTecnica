@@ -26,59 +26,59 @@ public class Factura {
 		super();
 	}
 
-	public String getPlaca() {
+	public String getPlacaFactura() {
 		return placa;
 	}
 
-	public void setPlaca(String placa) {
+	public void setPlacaFactura(String placa) {
 		this.placa = placa;
 	}
 
-	public String getFechaHoraIngreso() {
+	public String getFechaHoraIngresoFactura() {
 		return fechaHoraIngreso;
 	}
 
-	public void setFechaHoraIngreso(String fechaHoraIngreso) {
+	public void setFechaHoraIngresoFactura(String fechaHoraIngreso) {
 		this.fechaHoraIngreso = fechaHoraIngreso;
 	}
 
-	public String getFechaHoraSalida() {
+	public String getFechaHoraSalidaFactura() {
 		return fechaHoraSalida;
 	}
 
-	public void setFechaHoraSalida(String fechaHoraSalida) {
+	public void setFechaHoraSalidaFactura(String fechaHoraSalida) {
 		this.fechaHoraSalida = fechaHoraSalida;
 	}
 
-	public Long getValorServicio() {
+	public Long getValorServicioFactura() {
 		return valorServicio;
 	}
 
-	public void setValorServicio(Long valorServicio) {
+	public void setValorServicioFactura(Long valorServicio) {
 		this.valorServicio = valorServicio;
 	}
 
-	public int getTipoVehiculo() {
+	public int getTipoVehiculoFactura() {
 		return tipoVehiculo;
 	}
 
-	public void setTipoVehiculo(int tipoVehiculo) {
+	public void setTipoVehiculoFactura(int tipoVehiculo) {
 		this.tipoVehiculo = tipoVehiculo;
 	}
 
-	public int getEstado() {
+	public int getEstadoFactura() {
 		return estado;
 	}
 
-	public void setEstado(int estado) {
+	public void setEstadoFactura(int estado) {
 		this.estado = estado;
 	}
 
-	public String getError() {
+	public String getErrorFactura() {
 		return error;
 	}
 
-	public void setError(String error) {
+	public void setErrorFactura(String error) {
 		this.error = error;
 	}
 

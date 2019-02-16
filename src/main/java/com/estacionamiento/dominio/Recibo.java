@@ -21,43 +21,43 @@ public class Recibo {
 		super();
 	}
 
-	public String getPlaca() {
+	public String getPlacaRecibo() {
 		return placa;
 	}
 
-	public void setPlaca(String placa) {
+	public void setPlacaRecibo(String placa) {
 		this.placa = placa;
 	}
 
-	public String getFechaHoraIngreso() {
+	public String getFechaHoraIngresoRecibo() {
 		return fechaHoraIngreso;
 	}
 
-	public void setFechaHoraIngreso(String fechaHoraIngreso) {
+	public void setFechaHoraIngresoRecibo(String fechaHoraIngreso) {
 		this.fechaHoraIngreso = fechaHoraIngreso;
 	}
 
-	public String getFechaHoraSalida() {
+	public String getFechaHoraSalidaRecibo() {
 		return fechaHoraSalida;
 	}
 
-	public void setFechaHoraSalida(String fechaHoraSalida) {
+	public void setFechaHoraSalidaRecibo(String fechaHoraSalida) {
 		this.fechaHoraSalida = fechaHoraSalida;
 	}
 
-	public int getTipoVehiculo() {
+	public int getTipoVehiculoRecibo() {
 		return tipoVehiculo;
 	}
 
-	public void setTipoVehiculo(int tipoVehiculo) {
+	public void setTipoVehiculoRecibo(int tipoVehiculo) {
 		this.tipoVehiculo = tipoVehiculo;
 	}
 
-	public String getError() {
+	public String getErrorRecibo() {
 		return error;
 	}
 
-	public void setError(String error) {
+	public void setErrorRecibo(String error) {
 		this.error = error;
 	}
 

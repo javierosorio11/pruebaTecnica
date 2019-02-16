@@ -94,7 +94,7 @@ public class EstacionamientoService implements IEstacionamientoService {
 
 		try {
 
-			VehiculoEntity vehiculoEntity = iRepositorioVehiculo.findByPlacaByEstado(recibo.getPlaca(),
+			VehiculoEntity vehiculoEntity = iRepositorioVehiculo.findByPlacaByEstado(recibo.getPlacaRecibo(),
 					Utilitarios.PARQUEADO);
 
 			if (vehiculoEntity != null) {
