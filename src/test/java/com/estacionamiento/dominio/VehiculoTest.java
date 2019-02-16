@@ -14,36 +14,36 @@ public class VehiculoTest {
 				Utilitarios.PARQUEADO, 500, 5000);
 
 		Assert.assertNotNull(vehiculo);
-		Assert.assertEquals("TTT_223", vehiculo.getPlacaVehiculo());
-		Assert.assertEquals("12-01-2019 12:22:23", vehiculo.getFechaHoraIngresoVehiculo());
-		Assert.assertEquals("14-02-2019 12:22:23", vehiculo.getFechaHoraSalidaVehiculo());
+		Assert.assertEquals("TTT_223", vehiculo.getPlaca());
+		Assert.assertEquals("12-01-2019 12:22:23", vehiculo.getFechaHoraIngreso());
+		Assert.assertEquals("14-02-2019 12:22:23", vehiculo.getFechaHoraSalida());
 		Assert.assertEquals(Utilitarios.MOTO, vehiculo.getTipoVehiculo());
-		Assert.assertEquals(Utilitarios.PARQUEADO, vehiculo.getEstadoVehiculo());
-		Assert.assertEquals(500, vehiculo.getCilindrajeVehiculo());
-		Assert.assertEquals(5000, vehiculo.getValorServicioVehiculo());
+		Assert.assertEquals(Utilitarios.PARQUEADO, vehiculo.getEstado());
+		Assert.assertEquals(500, vehiculo.getCilindraje());
+		Assert.assertEquals(5000, vehiculo.getValorServicio());
 
 	}
-	
+
 	@Test
 	public void gettersAndSetters() {
 
 		Vehiculo vehiculo = new Vehiculo();
-		vehiculo.setCilindrajeVehiculo(500);
-		vehiculo.setEstadoVehiculo(Utilitarios.PARQUEADO);
-		vehiculo.setFechaHoraIngresoVehiculo("12-01-2019 12:22:23");
-		vehiculo.setFechaHoraSalidaVehiculo("14-02-2019 12:22:23");
-		vehiculo.setPlacaVehiculo("TTT_223");
+		vehiculo.setCilindraje(500);
+		vehiculo.setEstado(Utilitarios.PARQUEADO);
+		vehiculo.setFechaHoraIngreso("12-01-2019 12:22:23");
+		vehiculo.setFechaHoraSalida("14-02-2019 12:22:23");
+		vehiculo.setPlaca("TTT_223");
 		vehiculo.setTipoVehiculo(Utilitarios.CARRO);
-		vehiculo.setValorServicioVehiculo(5000);
+		vehiculo.setValorServicio(5000);
 
 		Assert.assertNotNull(vehiculo);
-		Assert.assertEquals("TTT_223", vehiculo.getPlacaVehiculo());
-		Assert.assertEquals("12-01-2019 12:22:23", vehiculo.getFechaHoraIngresoVehiculo());
-		Assert.assertEquals("14-02-2019 12:22:23", vehiculo.getFechaHoraSalidaVehiculo());
+		Assert.assertEquals("TTT_223", vehiculo.getPlaca());
+		Assert.assertEquals("12-01-2019 12:22:23", vehiculo.getFechaHoraIngreso());
+		Assert.assertEquals("14-02-2019 12:22:23", vehiculo.getFechaHoraSalida());
 		Assert.assertEquals(Utilitarios.CARRO, vehiculo.getTipoVehiculo());
-		Assert.assertEquals(Utilitarios.PARQUEADO, vehiculo.getEstadoVehiculo());
-		Assert.assertEquals(500, vehiculo.getCilindrajeVehiculo());
-		Assert.assertEquals(5000, vehiculo.getValorServicioVehiculo());
+		Assert.assertEquals(Utilitarios.PARQUEADO, vehiculo.getEstado());
+		Assert.assertEquals(500, vehiculo.getCilindraje());
+		Assert.assertEquals(5000, vehiculo.getValorServicio());
 
 	}
 

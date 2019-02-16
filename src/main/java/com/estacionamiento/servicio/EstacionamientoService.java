@@ -37,22 +37,22 @@ public class EstacionamientoService implements IEstacionamientoService {
 			if (verificarDisponibilidadServicio(vehiculo)) {
 
 				if (!Utilitarios.esDomingoOLunes(Calendar.getInstance())
-						&& Utilitarios.placaVehiculoIniciaPorA(vehiculo.getPlacaVehiculo())) {
+						&& Utilitarios.placaVehiculoIniciaPorA(vehiculo.getPlaca())) {
 
 					throw new EstacionamientoException(Utilitarios.PLACA_INI_EN_A);
 
 				} else {
 
-					vehiculo.setFechaHoraIngresoVehiculo(Utilitarios.fechaActualAString());
-					vehiculo.setEstadoVehiculo(Utilitarios.PARQUEADO);
-					VehiculoEntity vehiculoEntity = new VehiculoEntity(vehiculo.getPlacaVehiculo(),
-							vehiculo.getFechaHoraIngresoVehiculo(), vehiculo.getFechaHoraSalidaVehiculo(),
-							vehiculo.getTipoVehiculo(), Utilitarios.PARQUEADO, vehiculo.getCilindrajeVehiculo(), 0);
+					vehiculo.setFechaHoraIngreso(Utilitarios.fechaActualAString());
+					vehiculo.setEstado(Utilitarios.PARQUEADO);
+					VehiculoEntity vehiculoEntity = new VehiculoEntity(vehiculo.getPlaca(),
+							vehiculo.getFechaHoraIngreso(), vehiculo.getFechaHoraSalida(), vehiculo.getTipoVehiculo(),
+							Utilitarios.PARQUEADO, vehiculo.getCilindraje(), 0);
 
 					iRepositorioVehiculo.save(vehiculoEntity);
 
-					recibo = new Recibo(vehiculo.getPlacaVehiculo(), vehiculo.getFechaHoraIngresoVehiculo(),
-							vehiculo.getFechaHoraSalidaVehiculo(), vehiculo.getTipoVehiculo(), null);
+					recibo = new Recibo(vehiculo.getPlaca(), vehiculo.getFechaHoraIngreso(),
+							vehiculo.getFechaHoraSalida(), vehiculo.getTipoVehiculo(), null);
 
 				}
 
@@ -99,14 +99,14 @@ public class EstacionamientoService implements IEstacionamientoService {
 
 			if (vehiculoEntity != null) {
 
-				vehiculoEntity.setFechaHoraSalidaVEntity(Utilitarios.fechaActualAString());
-				vehiculoEntity.setEstadoVehiculoEntity(Utilitarios.NOPAQUEADO);
-				vehiculoEntity.setValorServicoVehiculoEntity(this.calcularValorServicio(vehiculoEntity));
+				vehiculoEntity.setFechaHoraSalidaVehiculo(Utilitarios.fechaActualAString());
+				vehiculoEntity.setEstadoVehiculo(Utilitarios.NOPAQUEADO);
+				vehiculoEntity.setValorServicioVehiculo(this.calcularValorServicio(vehiculoEntity));
 				iRepositorioVehiculo.save(vehiculoEntity);
-				facturaCobro = new Factura(vehiculoEntity.getPlacaVehiculoEntity(),
-						vehiculoEntity.getFechaHoraIngresoVEntity(), vehiculoEntity.getFechaHoraSalidaVEntity(),
-						vehiculoEntity.getValorServicoVehiculoEntity(), vehiculoEntity.getTipoVehiculoEntity(),
-						vehiculoEntity.getEstadoVehiculoEntity(), null);
+				facturaCobro = new Factura(vehiculoEntity.getPlacaVehiculo(),
+						vehiculoEntity.getFechaHoraIngresoVehiculo(), vehiculoEntity.getFechaHoraSalidaVehiculo(),
+						vehiculoEntity.getValorServicioVehiculo(), vehiculoEntity.getTipoVehiculo(),
+						vehiculoEntity.getEstadoVehiculo(), null);
 
 			} else {
 
@@ -129,29 +129,29 @@ public class EstacionamientoService implements IEstacionamientoService {
 
 		if (vehiculoEntity != null) {
 
-			Date fechaIngreso = Utilitarios.fechaStringADate(vehiculoEntity.getFechaHoraIngresoVEntity());
-			Date fechaSalida = Utilitarios.fechaStringADate(vehiculoEntity.getFechaHoraSalidaVEntity());
+			Date fechaIngreso = Utilitarios.fechaStringADate(vehiculoEntity.getFechaHoraIngresoVehiculo());
+			Date fechaSalida = Utilitarios.fechaStringADate(vehiculoEntity.getFechaHoraSalidaVehiculo());
 
 			tiempoMs = fechaSalida.getTime() - fechaIngreso.getTime();
 			servicioHoras = (long) ((tiempoMs / Utilitarios.HORAENMLS) % 24);
 			servicioDias = (long) (tiempoMs / Utilitarios.HORAENMLS) / 24;
 
-			long valorDia = (vehiculoEntity.getTipoVehiculoEntity() == Utilitarios.CARRO) ? Utilitarios.VALORDIACARRO
+			long valorDia = (vehiculoEntity.getTipoVehiculo() == Utilitarios.CARRO) ? Utilitarios.VALORDIACARRO
 					: Utilitarios.VALORDIAMOTO;
-			long valorHora = (vehiculoEntity.getTipoVehiculoEntity() == Utilitarios.CARRO) ? Utilitarios.VALORHORACARRO
+			long valorHora = (vehiculoEntity.getTipoVehiculo() == Utilitarios.CARRO) ? Utilitarios.VALORHORACARRO
 					: Utilitarios.VALORDHORAMOTO;
 
 			if (servicioHoras >= 9) {
 
 				servicioDias += 1;
 				long valorTotalDias = servicioDias * valorDia;
-				valorServicio = (vehiculoEntity.getTipoVehiculoEntity() == Utilitarios.MOTO
+				valorServicio = (vehiculoEntity.getTipoVehiculo() == Utilitarios.MOTO
 						? valorTotalDias + (Utilitarios.RECARGOMOTOCC) : valorTotalDias);
 
 			} else if (servicioHoras < 9) {
 				long valorTotalDias = servicioDias * valorDia;
 				long valorTotalHoras = servicioHoras * valorHora;
-				valorServicio = (vehiculoEntity.getTipoVehiculoEntity() == Utilitarios.MOTO
+				valorServicio = (vehiculoEntity.getTipoVehiculo() == Utilitarios.MOTO
 						? (valorTotalHoras + valorTotalDias + Utilitarios.RECARGOMOTOCC)
 						: (valorTotalDias + valorTotalHoras));
 

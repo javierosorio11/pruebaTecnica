@@ -82,9 +82,7 @@ public class UtilitariosTest {
 
 		Assert.assertFalse(placaInicaEnA);
 	}
-	
 
-	
 	@Test
 	public void UtilitariosTests() {
 
@@ -92,7 +90,7 @@ public class UtilitariosTest {
 
 		try {
 
-			Utilitarios util = new Utilitarios();
+			new Utilitarios();
 
 		} catch (Exception e) {
 

@@ -2,52 +2,52 @@ package com.estacionamiento.dominio;
 
 public class Vehiculo {
 
-	private String placaVehiculo;
-	private String fechaHoraIngresoVehiculo;
-	private String fechaHoraSalidaVehiculo;
+	private String placa;
+	private String fechaHoraIngreso;
+	private String fechaHoraSalida;
 	private int tipoVehiculo;
-	private int estadoVehiculo;
-	private long cilindrajeVehiculo;
-	private long valorServicioVehiculo;
+	private int estado;
+	private long cilindraje;
+	private long valorServicio;
 
-	public Vehiculo(String placaVehiculo, String fechaHoraIngresoVehiculo, String fechaHoraSalidaVehiculo,
-			int tipoVehiculoVehiculo, int estadoVehiculo, long cilindrajeVehiculo, long valorServicioVehiculo) {
+	public Vehiculo(String placa, String fechaHoraIngreso, String fechaHoraSalida, int tipoVehiculo, int estado,
+			long cilindraje, long valorServicio) {
 		super();
-		this.placaVehiculo = placaVehiculo;
-		this.fechaHoraIngresoVehiculo = fechaHoraIngresoVehiculo;
-		this.fechaHoraSalidaVehiculo = fechaHoraSalidaVehiculo;
-		this.tipoVehiculo = tipoVehiculoVehiculo;
-		this.estadoVehiculo = estadoVehiculo;
-		this.cilindrajeVehiculo = cilindrajeVehiculo;
-		this.valorServicioVehiculo = valorServicioVehiculo;
+		this.placa = placa;
+		this.fechaHoraIngreso = fechaHoraIngreso;
+		this.fechaHoraSalida = fechaHoraSalida;
+		this.tipoVehiculo = tipoVehiculo;
+		this.estado = estado;
+		this.cilindraje = cilindraje;
+		this.valorServicio = valorServicio;
 	}
 
 	public Vehiculo() {
 		super();
 	}
 
-	public String getPlacaVehiculo() {
-		return placaVehiculo;
+	public String getPlaca() {
+		return placa;
 	}
 
-	public void setPlacaVehiculo(String placa) {
-		this.placaVehiculo = placa;
+	public void setPlaca(String placa) {
+		this.placa = placa;
 	}
 
-	public String getFechaHoraIngresoVehiculo() {
-		return fechaHoraIngresoVehiculo;
+	public String getFechaHoraIngreso() {
+		return fechaHoraIngreso;
 	}
 
-	public void setFechaHoraIngresoVehiculo(String fechaHoraIngreso) {
-		this.fechaHoraIngresoVehiculo = fechaHoraIngreso;
+	public void setFechaHoraIngreso(String fechaHoraIngreso) {
+		this.fechaHoraIngreso = fechaHoraIngreso;
 	}
 
-	public String getFechaHoraSalidaVehiculo() {
-		return fechaHoraSalidaVehiculo;
+	public String getFechaHoraSalida() {
+		return fechaHoraSalida;
 	}
 
-	public void setFechaHoraSalidaVehiculo(String fechaHoraSalida) {
-		this.fechaHoraSalidaVehiculo = fechaHoraSalida;
+	public void setFechaHoraSalida(String fechaHoraSalida) {
+		this.fechaHoraSalida = fechaHoraSalida;
 	}
 
 	public int getTipoVehiculo() {
@@ -58,28 +58,28 @@ public class Vehiculo {
 		this.tipoVehiculo = tipoVehiculo;
 	}
 
-	public int getEstadoVehiculo() {
-		return estadoVehiculo;
+	public int getEstado() {
+		return estado;
 	}
 
-	public void setEstadoVehiculo(int estado) {
-		this.estadoVehiculo = estado;
+	public void setEstado(int estado) {
+		this.estado = estado;
 	}
 
-	public long getCilindrajeVehiculo() {
-		return cilindrajeVehiculo;
+	public long getCilindraje() {
+		return cilindraje;
 	}
 
-	public void setCilindrajeVehiculo(long cilindraje) {
-		this.cilindrajeVehiculo = cilindraje;
+	public void setCilindraje(long cilindraje) {
+		this.cilindraje = cilindraje;
 	}
 
-	public long getValorServicioVehiculo() {
-		return valorServicioVehiculo;
+	public long getValorServicio() {
+		return valorServicio;
 	}
 
-	public void setValorServicioVehiculo(long valorServicio) {
-		this.valorServicioVehiculo = valorServicio;
+	public void setValorServicio(long valorServicio) {
+		this.valorServicio = valorServicio;
 	}
 
 }

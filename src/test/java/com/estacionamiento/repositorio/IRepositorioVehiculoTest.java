@@ -24,9 +24,9 @@ public class IRepositorioVehiculoTest {
 	@Before
 	public void dataInicial() {
 		VehiculoEntity vehiculo = new VehiculoEntity();
-		vehiculo.setEstadoVehiculoEntity(Utilitarios.PARQUEADO);
-		vehiculo.setPlacaVehiculoEntity("TMQ");
-		vehiculo.setTipoVehiculoEntity(Utilitarios.CARRO);
+		vehiculo.setEstadoVehiculo(Utilitarios.PARQUEADO);
+		vehiculo.setPlacaVehiculo("TMQ");
+		vehiculo.setTipoVehiculo(Utilitarios.CARRO);
 		iRepositorioVehiculo.save(vehiculo);
 	}
 
@@ -50,9 +50,9 @@ public class IRepositorioVehiculoTest {
 
 		VehiculoEntity vehiculoEntity = iRepositorioVehiculo.findByPlacaByEstado("TMQ", Utilitarios.PARQUEADO);
 
-		Assert.assertEquals(Utilitarios.PARQUEADO, vehiculoEntity.getEstadoVehiculoEntity());
-		Assert.assertEquals(Utilitarios.CARRO, vehiculoEntity.getTipoVehiculoEntity());
-		Assert.assertEquals("TMQ", vehiculoEntity.getPlacaVehiculoEntity());
+		Assert.assertEquals(Utilitarios.PARQUEADO, vehiculoEntity.getEstadoVehiculo());
+		Assert.assertEquals(Utilitarios.CARRO, vehiculoEntity.getTipoVehiculo());
+		Assert.assertEquals("TMQ", vehiculoEntity.getPlacaVehiculo());
 
 	}
 

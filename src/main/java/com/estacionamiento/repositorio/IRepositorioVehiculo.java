@@ -11,10 +11,10 @@ import com.estacionamiento.persistencia.VehiculoEntity;
 @Repository
 public interface IRepositorioVehiculo extends JpaRepository<VehiculoEntity, Long> {
 
-	@Query("SELECT s FROM VehiculoEntity s WHERE s.tipoVehiculo=?1 and s.estado=?2")
+	@Query("SELECT s FROM VehiculoEntity s WHERE s.tipoVehiculo=?1 and s.estadoVehiculo=?2")
 	public List<VehiculoEntity> findByTipoVehiculoByEstado(int tipoVehiculo, int estado);
 
-	@Query("SELECT s FROM VehiculoEntity s WHERE s.placa=?1 and s.estado=?2")
+	@Query("SELECT s FROM VehiculoEntity s WHERE s.placaVehiculo=?1 and s.estadoVehiculo=?2")
 	public VehiculoEntity findByPlacaByEstado(String placa, int estado);
 
 }
