@@ -17,4 +17,7 @@ public interface IRepositorioVehiculo extends JpaRepository<VehiculoEntity, Long
 	@Query("SELECT s FROM VehiculoEntity s WHERE s.placaVehiculo=?1 and s.estadoVehiculo=?2")
 	public VehiculoEntity findByPlacaByEstado(String placa, int estado);
 
+	@Query("SELECT s FROM VehiculoEntity s WHERE s.estadoVehiculo=?1")
+	public List<VehiculoEntity> findByEstadoVehiculo(int estado);
+
 }

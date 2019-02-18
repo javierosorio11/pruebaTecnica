@@ -2,6 +2,7 @@
 package com.estacionamiento.servicio;
 
 import java.text.ParseException;
+import java.util.List;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -12,7 +13,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.estacionamiento.EstacionamientoAplication;
-import com.estacionamiento.dominio.Recibo;
 import com.estacionamiento.dominio.Vehiculo;
 import com.estacionamiento.exception.EstacionamientoException;
 import com.estacionamiento.persistencia.VehiculoEntity;
@@ -43,10 +43,10 @@ public class EstacionamientoServicioTest {
 		vehiculo.setTipoVehiculo(Utilitarios.CARRO);
 		vehiculo.setCilindraje(0);
 
-		Recibo recibo = estacionamientoService.registrarEntrada(vehiculo);
+		Vehiculo recibo = estacionamientoService.registrarEntrada(vehiculo);
 
-		Assert.assertEquals("TMQ", recibo.getPlacaRecibo());
-		Assert.assertEquals(Utilitarios.CARRO, recibo.getTipoVehiculoRecibo());
+		Assert.assertEquals("TMQ", recibo.getPlaca());
+		Assert.assertEquals(Utilitarios.CARRO, recibo.getTipoVehiculo());
 
 	}
 
@@ -57,10 +57,10 @@ public class EstacionamientoServicioTest {
 		vehiculo.setPlaca("TSQ");
 		vehiculo.setTipoVehiculo(Utilitarios.MOTO);
 
-		Recibo recibo = estacionamientoService.registrarEntrada(vehiculo);
+		Vehiculo recibo = estacionamientoService.registrarEntrada(vehiculo);
 
-		Assert.assertEquals("TSQ", recibo.getPlacaRecibo());
-		Assert.assertEquals(Utilitarios.MOTO, recibo.getTipoVehiculoRecibo());
+		Assert.assertEquals("TSQ", recibo.getPlaca());
+		Assert.assertEquals(Utilitarios.MOTO, recibo.getTipoVehiculo());
 
 	}
 
@@ -143,19 +143,29 @@ public class EstacionamientoServicioTest {
 
 	}
 
+	@Test
+	public void vehiculosEstacionadosTest() throws EstacionamientoException {
+
+		crearVehiculos();
+
+		List<Vehiculo> lstVehiculos = estacionamientoService.vehiculosEstacionados();
+
+		Assert.assertNotNull(lstVehiculos);
+
+	}
+
 	public void crearVehiculos() {
-
 		for (int i = 0; i <= 40; i++) {
-			VehiculoEntity servicio = new VehiculoEntity();
-			servicio.setEstadoVehiculo(Utilitarios.PARQUEADO);
+			VehiculoEntity vehiculoEntity = new VehiculoEntity();
+			vehiculoEntity.setPlacaVehiculo("TTR" + i);
+			vehiculoEntity.setEstadoVehiculo(Utilitarios.PARQUEADO);
 			if (i < 20) {
-				servicio.setTipoVehiculo(Utilitarios.MOTO);
+				vehiculoEntity.setTipoVehiculo(Utilitarios.MOTO);
 			} else {
-				servicio.setTipoVehiculo(Utilitarios.CARRO);
+				vehiculoEntity.setTipoVehiculo(Utilitarios.CARRO);
 			}
-			iRepositorioVehiculo.save(servicio);
+			iRepositorioVehiculo.save(vehiculoEntity);
 		}
-
 	}
 
 }

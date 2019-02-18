@@ -25,6 +25,7 @@ public final class Utilitarios {
 	public static final long RECARGOMOTOCC = 2000;
 	public static final String FACTURANOEXISTE = "No existe la factura solicitada";
 	public static final String ERROR_REGISTRA_SALIDA = "Se presento un error registrando salida";
+	public static final String NO_EXISTEN_VEHICULOS = "No hay vehiculos en el estacionamiento";
 
 	Utilitarios() {
 		throw new IllegalStateException("No instanciable");

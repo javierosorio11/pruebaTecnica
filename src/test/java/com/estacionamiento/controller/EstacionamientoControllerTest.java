@@ -1,6 +1,7 @@
 package com.estacionamiento.controller;
 
 import java.text.ParseException;
+import java.util.List;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -11,7 +12,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.estacionamiento.dominio.Factura;
-import com.estacionamiento.dominio.Recibo;
 import com.estacionamiento.dominio.Vehiculo;
 import com.estacionamiento.exception.EstacionamientoException;
 import com.estacionamiento.persistencia.VehiculoEntity;
@@ -46,10 +46,10 @@ public class EstacionamientoControllerTest {
 		vehiculo.setPlaca("TMQ");
 		vehiculo.setTipoVehiculo(Utilitarios.CARRO);
 
-		Recibo recibo = estacionamientoController.registrarEntradaVehiculo(vehiculo);
+		Vehiculo recibo = estacionamientoController.registrarEntradaVehiculo(vehiculo);
 
-		Assert.assertEquals(vehiculo.getPlaca(), recibo.getPlacaRecibo());
-		Assert.assertEquals(vehiculo.getTipoVehiculo(), recibo.getTipoVehiculoRecibo());
+		Assert.assertEquals(vehiculo.getPlaca(), recibo.getPlaca());
+		Assert.assertEquals(vehiculo.getTipoVehiculo(), recibo.getTipoVehiculo());
 
 	}
 
@@ -61,10 +61,10 @@ public class EstacionamientoControllerTest {
 		vehiculo.setPlaca("QTM");
 		vehiculo.setTipoVehiculo(Utilitarios.MOTO);
 
-		Recibo recibo = estacionamientoController.registrarEntradaVehiculo(vehiculo);
+		Vehiculo recibo = estacionamientoController.registrarEntradaVehiculo(vehiculo);
 
-		Assert.assertEquals(vehiculo.getPlaca(), recibo.getPlacaRecibo());
-		Assert.assertEquals(vehiculo.getTipoVehiculo(), recibo.getTipoVehiculoRecibo());
+		Assert.assertEquals(vehiculo.getPlaca(), recibo.getPlaca());
+		Assert.assertEquals(vehiculo.getTipoVehiculo(), recibo.getTipoVehiculo());
 
 	}
 
@@ -144,16 +144,28 @@ public class EstacionamientoControllerTest {
 
 	}
 
+	@Test
+	public void vehiculosEstacionadosTest() throws EstacionamientoException {
+
+		creacionServicios();
+
+		List<Vehiculo> lstVehiculos = estacionamientoController.vehiculosEstacionados();
+
+		Assert.assertNotNull(lstVehiculos);
+
+	}
+
 	public void creacionServicios() {
 		for (int i = 0; i <= 40; i++) {
-			VehiculoEntity servicio = new VehiculoEntity();
-			servicio.setEstadoVehiculo(Utilitarios.PARQUEADO);
+			VehiculoEntity vehiculoEntity = new VehiculoEntity();
+			vehiculoEntity.setPlacaVehiculo("TTR" + i);
+			vehiculoEntity.setEstadoVehiculo(Utilitarios.PARQUEADO);
 			if (i < 20) {
-				servicio.setTipoVehiculo(Utilitarios.MOTO);
+				vehiculoEntity.setTipoVehiculo(Utilitarios.MOTO);
 			} else {
-				servicio.setTipoVehiculo(Utilitarios.CARRO);
+				vehiculoEntity.setTipoVehiculo(Utilitarios.CARRO);
 			}
-			iRepositorioVehiculo.save(servicio);
+			iRepositorioVehiculo.save(vehiculoEntity);
 		}
 	}
 }

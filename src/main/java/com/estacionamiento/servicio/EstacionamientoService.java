@@ -1,6 +1,7 @@
 package com.estacionamiento.servicio;
 
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -29,9 +30,9 @@ public class EstacionamientoService implements IEstacionamientoService {
 	private static final Logger LOGGER = LoggerFactory.getLogger(EstacionamientoService.class);
 
 	@Override
-	public Recibo registrarEntrada(Vehiculo vehiculo) throws EstacionamientoException {
+	public Vehiculo registrarEntrada(Vehiculo vehiculo) throws EstacionamientoException {
 
-		Recibo recibo = new Recibo();
+		new Recibo();
 
 		try {
 			if (verificarDisponibilidadServicio(vehiculo)) {
@@ -51,9 +52,6 @@ public class EstacionamientoService implements IEstacionamientoService {
 
 					iRepositorioVehiculo.save(vehiculoEntity);
 
-					recibo = new Recibo(vehiculo.getPlaca(), vehiculo.getFechaHoraIngreso(),
-							vehiculo.getFechaHoraSalida(), vehiculo.getTipoVehiculo(), null);
-
 				}
 
 			} else {
@@ -65,7 +63,7 @@ public class EstacionamientoService implements IEstacionamientoService {
 			LOGGER.info(e.getMessage());
 		}
 
-		return recibo;
+		return vehiculo;
 
 	}
 
@@ -88,13 +86,13 @@ public class EstacionamientoService implements IEstacionamientoService {
 	}
 
 	@Override
-	public Factura registrarSalida(Recibo recibo) throws EstacionamientoException {
+	public Factura registrarSalida(Vehiculo vehiculo) throws EstacionamientoException {
 
 		Factura facturaCobro = new Factura();
 
 		try {
 
-			VehiculoEntity vehiculoEntity = iRepositorioVehiculo.findByPlacaByEstado(recibo.getPlacaRecibo(),
+			VehiculoEntity vehiculoEntity = iRepositorioVehiculo.findByPlacaByEstado(vehiculo.getPlaca(),
 					Utilitarios.PARQUEADO);
 
 			if (vehiculoEntity != null) {
@@ -115,6 +113,7 @@ public class EstacionamientoService implements IEstacionamientoService {
 		} catch (Exception e) {
 
 			LOGGER.error(Utilitarios.ERROR_REGISTRA_SALIDA, e);
+			facturaCobro.setErrorFactura(Utilitarios.ERROR_REGISTRA_SALIDA);
 		}
 
 		return facturaCobro;
@@ -159,6 +158,31 @@ public class EstacionamientoService implements IEstacionamientoService {
 
 		}
 		return valorServicio;
+	}
+
+	@Override
+	public List<Vehiculo> vehiculosEstacionados() throws EstacionamientoException {
+
+		List<VehiculoEntity> lstVehiculosEntity = iRepositorioVehiculo.findByEstadoVehiculo(Utilitarios.PARQUEADO);
+		List<Vehiculo> lstVehiculos = new ArrayList<Vehiculo>();
+
+		if (!lstVehiculosEntity.isEmpty()) {
+
+			for (VehiculoEntity vehiculoEntity : lstVehiculosEntity) {
+
+				Vehiculo vehiculo = new Vehiculo(vehiculoEntity.getPlacaVehiculo(),
+						vehiculoEntity.getFechaHoraIngresoVehiculo(), vehiculoEntity.getFechaHoraSalidaVehiculo(),
+						vehiculoEntity.getTipoVehiculo(), vehiculoEntity.getEstadoVehiculo(),
+						vehiculoEntity.getCilindrajeVehiculo(), vehiculoEntity.getValorServicioVehiculo());
+
+				lstVehiculos.add(vehiculo);
+			}
+		} else {
+
+			throw new EstacionamientoException(Utilitarios.NO_EXISTEN_VEHICULOS);
+		}
+
+		return lstVehiculos;
 	}
 
 }
