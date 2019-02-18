@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.estacionamiento.dominio.Factura;
-import com.estacionamiento.dominio.Recibo;
 import com.estacionamiento.dominio.Vehiculo;
 import com.estacionamiento.exception.EstacionamientoException;
 import com.estacionamiento.persistencia.VehiculoEntity;
@@ -31,8 +30,6 @@ public class EstacionamientoService implements IEstacionamientoService {
 
 	@Override
 	public Vehiculo registrarEntrada(Vehiculo vehiculo) throws EstacionamientoException {
-
-		new Recibo();
 
 		try {
 			if (verificarDisponibilidadServicio(vehiculo)) {
@@ -164,7 +161,7 @@ public class EstacionamientoService implements IEstacionamientoService {
 	public List<Vehiculo> vehiculosEstacionados() throws EstacionamientoException {
 
 		List<VehiculoEntity> lstVehiculosEntity = iRepositorioVehiculo.findByEstadoVehiculo(Utilitarios.PARQUEADO);
-		List<Vehiculo> lstVehiculos = new ArrayList<Vehiculo>();
+		List<Vehiculo> lstVehiculos = new ArrayList<>();
 
 		if (!lstVehiculosEntity.isEmpty()) {
 
