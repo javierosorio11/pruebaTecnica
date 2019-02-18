@@ -32,6 +32,9 @@ public class EstacionamientoService implements IEstacionamientoService {
 	public Vehiculo registrarEntrada(Vehiculo vehiculo) throws EstacionamientoException {
 
 		try {
+
+			validarNoExiste(vehiculo.getPlaca());
+
 			if (verificarDisponibilidadServicio(vehiculo)) {
 
 				if (!Utilitarios.esDomingoOLunes(Calendar.getInstance())
@@ -180,6 +183,15 @@ public class EstacionamientoService implements IEstacionamientoService {
 		}
 
 		return lstVehiculos;
+	}
+
+	public void validarNoExiste(String placa) throws EstacionamientoException {
+
+		VehiculoEntity vehiculoEntity = iRepositorioVehiculo.findByPlacaByEstado(placa, Utilitarios.PARQUEADO);
+		if (vehiculoEntity != null) {
+			throw new EstacionamientoException(Utilitarios.VEHICULO_EXITE);
+		}
+
 	}
 
 }

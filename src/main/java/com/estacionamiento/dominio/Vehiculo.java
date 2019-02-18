@@ -31,7 +31,7 @@ public class Vehiculo {
 	}
 
 	public void setPlaca(String placa) {
-		this.placa = placa;
+		this.placa = placa.toUpperCase();
 	}
 
 	public String getFechaHoraIngreso() {

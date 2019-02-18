@@ -129,17 +129,26 @@ public class EstacionamientoServicioTest {
 	}
 
 	@Test
-	public void calcularValorServicioMotoTest() throws ParseException {
+	public void validarNoExisteTest() throws ParseException {
 
 		VehiculoEntity vehiculoEntity = new VehiculoEntity();
+		vehiculoEntity.setPlacaVehiculo("TQM556");
 		vehiculoEntity.setFechaHoraIngresoVehiculo("01-01-2019 05:22:24");
 		vehiculoEntity.setFechaHoraSalidaVehiculo("01-01-2019 18:22:24");
 		vehiculoEntity.setTipoVehiculo(Utilitarios.MOTO);
+		vehiculoEntity.setEstadoVehiculo(Utilitarios.PARQUEADO);
 		vehiculoEntity.setCilindrajeVehiculo(650);
+		iRepositorioVehiculo.save(vehiculoEntity);
+		String exception = "";
+		try {
 
-		long ValorServicio = estacionamientoService.calcularValorServicio(vehiculoEntity);
+			estacionamientoService.validarNoExiste(vehiculoEntity.getPlacaVehiculo());
 
-		Assert.assertEquals(6000, ValorServicio);
+		} catch (EstacionamientoException e) {
+
+			exception = e.getMessage();
+		}
+		Assert.assertEquals(Utilitarios.VEHICULO_EXITE, exception);
 
 	}
 
@@ -151,6 +160,22 @@ public class EstacionamientoServicioTest {
 		List<Vehiculo> lstVehiculos = estacionamientoService.vehiculosEstacionados();
 
 		Assert.assertNotNull(lstVehiculos);
+
+	}
+
+	@Test
+	public void calcularValorServicioMotoTest() throws ParseException {
+
+		VehiculoEntity vehiculoEntity = new VehiculoEntity();
+		vehiculoEntity.setFechaHoraIngresoVehiculo("01-01-2019 05:22:24");
+		vehiculoEntity.setFechaHoraSalidaVehiculo("01-01-2019 18:22:24");
+		vehiculoEntity.setTipoVehiculo(Utilitarios.MOTO);
+		vehiculoEntity.setEstadoVehiculo(Utilitarios.PARQUEADO);
+		vehiculoEntity.setCilindrajeVehiculo(650);
+
+		long ValorServicio = estacionamientoService.calcularValorServicio(vehiculoEntity);
+
+		Assert.assertEquals(6000, ValorServicio);
 
 	}
 
